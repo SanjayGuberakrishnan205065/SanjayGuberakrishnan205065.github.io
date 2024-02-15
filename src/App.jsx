@@ -1,8 +1,4 @@
-import {
-  BrowserRouter,
-  RouterProvider,
-  createHashRouter,
-} from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
@@ -12,6 +8,8 @@ import Navbar from "./components/navbar/Navbar";
 import Loading from "./pages/loader/loading.svg";
 import Router from "./Router";
 import Footer from "./components/footer/Footer";
+import Layout from "./layouts/Layout";
+import Home from "./pages/home/Home";
 
 function App() {
   const authContext = useAuthContext();
@@ -21,18 +19,24 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const router = createHashRouter();
+  const router = createHashRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+      ],
+    },
+  ]);
 
   return (
-    <div>
+    <>
       <ReactNotifications />
-      {/* <BrowserRouter> */}
-      <Navbar />
       <RouterProvider router={router} />
-      <Router authContext={authContext} />
-      <Footer />
-      {/* </BrowserRouter> */}
-    </div>
+    </>
   );
 }
 
