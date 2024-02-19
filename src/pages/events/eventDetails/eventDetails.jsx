@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import { Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import config from "../../../config";
 import Loader from "../../loader/Loader";
 import { formatDateTime } from "../../../utils";
@@ -110,6 +110,17 @@ const EventDetails = () => {
             </table>
           </div>
         </div>
+      </div>
+      <div className="text-center">
+        {isOrganiser && (
+          <div className="mt-5">
+            <Link to={`/events/${id}/edit`}>
+              <Button color="blue" ripple="light">
+                Edit Event
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import "react-autocomplete-input/dist/bundle.css";
 import EventDetailsForm from "../../../components/events/EventDetailsForm";
 import Loading from "../../loader/loading.svg";
+import config from "../../../config";
 
 const UpdateEvent = () => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const UpdateEvent = () => {
   const [conflictsExist, setConflictsExist] = useState(false);
   const [showConflictingEvents, setShowConflictingEvents] = useState(false);
   const [conflictingEvents, setConflictingEvents] = useState([]);
-  const [showSubmitBtn, setShowSubmitBtn] = useState(false);
+  const [showSubmitBtn, setShowSubmitBtn] = useState(true);
   const [organizers, setOrganizers] = useState([]);
 
   const updateEvent = () => {
@@ -39,96 +40,75 @@ const UpdateEvent = () => {
     } else {
       setError("");
     }
-    if (!showSubmitBtn) {
-      setCheckingConflicts(true);
-      axios
-        .post(
-          "/api/events/check-conflicts/",
-          {
-            from: formData.eventStartDate,
-            to: formData.eventEndDate,
-          },
-          { headers: { Authorization: `Bearer ${token}` } }
-        )
-        .then((res) => {
-          setCheckingConflicts(false);
-          if (res.data.conflict) {
-            setConflictsExist(true);
-            setConflictingEvents(res.data.events);
-          } else {
-            setShowSubmitBtn(true);
-          }
-        });
-    } else {
-      const uploadImage = () => {
-        if (selectedImage && selectedImage.size > 5000000) {
-          setError("Image size must be less than 5 MB");
-          setSuccess("");
-          return;
-        }
-        setUploading(true);
+    const uploadImage = () => {
+      if (selectedImage && selectedImage.size > 5000000) {
+        setError("Image size must be less than 5 MB");
         setSuccess("");
-        setError("");
-        const formData = new FormData();
-        formData.append("img", selectedImage);
-        axios
-          .post("/api/events/image", formData, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .then((res) => {
-            setUploading(false);
-            setSuccess("Image uploaded successfully, updating event...");
-            submitEventForm(res.data._id);
-          })
-          .catch((err) => {
-            setError(err.message);
-            setUploading(false);
-          });
-      };
-
-      const submitEventForm = (imgId) => {
-        const dataToSend = {
-          eventName: formData.eventName,
-          eventStartDate: formData.eventStartDate,
-          eventEndDate: formData.eventEndDate,
-          eventType: formData.eventType,
-          firstPrizeMoney: formData.firstPrizeMoney,
-          secondPrizeMoney: formData.secondPrizeMoney,
-          venue: formData.venue,
-          dept: formData.dept,
-          contactName: formData.contactName,
-          contactPhone: formData.contactPhone,
-          contactEmail: formData.contactEmail,
-          link: formData.link,
-          otherInfo: formData.otherInfo,
-          public: formData.public,
-          whatsapp: formData.whatsapp,
-        };
-        if (imageModified) {
-          if (selectedImage) {
-            dataToSend["image"] = imgId;
-          } else {
-            dataToSend["image"] = "";
-          }
-        }
-        axios
-          .patch(`/api/events/${id}`, dataToSend, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .then(() => {
-            setError("");
-            setSuccess("Event updated successfully");
-          })
-          .catch((err) => {
-            setError(err.response.data.error);
-          });
-      };
-
-      if (imageModified && selectedImage) {
-        uploadImage();
-      } else {
-        submitEventForm(existingImage);
+        return;
       }
+      setUploading(true);
+      setSuccess("");
+      setError("");
+      const formData = new FormData();
+      formData.append("img", selectedImage);
+      axios
+        .post("/api/events/image", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setUploading(false);
+          setSuccess("Image uploaded successfully, updating event...");
+          submitEventForm(res.data._id);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setUploading(false);
+        });
+    };
+
+    const submitEventForm = (imgId) => {
+      console.log(formData);
+      const dataToSend = {
+        eventName: formData.eventName,
+        eventStartDate: formData.eventStartDate + "z",
+        eventEndDate: formData.eventEndDate + "z",
+        eventType: formData.eventType,
+        firstPrizeMoney: formData.firstPrizeMoney,
+        secondPrizeMoney: formData.secondPrizeMoney,
+        venue: formData.venue,
+        dept: formData.dept,
+        contactName: formData.contactName,
+        contactPhone: formData.contactPhone,
+        contactEmail: formData.contactEmail,
+        link: formData.link,
+        otherInfo: formData.otherInfo,
+        public: formData.public,
+        whatsapp: formData.whatsapp,
+      };
+      if (imageModified) {
+        if (selectedImage) {
+          dataToSend["image"] = imgId;
+        } else {
+          dataToSend["image"] = "";
+        }
+      }
+      axios
+        .patch(`/api/events/${id}`, dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(() => {
+          setError("");
+          setSuccess("Event updated successfully");
+        })
+        .catch((err) => {
+          setError(err.response.data.error);
+        });
+    };
+
+    if (imageModified && selectedImage) {
+      uploadImage();
+    } else {
+      submitEventForm(existingImage);
     }
   };
 
@@ -140,7 +120,9 @@ const UpdateEvent = () => {
         eventEndDate: response.data.eventEndDate.substr(0, 16),
       });
       if (response.data.image) {
-        setExistingImage(`/api/events/image/${response.data._id}`);
+        setExistingImage(
+          `${config.apiUrl}/api/events/image/${response.data._id}`
+        );
       }
       axios.get(`/api/events/organizers/${id}`).then((res) => {
         let isOrg = false;
@@ -178,7 +160,7 @@ const UpdateEvent = () => {
   }
 
   return (
-    <div className="container row mx-auto">
+    <div className="container page-view mx-auto">
       <Header title={"Update event"} />
       <EventDetailsForm
         formData={formData}

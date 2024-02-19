@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   if (user) {
-    return <Navigate to={flow ? `/${flow}` : "/"} />;
+    return <Navigate to={flow ? `/${flow}` : "/organized-events"} />;
   }
 
   return (

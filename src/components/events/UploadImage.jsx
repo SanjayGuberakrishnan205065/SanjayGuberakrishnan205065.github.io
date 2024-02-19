@@ -1,16 +1,18 @@
+import { Button, Typography } from "@material-tailwind/react";
+
 const UploadImage = ({
   existingImage,
   setExistingImage,
   selectedImage,
   setSelectedImage,
   setImageModified,
-  suggestions,
-  setSuggestions,
 }) => {
   return (
-    <div className="my-3 py-3 px-5 border shadow rounded">
+    <div className="">
       <div>
-        <h3>Upload a Poster</h3>
+        <Typography variant="h3" color="white">
+          Upload a Poster
+        </Typography>
         <p className="small text-muted">
           Must be &lt; 5 MB, preferred ratio 16:9
         </p>
@@ -23,20 +25,26 @@ const UploadImage = ({
               className="d-block mx-auto rounded"
             />
             <br />
-            <button
-              className="btn btn-danger d-block mx-auto mb-3"
+            <Button
+              color="red"
+              className="my-3"
               onClick={() => {
                 setExistingImage(null);
                 setSelectedImage(null);
                 setImageModified(true);
               }}
             >
-              Remove
-            </button>
+              Remove Image
+            </Button>
           </div>
         )}
       </div>
       <div>
+        <div>
+          <Typography variant="h5" color="white">
+            Upload a new image
+          </Typography>
+        </div>
         <input
           type="file"
           required={true}

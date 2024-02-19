@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import OrganizedEventsList from "./OrganizedEventsList";
 import Loading from "../../loader/loading.svg";
+import { Typography } from "@material-tailwind/react";
+import EventsList from "../../../components/events/EventsList";
 
 const OrganisedEvents = () => {
   const [loading, setLoading] = useState(true);
@@ -33,11 +34,12 @@ const OrganisedEvents = () => {
   }
 
   return (
-    <div className="container row mx-auto">
-      <h1 className="display-3">Organised Events</h1>
-      <p className="small text-muted">Events organised by you</p>
+    <div className="container page-view mx-auto">
+      <Typography variant="h1" color="white">
+        Organized Events
+      </Typography>
       {events.length ? (
-        <OrganizedEventsList events={events} />
+        <EventsList events={events} />
       ) : (
         <div style={{ position: "relative", height: "50vh" }}>
           <div
@@ -48,7 +50,7 @@ const OrganisedEvents = () => {
               width: "100%",
               transform: "translate(-50%, -50%)",
             }}
-            className="display-6 text-center text-secondary"
+            className="text-3xl text-center"
           >
             Events that you organize appear here
           </div>

@@ -4,6 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { Store } from "react-notifications-component";
 import { MdDelete } from "react-icons/md";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import { Button, Input, Typography } from "@material-tailwind/react";
 
 const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
   const { user, token } = useAuthContext();
@@ -101,31 +102,38 @@ const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
   return (
     <div className="my-3">
       <div className="shadow py-4 px-5 rounded col-lg-8">
-        <h3>Event Organisers</h3>
+        <Typography variant="h3">Event Organisers</Typography>
         <p className="text-muted">
           Organisers are people other than you who can update information about
           the event and view participants' information
         </p>
         <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              placeholder="Organiser's register number"
-              className="form-control"
-              value={organizerRegNo}
-              onChange={(e) => {
-                setOrganizerRegNo(e.target.value);
-              }}
-              required={true}
-            />
-            <button className="btn btn-success my-3">Add organiser</button>
+          <form onSubmit={handleSubmit} className="my-3">
+            <div className="my-3">
+              <Input
+                label="Organiser's register number"
+                type="text"
+                color="white"
+                value={organizerRegNo}
+                onChange={(e) => {
+                  setOrganizerRegNo(e.target.value);
+                }}
+                required={true}
+              />
+            </div>
+            <Button color="blue" type="submit">
+              Add organiser
+            </Button>
           </form>
         </div>
-        <h6>Organisers for this event:</h6>
-        <ul className="list-group list-group-flush">
+        <Typography variant="h5" color="white">
+          Organisers for this event:
+        </Typography>
+        <ul>
           {organizers.length > 0 &&
             organizers.map((org) => {
               return (
-                <li key={org._id} className="list-group-item">
+                <li key={org._id} className="flex">
                   {org.userName}
                   {org.email === user && (
                     <span className="text-muted small"> (Yourself)</span>
@@ -134,7 +142,7 @@ const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
                   {org.email !== user && (
                     <MdDelete
                       onClick={() => showRemoveModal(org._id)}
-                      className="text-danger ms-3"
+                      className="text-red-500 mx-3"
                       style={{ cursor: "pointer" }}
                     />
                   )}

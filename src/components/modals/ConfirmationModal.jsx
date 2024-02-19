@@ -1,3 +1,4 @@
+import { Button } from "@material-tailwind/react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -27,25 +28,25 @@ const ConfirmationModal = ({ isOpen, title, text, confirm, close }) => {
       >
         <div className="p-3">
           <div style={{ display: "flex", alignItems: "start", gap: "2rem" }}>
-            <span className="display-6">{title}</span>
+            <span className="text-black font-bold">{title}</span>
           </div>
-          <div className="my-3">{text}</div>
+          <div className="my-3 text-gray-800">{text}</div>
           <div className="container text-center">
             <span className="mx-3">
-              <button
+              <Button
+                color="red"
                 onClick={() => {
                   confirm();
                   close();
                 }}
-                className="btn btn-sm btn-outline-danger"
               >
                 Yes
-              </button>
+              </Button>
             </span>
             <span className="mx-3">
-              <button onClick={() => close()} className="btn btn-success">
+              <Button color="green" onClick={() => close()}>
                 No
-              </button>
+              </Button>
             </span>
           </div>
         </div>

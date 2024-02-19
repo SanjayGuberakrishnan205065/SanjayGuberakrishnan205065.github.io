@@ -10,6 +10,8 @@ import PasswordReset from "./pages/auth/passwordReset/PasswordReset";
 import ViewEvents from "./pages/events/viewEvents/viewEvents";
 import EventDetails from "./pages/events/eventDetails/eventDetails";
 import Signup from "./pages/auth/signup/Signup";
+import OrganisedEvents from "./pages/user/organisedEvents/OrganisedEvents";
+import UpdateEvent from "./pages/events/updateEvent/UpdateEvent";
 
 function App() {
   const authContext = useAuthContext();
@@ -27,11 +29,11 @@ function App() {
         { path: "/", element: <Home /> },
         {
           path: "login",
-          element: <Login />,
+          element: user ? <Navigate to="/organized-events" /> : <Login />,
         },
         {
           path: "signup",
-          element: !user ? <Signup /> : <Navigate to="/" />,
+          element: user ? <Navigate to="/" /> : <Signup />,
         },
         {
           path: "forgot-password",
@@ -48,6 +50,14 @@ function App() {
         {
           path: "events/:id",
           element: <EventDetails />,
+        },
+        {
+          path: "events/:id/edit",
+          element: user ? <UpdateEvent /> : <Navigate to="/login" />,
+        },
+        {
+          path: "organized-events",
+          element: user ? <OrganisedEvents /> : <Navigate to="/login" />,
         },
       ],
     },
