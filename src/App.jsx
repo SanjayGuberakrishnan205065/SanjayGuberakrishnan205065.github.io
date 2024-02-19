@@ -7,6 +7,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/auth/login/Login";
 import ForgotPassword from "./pages/auth/passwordReset/ForgotPassword";
 import PasswordReset from "./pages/auth/passwordReset/PasswordReset";
+import ViewEvents from "./pages/events/viewEvents/viewEvents";
+import EventDetails from "./pages/events/eventDetails/eventDetails";
 
 function App() {
   const authContext = useAuthContext();
@@ -33,6 +35,14 @@ function App() {
         {
           path: "reset-password",
           element: <PasswordReset />,
+        },
+        {
+          path: "events",
+          element: <ViewEvents category="UPCOMING" />,
+        },
+        {
+          path: "events/:id",
+          element: <EventDetails />,
         },
       ],
     },

@@ -1,9 +1,14 @@
 import { Typography, Button, IconButton } from "@material-tailwind/react";
 import { FaInstagram } from "react-icons/fa";
-
-const LINKS = ["About ITA", "Contact Us", "Privacy Policy"];
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+  const LINKS = [
+    { name: "About ITA", href: "#" },
+    { name: "Contact Us", href: "#" },
+    { name: "Organizers", href: "/login" },
+  ];
   return (
     <footer className="pb-5 p-10 md:pt-10">
       <div className="container flex flex-col mx-auto">
@@ -16,12 +21,14 @@ function Footer() {
               <li key={index}>
                 <Typography
                   as="a"
-                  href="#"
+                  onClick={() => {
+                    navigate(link.href);
+                  }}
                   variant="small"
                   color="white"
-                  className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors"
+                  className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
                 >
-                  {link}
+                  {link.name}
                 </Typography>
               </li>
             ))}

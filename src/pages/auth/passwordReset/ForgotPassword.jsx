@@ -72,6 +72,7 @@ const ForgotPassword = () => {
                     <a
                       href={`https://wa.me/+919443389893?text=${whatsappMsg}`}
                       className="underline"
+                      target="_blank"
                     >
                       <div className="flex items-center text-lg gap-1">
                         <FaWhatsapp />
@@ -82,6 +83,7 @@ const ForgotPassword = () => {
                     <a
                       href="mailto:pragadeshbs+samhita-reset-password@pm.me"
                       className="underline"
+                      target="_blank"
                     >
                       <div className="flex items-center text-lg gap-1">
                         <MdAlternateEmail />

@@ -32,7 +32,7 @@ const Login = () => {
       <div className="page-view">
         <div>
           <div className="max-w-xl">
-            <Typography variant="h1">Login</Typography>
+            <Typography variant="h1">Organizer Login</Typography>
             <Info>
               If you had registered for Mutex 2023, please login with the same
               credentials

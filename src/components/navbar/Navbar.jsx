@@ -9,18 +9,18 @@ import {
   RectangleStackIcon,
   XMarkIcon,
   Bars3Icon,
-  CodeBracketIcon,
+  ClockIcon,
   PresentationChartBarIcon,
 } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NavItem({ children, href }) {
+function NavItem({ children, routeFn }) {
   return (
     <li>
       <Typography
         as="a"
-        href={href || "#"}
+        onClick={routeFn}
         variant="paragraph"
         className="flex items-center gap-2 font-medium"
       >
@@ -30,25 +30,29 @@ function NavItem({ children, href }) {
   );
 }
 
-const NAV_MENU = [
-  {
-    name: "Events",
-    icon: RectangleStackIcon,
-  },
-  {
-    name: "Workshops",
-    icon: PresentationChartBarIcon,
-  },
-  {
-    name: "Hackathons",
-    icon: CodeBracketIcon,
-  },
-];
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const navigate = useNavigate();
+
+  const NAV_MENU = [
+    {
+      name: "Events",
+      icon: RectangleStackIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/events");
+      },
+    },
+    {
+      name: "Workshops",
+      icon: PresentationChartBarIcon,
+    },
+    {
+      name: "Schedule",
+      icon: ClockIcon,
+    },
+  ];
 
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -74,10 +78,12 @@ export function Navbar() {
   }, []);
 
   const handleLogin = () => {
+    setOpen(false);
     navigate("login");
   };
 
   const handleHome = () => {
+    setOpen(false);
     navigate("/");
   };
 
@@ -99,8 +105,8 @@ export function Navbar() {
           SAMHITA '24
         </Typography>
         <ul className={`ml-10 hidden items-center gap-6 lg:flex text-white`}>
-          {NAV_MENU.map(({ name, icon: Icon, href }) => (
-            <NavItem key={name} href={href}>
+          {NAV_MENU.map(({ name, icon: Icon, routeFn }) => (
+            <NavItem key={name} routeFn={routeFn}>
               <Icon className="h-5 w-5" />
               <span>{name}</span>
             </NavItem>
@@ -111,9 +117,7 @@ export function Navbar() {
             Log in
           </Button> */}
           <span>
-            <Button color="white" onClick={handleLogin}>
-              Log in
-            </Button>
+            <Button color="white">Get Passes</Button>
           </span>
         </div>
         <IconButton
@@ -132,8 +136,8 @@ export function Navbar() {
       <Collapse open={open}>
         <div className="container mx-auto mt-4 rounded-lg bg-white px-6 py-5">
           <ul className="flex flex-col gap-4 text-gray-900">
-            {NAV_MENU.map(({ name, icon: Icon, href }) => (
-              <NavItem key={name} href={href}>
+            {NAV_MENU.map(({ name, icon: Icon, routeFn }) => (
+              <NavItem key={name} routeFn={routeFn}>
                 <Icon className="h-5 w-5" />
                 {name}
               </NavItem>
@@ -144,9 +148,7 @@ export function Navbar() {
               Log in
             </Button> */}
             <span>
-              <Button color="gray" onClick={handleLogin}>
-                Log in
-              </Button>
+              <Button color="gray">Get Passes</Button>
             </span>
           </div>
         </div>
