@@ -1,7 +1,6 @@
 import React from "react";
 
 const PrizeDetails = ({ event }) => {
-  console.log(event);
   const tableStyles = {
     width: "100%",
     backgroundColor: "#f8f9fa",

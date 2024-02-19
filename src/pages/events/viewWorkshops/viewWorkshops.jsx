@@ -11,28 +11,28 @@ import {
 import EventsList from "../../../components/events/EventsList";
 import Loader from "../../loader/Loader";
 
-const ViewEvents = () => {
+const ViewWorkshops = ({ category }) => {
   const fetchUrl = "/api/events/upcoming-events";
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState("Technical");
-  const [technicalEvents, setTechnicalEvents] = useState([]);
-  const [nonTechnicalEvents, setNonTechnicalEvents] = useState([]);
+  const [currentView, setCurrentView] = useState("Workshops");
+  const [workshopEvents, setWorkshopEvents] = useState([]);
+  const [hackathonEvents, setHackathonEvents] = useState([]);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     setData([
       {
-        label: "Technical Events",
-        value: "Technical",
-        desc: <EventsList events={technicalEvents} />,
+        label: "Workshops",
+        value: "Workshops",
+        desc: <EventsList events={workshopEvents} />,
       },
       {
-        label: "Non-technical Events",
-        value: "Non-technical",
-        desc: <EventsList events={nonTechnicalEvents} />,
+        label: "Hackathons",
+        value: "Hackathons",
+        desc: <EventsList events={hackathonEvents} />,
       },
     ]);
-  }, [technicalEvents, nonTechnicalEvents]);
+  }, [workshopEvents, hackathonEvents]);
 
   useEffect(() => {
     const fetchDetail = () => {
@@ -40,14 +40,14 @@ const ViewEvents = () => {
         response.data.forEach((event) => {
           event.imageLoading = true;
         });
-        setTechnicalEvents(
+        setWorkshopEvents(
           response.data.filter((x) => {
-            return x.eventType === "Technical";
+            return x.eventType === "Workshop";
           })
         );
-        setNonTechnicalEvents(
+        setHackathonEvents(
           response.data.filter((x) => {
-            return x.eventType === "Non-technical";
+            return x.eventType === "Hackathon";
           })
         );
         setLoading(false);
@@ -97,4 +97,4 @@ const ViewEvents = () => {
   );
 };
 
-export default ViewEvents;
+export default ViewWorkshops;

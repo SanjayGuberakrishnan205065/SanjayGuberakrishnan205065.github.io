@@ -45,12 +45,20 @@ export function Navbar() {
       },
     },
     {
-      name: "Workshops",
+      name: "Workshops & Hackathons",
       icon: PresentationChartBarIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/workshops");
+      },
     },
     {
       name: "Schedule",
       icon: ClockIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/schedule");
+      },
     },
   ];
 

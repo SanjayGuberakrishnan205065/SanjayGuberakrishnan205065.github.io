@@ -67,7 +67,6 @@ const UpdateEvent = () => {
     };
 
     const submitEventForm = (imgId) => {
-      console.log(formData);
       const dataToSend = {
         eventName: formData.eventName,
         eventStartDate: formData.eventStartDate + "z",

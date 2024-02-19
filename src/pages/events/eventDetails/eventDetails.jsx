@@ -20,7 +20,6 @@ const EventDetails = () => {
   useEffect(() => {
     const fetchDetail = () => {
       axios.get(`/api/events/${id}`).then((response) => {
-        console.log(response.data);
         setData(response.data);
         // check if current user is an organizer
         response.data.organisers.forEach((organiser) => {
