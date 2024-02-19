@@ -1,4 +1,4 @@
-import { RouterProvider, createHashRouter } from "react-router-dom";
+import { Navigate, RouterProvider, createHashRouter } from "react-router-dom";
 import "react-notifications-component/dist/theme.css";
 
 import { useAuthContext } from "./hooks/useAuthContext";
@@ -9,10 +9,11 @@ import ForgotPassword from "./pages/auth/passwordReset/ForgotPassword";
 import PasswordReset from "./pages/auth/passwordReset/PasswordReset";
 import ViewEvents from "./pages/events/viewEvents/viewEvents";
 import EventDetails from "./pages/events/eventDetails/eventDetails";
+import Signup from "./pages/auth/signup/Signup";
 
 function App() {
   const authContext = useAuthContext();
-  const { loading } = authContext;
+  const { user, loading } = authContext;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -27,6 +28,10 @@ function App() {
         {
           path: "login",
           element: <Login />,
+        },
+        {
+          path: "signup",
+          element: !user ? <Signup /> : <Navigate to="/" />,
         },
         {
           path: "forgot-password",
