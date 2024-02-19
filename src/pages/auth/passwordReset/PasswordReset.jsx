@@ -1,71 +1,51 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import Header from "../../../components/events/Header";
-import { Navigate, useSearchParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Typography, Input, Button } from "@material-tailwind/react";
-import Danger from "../../../components/alerts/Danger";
+import { Button, Input, Typography } from "@material-tailwind/react";
+import Info from "../../../components/alerts/Info";
 import Success from "../../../components/alerts/Success";
+import { MdAlternateEmail } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
 
-const PasswordReset = () => {
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  if (!token) {
-    return <Navigate to="/" />;
-  }
+  const [showMsg, setShowMsg] = useState(false);
+  const [whatsappMsg, setWhatsappMsg] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    setLoading(true);
     axios
-      .post("/api/auth/reset-password", { token, password })
-      .then(() => {
-        setLoading(false);
-        setError("");
-        setSuccess("Your password has been reset");
-        setPassword("");
-        setConfirmPassword("");
+      .post("/api/auth/forgot-password", {
+        email,
       })
-      .catch((err) => {
-        setLoading(false);
-        setSuccess("");
-        setError(err.response.data.error);
+      .then(() => {
+        setWhatsappMsg(
+          `Hi! This is ${email}. I have raised a request to reset my password. Please send my password reset link.`
+        );
+        setShowMsg(true);
+        setEmail("");
       });
   };
-
   return (
     <div className="container mx-auto">
       <div className="page-view">
         <Typography variant="h1" className="mb-3">
-          Reset your Password
+          Forgot Password
         </Typography>
-        {success && <Success>{success}</Success>}
-        {error && <Danger>{error}</Danger>}
+        <div className="max-w-2xl">
+          <Info>
+            Password reset links will not be sent automatically. Please contact
+            us after submitting this form
+          </Info>
+        </div>
         <div>
           <form className="pt-3" onSubmit={handleSubmit}>
-            <div className="my-3 max-w-xl">
+            <div className="my-3 max-w-2xl">
               <Input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                label="Password"
-                color="white"
-                required={true}
-              />
-            </div>
-            <div className="my-3 max-w-xl">
-              <Input
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                type="password"
-                label="Confirm Password"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                label="Email"
                 color="white"
                 required={true}
               />
@@ -79,6 +59,39 @@ const PasswordReset = () => {
                 {loading ? "Loading..." : "Reset Password"}
               </Button>
             </div>
+            {showMsg && (
+              <div className="my-3 max-w-2xl">
+                <Success>
+                  <div>
+                    <p>
+                      Your password reset was raised. Please contact us to get
+                      the password reset link
+                    </p>
+                  </div>
+                  <p>
+                    <a
+                      href={`https://wa.me/+919443389893?text=${whatsappMsg}`}
+                      className="underline"
+                    >
+                      <div className="flex items-center text-lg gap-1">
+                        <FaWhatsapp />
+                        <div>WhatsApp us</div>
+                      </div>
+                    </a>
+                    &nbsp;or&nbsp;
+                    <a
+                      href="mailto:pragadeshbs+samhita-reset-password@pm.me"
+                      className="underline"
+                    >
+                      <div className="flex items-center text-lg gap-1">
+                        <MdAlternateEmail />
+                        <div>Email us</div>
+                      </div>
+                    </a>
+                  </p>
+                </Success>
+              </div>
+            )}
             <div>
               <Link to="/login">
                 <span className="text-muted small">Back to login</span>
@@ -89,51 +102,5 @@ const PasswordReset = () => {
       </div>
     </div>
   );
-
-  return (
-    <div className="EventCreationPage container row mx-auto pb-5">
-      <Header title={"Reset password"} />
-      <div className="row">
-        <div className="col-lg-8 mx-auto">
-          <div className="EventCreationForm py-4 px-5 border shadow rounded">
-            <form className="pt-3" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>
-                  Password <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="form-control m-3"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>
-                  Confirm Password <span className="text-danger">*</span>
-                </label>
-                <input
-                  value={confirmPassword}
-                  type="password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="form-control m-3"
-                ></input>
-              </div>
-              {error && <div className="alert alert-danger">{error}</div>}
-              {success && <div className="alert alert-success">{success}</div>}
-              <div className="form-group text-center">
-                <button
-                  type="submit"
-                  className="btn btn-primary my-2 ms-1 btn-lg"
-                >
-                  Done
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 };
-export default PasswordReset;
+export default ForgotPassword;
