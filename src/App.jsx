@@ -1,15 +1,10 @@
 import { RouterProvider, createHashRouter } from "react-router-dom";
-import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
 import { useAuthContext } from "./hooks/useAuthContext";
-
-import Navbar from "./components/navbar/Navbar";
-import Loading from "./pages/loader/loading.svg";
-import Router from "./Router";
-import Footer from "./components/footer/Footer";
 import Layout from "./layouts/Layout";
 import Home from "./pages/home/Home";
+import Login from "./pages/auth/login/Login";
 
 function App() {
   const authContext = useAuthContext();
@@ -24,20 +19,16 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
+        { path: "/", element: <Home /> },
         {
-          path: "/",
-          element: <Home />,
+          path: "login",
+          element: <Login />,
         },
       ],
     },
   ]);
 
-  return (
-    <>
-      <ReactNotifications />
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
