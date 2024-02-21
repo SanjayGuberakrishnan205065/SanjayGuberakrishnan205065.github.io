@@ -1,18 +1,32 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import EventInformation from "../eventDetails/eventInformation";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import { Store } from "react-notifications-component";
-import Loading from "../../loader/loading.svg";
-import { set } from "date-fns";
+import Loader from "../../loader/Loader";
+import { Typography } from "@material-tailwind/react";
+import { DataGrid } from "@mui/x-data-grid";
 
 const ViewRegistrations = () => {
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [participants, setParticipants] = useState([]);
+  const [rows, setRows] = useState([]);
   const { token } = useAuthContext();
+
+  const columns = [
+    { field: "id", headerName: "#", width: 70 },
+    { field: "regNo", headerName: "Register no.", width: 130 },
+    { field: "name", headerName: "Name", width: 130 },
+    {
+      field: "mobile",
+      headerName: "Mobile",
+      type: "number",
+      width: 130,
+    },
+    { field: "department", headerName: "Department", width: 90 },
+    { field: "college", headerName: "College", width: 130 },
+  ];
 
   useEffect(() => {
     axios.get("/api/events/" + id).then((res) => {
@@ -23,76 +37,54 @@ const ViewRegistrations = () => {
         })
         .then((res) => {
           setParticipants(res.data);
+          setRows(
+            res.data.map((participant, idx) => ({
+              id: idx + 1,
+              regNo: participant.regNo,
+              name: participant.userName,
+              mobile: participant.mobile,
+              department: participant.dept,
+              college: participant.college,
+            }))
+          );
+          setLoading(false);
         });
-      setLoading(false);
     });
   }, [id, token]);
 
-  const backGroundStyles = {
-    backgroundColor: "#f8f9fa",
-    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-  };
-
   if (loading) {
     return (
-      <div className="container d-block mx-auto">
-        <h1 className="display-5 mt-5">Events</h1>
-        <div className="row mt-5 mb-5">
-          <div className="col d-flex justify-content-center">
-            <img src={Loading} alt="..." />
-          </div>
-        </div>
+      <div className="page-view container mx-auto">
+        <Loader />
       </div>
     );
   }
 
   return (
-    <div className="container" style={backGroundStyles}>
-      <h1 className="display-3">Participants</h1>
-      <p classname="text-muted">
-        <a href="#" classname="text-reset">
-          <h3>{event.eventName}</h3>
-        </a>
-      </p>
-      <EventInformation detail={event} />
+    <div className="container mx-auto page-view">
+      <div className="my-3">
+        <Typography variant="h1">Registrations</Typography>
+        <Typography variant="h5">{event.eventName}</Typography>
+      </div>
       {participants.length === 0 && (
         <div className="text-center my-3 pb-2">
           <h6 className="display-6">No participants yet</h6>
         </div>
       )}
-      {participants.length > 0 && (
-        <div className="p-2">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Reg. no.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Year of Study</th>
-                <th scope="col">Department</th>
-              </tr>
-            </thead>
-            <tbody>
-              {participants &&
-                participants.map((p, idx) => {
-                  return (
-                    <tr key={p._id}>
-                      <td>{idx + 1}</td>
-                      <td>{p.regNo}</td>
-                      <td>{p.userName}</td>
-                      <td>{p.mobile}</td>
-                      <td>{2024 - parseInt(p.regNo.substring(0, 4))}</td>
-                      <td>{p.dept}</td>
-                      <td></td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-            <tbody></tbody>
-          </table>
-        </div>
-      )}
+      <div style={{ height: 640, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          className="bg-gray-300"
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[5, 10, 20, 50, 100]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 };

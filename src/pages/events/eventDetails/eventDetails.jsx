@@ -157,7 +157,12 @@ const EventDetails = () => {
             </Link>
           </div>
         ) : isOrganiser ? (
-          <div className="mt-5">
+          <div className="mt-5 flex justify-center gap-3">
+            <Link to={`/events/${id}/view-registrations`}>
+              <Button color="blue" ripple={true}>
+                View registrations
+              </Button>
+            </Link>
             <Link to={`/events/${id}/edit`}>
               <Button color="blue" ripple={true}>
                 Edit Event

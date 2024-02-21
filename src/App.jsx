@@ -16,6 +16,7 @@ import ViewWorkshops from "./pages/events/viewWorkshops/viewWorkshops";
 import Schedule from "./pages/schedule/Schedule";
 import Profile from "./pages/user/profile/Profile";
 import ParticipatedEvents from "./pages/user/participatedEvents/ParticipatedEvents";
+import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistrations";
 
 function App() {
   const authContext = useAuthContext();
@@ -78,6 +79,10 @@ function App() {
         {
           path: "profile",
           element: user ? <Profile /> : <Navigate to="/login" />,
+        },
+        {
+          path: "events/:id/view-registrations",
+          element: user ? <ViewRegistrations /> : <Navigate to="/login" />,
         },
       ],
     },

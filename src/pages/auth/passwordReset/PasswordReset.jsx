@@ -89,51 +89,5 @@ const PasswordReset = () => {
       </div>
     </div>
   );
-
-  return (
-    <div className="EventCreationPage container row mx-auto pb-5">
-      <Header title={"Reset password"} />
-      <div className="row">
-        <div className="col-lg-8 mx-auto">
-          <div className="EventCreationForm py-4 px-5 border shadow rounded">
-            <form className="pt-3" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>
-                  Password <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="form-control m-3"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>
-                  Confirm Password <span className="text-danger">*</span>
-                </label>
-                <input
-                  value={confirmPassword}
-                  type="password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="form-control m-3"
-                ></input>
-              </div>
-              {error && <div className="alert alert-danger">{error}</div>}
-              {success && <div className="alert alert-success">{success}</div>}
-              <div className="form-group text-center">
-                <button
-                  type="submit"
-                  className="btn btn-primary my-2 ms-1 btn-lg"
-                >
-                  Done
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 };
 export default PasswordReset;
