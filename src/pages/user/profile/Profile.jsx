@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import Loading from "../../loader/loading.svg";
 import Loader from "../../loader/Loader";
-import { Input, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import { useLogout } from "../../../hooks/useLogout";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -54,6 +55,13 @@ const Profile = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h1">Profile</Typography>
+      <div className="text-center">
+        <Link to="/participated-events">
+          <Button color="blue" size="lg" ripple="light">
+            Participated Events
+          </Button>
+        </Link>
+      </div>
       <div className="lg:max-w-96">
         <form>
           <div className="my-3">

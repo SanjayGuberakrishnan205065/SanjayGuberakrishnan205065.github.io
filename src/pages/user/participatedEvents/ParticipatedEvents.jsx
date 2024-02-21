@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import ParticipatedEventsList from "./ParticipatedEventsList";
-import Loading from "../../loader/loading.svg";
+import { Typography } from "@material-tailwind/react";
+import EventsList from "../../../components/events/EventsList";
+import Loader from "../../loader/Loader";
 
 const ParticipatedEvents = () => {
   const [loading, setLoading] = useState(true);
@@ -21,23 +22,19 @@ const ParticipatedEvents = () => {
 
   if (loading) {
     return (
-      <div className="container d-block mx-auto">
-        <h1 className="display-5 mt-5">Events</h1>
-        <div className="row mt-5 mb-5">
-          <div className="col d-flex justify-content-center">
-            <img src={Loading} alt="..." />
-          </div>
-        </div>
+      <div className="container mx-auto page-view">
+        <Loader />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto row">
-      <h1 className="display-3">Participated Events</h1>
-      <p className="small text-muted">Events participated by you</p>
+    <div className="container page-view mx-auto">
+      <Typography variant="h1" color="white">
+        Participated Events
+      </Typography>
       {events.length ? (
-        <ParticipatedEventsList events={events} />
+        <EventsList events={events} />
       ) : (
         <div style={{ position: "relative", height: "50vh" }}>
           <div
@@ -48,7 +45,7 @@ const ParticipatedEvents = () => {
               width: "100%",
               transform: "translate(-50%, -50%)",
             }}
-            className="display-6 text-center text-secondary"
+            className="text-3xl text-center"
           >
             Events that you participate in appear here
           </div>

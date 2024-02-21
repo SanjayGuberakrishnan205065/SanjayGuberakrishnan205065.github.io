@@ -148,7 +148,15 @@ const EventDetails = () => {
         </div>
       </div>
       <div className="text-center">
-        {isOrganiser && (
+        {!user ? (
+          <div className="mt-5">
+            <Link to="/login">
+              <Button color="blue" ripple={true}>
+                Login to Register
+              </Button>
+            </Link>
+          </div>
+        ) : isOrganiser ? (
           <div className="mt-5">
             <Link to={`/events/${id}/edit`}>
               <Button color="blue" ripple={true}>
@@ -156,15 +164,13 @@ const EventDetails = () => {
               </Button>
             </Link>
           </div>
-        )}
-        {!isOrganiser && !registered && (
+        ) : !registered ? (
           <div className="mt-5">
             <Button color="blue" ripple={true} onClick={handleRegister}>
               {registrationLoading ? "Registering..." : "Register now!"}
             </Button>
           </div>
-        )}
-        {registered && (
+        ) : (
           <div className="mt-5">
             You are registered for this event!
             <div className="text-xs my-2">

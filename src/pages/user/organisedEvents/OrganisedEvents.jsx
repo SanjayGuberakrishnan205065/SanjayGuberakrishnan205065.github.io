@@ -15,10 +15,7 @@ const OrganisedEvents = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const organizedEvents = res.data.filter((event) =>
-          event.organisers.includes(userInfo._id)
-        );
-        setEvents(organizedEvents);
+        setEvents(res.data);
         // setEvents(res.data);
         setLoading(false);
       });
