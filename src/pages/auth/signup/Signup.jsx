@@ -32,7 +32,7 @@ const Signup = () => {
     <div className="container mx-auto page-view">
       <div className="pb-5">
         <Typography variant="h1" color="white">
-          Organizer Signup
+          Signup
         </Typography>
         <div className="my-3 py-4 px-5 shadow rounded lg:w-8/12">
           <form className="pt-3" onSubmit={handleSubmit(addUser)}>

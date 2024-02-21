@@ -19,23 +19,24 @@ function Footer() {
             SAMHITA 2024
           </Typography>
           <ul className="flex justify-center my-4 md:my-0 w-max mx-auto items-center gap-4">
-            {LINKS.map((link, index) =>
-              link.name === "Organizers" &&
-              userInfo?.organizedEvents?.length === 0 ? null : (
-                <li key={index}>
-                  <Typography
-                    as="a"
-                    onClick={() => {
-                      navigate(link.href);
-                    }}
-                    variant="small"
-                    color="white"
-                    className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
-                  >
-                    {link.name}
-                  </Typography>
-                </li>
-              )
+            {LINKS.map(
+              (link, index) =>
+                (link.name !== "Organizers" ||
+                  (userInfo && userInfo.organizedEvents.length != 0)) && (
+                  <li key={index}>
+                    <Typography
+                      as="a"
+                      onClick={() => {
+                        navigate(link.href);
+                      }}
+                      variant="small"
+                      color="white"
+                      className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
+                    >
+                      {link.name}
+                    </Typography>
+                  </li>
+                )
             )}
           </ul>
           <div className="flex w-fit justify-center gap-2">

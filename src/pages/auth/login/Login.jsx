@@ -32,7 +32,7 @@ const Login = () => {
       <div className="page-view">
         <div>
           <div className="max-w-xl">
-            <Typography variant="h1">Organizer Login</Typography>
+            <Typography variant="h1">Login</Typography>
             <Info>
               If you had registered for Mutex 2023, please login with the same
               credentials
@@ -72,6 +72,9 @@ const Login = () => {
               </Button>
             </form>
             <div className="my-3 text-sm">
+              Don't have an account? <Link to="/signup">Register here</Link>
+            </div>
+            <div className="my-3 text-xs">
               <Link to="/forgot-password">Forgot your password?</Link>
             </div>
           </div>
