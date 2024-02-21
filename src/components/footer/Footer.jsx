@@ -1,9 +1,11 @@
 import { Typography, Button, IconButton } from "@material-tailwind/react";
 import { FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 function Footer() {
   const navigate = useNavigate();
+  const { userInfo } = useAuthContext();
   const LINKS = [
     { name: "About ITA", href: "#" },
     { name: "Contact Us", href: "#" },
@@ -17,21 +19,24 @@ function Footer() {
             SAMHITA 2024
           </Typography>
           <ul className="flex justify-center my-4 md:my-0 w-max mx-auto items-center gap-4">
-            {LINKS.map((link, index) => (
-              <li key={index}>
-                <Typography
-                  as="a"
-                  onClick={() => {
-                    navigate(link.href);
-                  }}
-                  variant="small"
-                  color="white"
-                  className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
-                >
-                  {link.name}
-                </Typography>
-              </li>
-            ))}
+            {LINKS.map((link, index) =>
+              link.name === "Organizers" &&
+              userInfo?.organizedEvents?.length === 0 ? null : (
+                <li key={index}>
+                  <Typography
+                    as="a"
+                    onClick={() => {
+                      navigate(link.href);
+                    }}
+                    variant="small"
+                    color="white"
+                    className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </Typography>
+                </li>
+              )
+            )}
           </ul>
           <div className="flex w-fit justify-center gap-2">
             <IconButton size="sm" color="blue" variant="text">

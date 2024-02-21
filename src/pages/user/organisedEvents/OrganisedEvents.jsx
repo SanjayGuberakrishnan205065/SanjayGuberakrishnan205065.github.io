@@ -9,14 +9,12 @@ const OrganisedEvents = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
   const { token, userInfo } = useAuthContext();
-  console.log(userInfo);
   useEffect(() => {
     axios
       .get("/api/users/events-organised", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
         const organizedEvents = res.data.filter((event) =>
           event.organisers.includes(userInfo._id)
         );

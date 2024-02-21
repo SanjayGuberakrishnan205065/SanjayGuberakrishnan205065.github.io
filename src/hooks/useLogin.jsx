@@ -13,7 +13,6 @@ export const useLogin = () => {
     axios
       .post("/api/auth/login", data)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem(
           "user",
           JSON.stringify({
