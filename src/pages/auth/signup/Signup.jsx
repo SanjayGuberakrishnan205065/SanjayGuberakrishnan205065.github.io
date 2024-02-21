@@ -24,7 +24,7 @@ const Signup = () => {
       setError("Passwords do not match");
       return;
     }
-    data = { ...data, dept: "IT" };
+    data = { ...data };
     await signup(data);
   };
 
@@ -51,7 +51,7 @@ const Signup = () => {
             <div className="my-3">
               <Input
                 type="text"
-                label="Register Number"
+                label="College Register Number"
                 color="white"
                 required
                 {...register("regNo", {
@@ -59,6 +59,30 @@ const Signup = () => {
                 })}
               ></Input>
               {errors.regNo && <Danger>{errors.regNo.message}</Danger>}
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="Department"
+                color="white"
+                required
+                {...register("dept", {
+                  required: "Department is Required",
+                })}
+              ></Input>
+              {errors.dept && <Danger>{errors.dept.message}</Danger>}
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="College Name"
+                color="white"
+                required
+                {...register("college", {
+                  required: "College Name is Required",
+                })}
+              ></Input>
+              {errors.college && <Danger>{errors.college.message}</Danger>}
             </div>
             <div className="my-3">
               <Input
