@@ -131,10 +131,10 @@ const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
         </Typography>
         <ul>
           {organizers.length > 0 &&
-            organizers.map((org) => {
+            organizers.map((org, index) => {
               return (
-                <li key={org._id} className="flex">
-                  {org.userName}
+                <li key={org._id} className="flex my-2">
+                  {index + 1}. {org.userName}
                   {org.email === user && (
                     <span className="text-muted small"> (Yourself)</span>
                   )}

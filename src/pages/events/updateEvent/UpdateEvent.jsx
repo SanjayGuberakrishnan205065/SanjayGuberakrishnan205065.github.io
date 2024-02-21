@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import "react-autocomplete-input/dist/bundle.css";
 import EventDetailsForm from "../../../components/events/EventDetailsForm";
-import Loading from "../../loader/loading.svg";
 import config from "../../../config";
+import Loader from "../../loader/Loader";
 
 const UpdateEvent = () => {
   const { id } = useParams();
@@ -147,13 +147,8 @@ const UpdateEvent = () => {
 
   if (loading) {
     return (
-      <div className="container d-block mx-auto">
-        <h1 className="display-5 mt-5">Events</h1>
-        <div className="row mt-5 mb-5">
-          <div className="col d-flex justify-content-center">
-            <img src={Loading} alt="..." />
-          </div>
-        </div>
+      <div className="container mx-auto page-view">
+        <Loader />
       </div>
     );
   }
