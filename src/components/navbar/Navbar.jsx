@@ -14,6 +14,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 function NavItem({ children, routeFn }) {
   return (
@@ -34,6 +35,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const NAV_MENU = [
     {
@@ -90,6 +92,11 @@ export function Navbar() {
     navigate("login");
   };
 
+  const handleProfile = () => {
+    setOpen(false);
+    navigate("profile");
+  };
+
   const handleHome = () => {
     setOpen(false);
     navigate("/");
@@ -121,9 +128,15 @@ export function Navbar() {
           ))}
         </ul>
         <div className="hidden items-center gap-4 lg:flex">
-          {/* <Button color="white" variant="text" onClick={handleLogin}>
-            Log in
-          </Button> */}
+          {user ? (
+            <Button color="white" variant="text" onClick={handleProfile}>
+              Profile
+            </Button>
+          ) : (
+            <Button color="white" variant="text" onClick={handleLogin}>
+              Log in
+            </Button>
+          )}
           <span>
             <Button color="white">Get Passes</Button>
           </span>

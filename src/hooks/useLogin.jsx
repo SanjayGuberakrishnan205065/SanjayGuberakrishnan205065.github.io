@@ -13,13 +13,22 @@ export const useLogin = () => {
     axios
       .post("/api/auth/login", data)
       .then((res) => {
+        console.log(res.data);
         localStorage.setItem(
           "user",
-          JSON.stringify({ user: res.data.email, token: res.data.token })
+          JSON.stringify({
+            user: res.data.email,
+            token: res.data.token,
+            userInfo: res.data.userInfo,
+          })
         );
         dispatch({
           type: "LOGIN",
-          payload: { user: res.data.email, token: res.data.token },
+          payload: {
+            user: res.data.email,
+            token: res.data.token,
+            userInfo: res.data.userInfo,
+          },
         });
         setIsLoading(false);
       })

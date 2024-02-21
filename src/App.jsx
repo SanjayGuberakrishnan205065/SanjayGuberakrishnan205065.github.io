@@ -14,6 +14,7 @@ import OrganisedEvents from "./pages/user/organisedEvents/OrganisedEvents";
 import UpdateEvent from "./pages/events/updateEvent/UpdateEvent";
 import ViewWorkshops from "./pages/events/viewWorkshops/viewWorkshops";
 import Schedule from "./pages/schedule/Schedule";
+import Profile from "./pages/user/profile/Profile";
 
 function App() {
   const authContext = useAuthContext();
@@ -31,7 +32,7 @@ function App() {
         { path: "/", element: <Home /> },
         {
           path: "login",
-          element: user ? <Navigate to="/organized-events" /> : <Login />,
+          element: user ? <Navigate to="/events" /> : <Login />,
         },
         {
           path: "signup",
@@ -68,6 +69,10 @@ function App() {
         {
           path: "schedule",
           element: <Schedule />,
+        },
+        {
+          path: "profile",
+          element: user ? <Profile /> : <Navigate to="/login" />,
         },
       ],
     },

@@ -4,16 +4,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import Loading from "../../loader/loading.svg";
+import Loader from "../../loader/Loader";
+import { Input, Typography } from "@material-tailwind/react";
+import { useLogout } from "../../../hooks/useLogout";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
   const { token } = useAuthContext();
-  const [userId, setUserId] = useState("");
+  const { logout } = useLogout();
+
   const {
     register,
     formState: { errors },
     reset,
   } = useForm();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   useEffect(() => {
     axios
@@ -22,7 +30,6 @@ const Profile = () => {
       })
       .then((res) => {
         setLoading(false);
-        setUserId(res.data._id);
         reset({
           userName: res.data.userName,
           regNo: res.data.regNo,
@@ -38,108 +45,80 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="container d-block mx-auto">
-        <h1 className="display-5 mt-5">Events</h1>
-        <div className="row mt-5 mb-5">
-          <div className="col d-flex justify-content-center">
-            <img src={Loading} alt="..." />
-          </div>
-        </div>
+      <div className="container page-view mx-auto">
+        <Loader />
       </div>
     );
   }
 
   return (
-    <div className="EventCreationPage container">
-      <div className="row">
-        <h1 className="display-3 pt-3">Profile</h1>
-        <div className="col-lg-8 mx-auto">
-          <div className="EventCreationForm  my-3 py-4 px-5 border shadow rounded">
-            <form className="pt-3">
-              <div className="form-group">
-                <label>
-                  Name <span className="text-danger">*</span>
-                </label>
-
-                <input
-                  type="text"
-                  {...register("userName", {
-                    required: "Name is Required",
-                  })}
-                  className={`form-control m-3 ${
-                    errors.userName ? ProfileStyles.errorInput : ""
-                  }`}
-                  readOnly
-                ></input>
-                {errors.userName && (
-                  <span className={`${ProfileStyles.error} `}>
-                    {errors.userName.message}
-                  </span>
-                )}
-              </div>
-              <div className="form-group">
-                <label>Register Number</label>
-                <input
-                  type="text"
-                  className={`form-control m-3  ${
-                    errors.regNo ? ProfileStyles.errorInput : ""
-                  }`}
-                  {...register("regNo")}
-                  readOnly
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>
-                  Mobile Number <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="number"
-                  className={`form-control m-3  ${
-                    errors.mobile ? ProfileStyles.errorInput : ""
-                  }`}
-                  {...register("mobile", {
-                    required: "Mobile Number is Required",
-                  })}
-                  readOnly
-                ></input>
-                {errors.mobile && (
-                  <span className={`${ProfileStyles.error} `}>
-                    {errors.mobile.message}
-                  </span>
-                )}
-              </div>
-              <div className="form-group">
-                <label>Department</label>
-                <input
-                  type="text"
-                  className={`form-control m-3  ${
-                    errors.dept ? ProfileStyles.errorInput : ""
-                  }`}
-                  {...register("dept")}
-                  readOnly
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>
-                  Email <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control m-3  ${
-                    errors.email ? ProfileStyles.errorInput : ""
-                  }`}
-                  {...register("email", { required: "Email is required" })}
-                  readOnly
-                ></input>
-                {errors.email && (
-                  <span className={`${ProfileStyles.error} `}>
-                    {errors.email.message}
-                  </span>
-                )}
-              </div>
-            </form>
+    <div className="container mx-auto page-view">
+      <Typography variant="h1">Profile</Typography>
+      <div className="lg:max-w-96">
+        <form>
+          <div className="my-3">
+            <Input
+              type="text"
+              {...register("userName", {
+                required: "Name is Required",
+              })}
+              label="Name"
+              color="white"
+              readOnly="true"
+            ></Input>
+            {errors.userName && (
+              <span className={`${ProfileStyles.error} `}>
+                {errors.userName.message}
+              </span>
+            )}
           </div>
-        </div>
+          <div className="my-3">
+            <Input
+              type="text"
+              label="Register Number"
+              color="white"
+              {...register("regNo")}
+              readOnly
+            ></Input>
+          </div>
+          <div className="my-3">
+            <Input
+              type="number"
+              label="Mobile Number"
+              color="white"
+              {...register("mobile", {
+                required: "Mobile Number is Required",
+              })}
+              readOnly
+            ></Input>
+          </div>
+          <div className="my-3">
+            <Input
+              type="text"
+              label="Department"
+              color="white"
+              {...register("dept")}
+              readOnly
+            ></Input>
+          </div>
+          <div className="my-3">
+            <Input
+              type="text"
+              label="Email"
+              color="white"
+              {...register("email", { required: "Email is required" })}
+              readOnly
+            ></Input>
+          </div>
+        </form>
+      </div>
+      <div className="text-center">
+        <button
+          className="bg-primary text-white px-6 py-2 rounded-lg"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

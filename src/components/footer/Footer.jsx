@@ -7,7 +7,7 @@ function Footer() {
   const LINKS = [
     { name: "About ITA", href: "#" },
     { name: "Contact Us", href: "#" },
-    { name: "Organizers", href: "/login" },
+    { name: "Organizers", href: "/organized-events" },
   ];
   return (
     <footer className="pb-5 p-10 md:pt-10">

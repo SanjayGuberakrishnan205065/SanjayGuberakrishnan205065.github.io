@@ -1,34 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import Loading from "../../loader/loading.svg";
 import { Typography } from "@material-tailwind/react";
 import EventsList from "../../../components/events/EventsList";
+import Loader from "../../loader/Loader";
 
 const OrganisedEvents = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
-  const { token } = useAuthContext();
+  const { token, userInfo } = useAuthContext();
+  console.log(userInfo);
   useEffect(() => {
     axios
       .get("/api/users/events-organised", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setEvents(res.data);
+        console.log(res.data);
+        const organizedEvents = res.data.filter((event) =>
+          event.organisers.includes(userInfo._id)
+        );
+        setEvents(organizedEvents);
+        // setEvents(res.data);
         setLoading(false);
       });
   }, [token]);
 
   if (loading) {
     return (
-      <div className="container d-block mx-auto">
-        <h1 className="display-5 mt-5">Events</h1>
-        <div className="row mt-5 mb-5">
-          <div className="col d-flex justify-content-center">
-            <img src={Loading} alt="..." />
-          </div>
-        </div>
+      <div className="container mx-auto page-view">
+        <Loader />
       </div>
     );
   }
