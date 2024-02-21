@@ -3,7 +3,6 @@ import ProfileStyles from "./ProfileStyles.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import Loading from "../../loader/loading.svg";
 import Loader from "../../loader/Loader";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { useLogout } from "../../../hooks/useLogout";
@@ -37,6 +36,7 @@ const Profile = () => {
           mobile: res.data.mobile,
           dept: res.data.dept,
           email: res.data.email,
+          college: res.data.college,
         });
       })
       .catch((err) => {
@@ -106,6 +106,15 @@ const Profile = () => {
               label="Department"
               color="white"
               {...register("dept")}
+              readOnly
+            ></Input>
+          </div>
+          <div className="my-3">
+            <Input
+              type="text"
+              label="College"
+              color="white"
+              {...register("college")}
               readOnly
             ></Input>
           </div>
