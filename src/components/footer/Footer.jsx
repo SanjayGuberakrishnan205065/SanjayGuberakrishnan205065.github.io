@@ -1,14 +1,13 @@
 import { Typography, Button, IconButton } from "@material-tailwind/react";
 import { FaInstagram } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 function Footer() {
-  const navigate = useNavigate();
   const { userInfo } = useAuthContext();
   const LINKS = [
-    { name: "About ITA", href: "#" },
-    { name: "Contact Us", href: "#" },
+    { name: "About ITA", href: "https://it.mitindia.edu/ita", external: true },
+    { name: "Contact Us", href: "/contact" },
     { name: "Organizers", href: "/organized-events" },
   ];
   return (
@@ -26,14 +25,17 @@ function Footer() {
                   <li key={index}>
                     <Typography
                       as="a"
-                      onClick={() => {
-                        navigate(link.href);
-                      }}
                       variant="small"
                       color="white"
                       className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"
                     >
-                      {link.name}
+                      {link.external ? (
+                        <a href={link.href} target="_blank">
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link to={link.href}>{link.name}</Link>
+                      )}
                     </Typography>
                   </li>
                 )

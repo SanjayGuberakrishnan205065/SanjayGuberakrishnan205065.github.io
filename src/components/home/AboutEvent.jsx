@@ -9,6 +9,7 @@ const EVENT_INFO = [
     subTitle: "Technical Events",
     bg: "tech.jpg",
     gridAreaName: "technical-area",
+    href: "/events?type=Technical",
   },
   {
     title: "Skills Beyond Screens",
@@ -17,6 +18,7 @@ const EVENT_INFO = [
     subTitle: "Non-Technical Events",
     bg: "non-tech.jpg",
     gridAreaName: "non-technical-area",
+    href: "/events?type=Non-technical",
   },
   {
     title: "From Novice to Ninja",
@@ -25,6 +27,7 @@ const EVENT_INFO = [
     subTitle: "Workshops",
     bg: "workshop.jpg",
     gridAreaName: "workshops-area",
+    href: "/workshops",
   },
   {
     title: "The Pinnacle of Samhita!",
@@ -33,6 +36,7 @@ const EVENT_INFO = [
     subTitle: "Signature Events",
     bg: "signature.jpg",
     gridAreaName: "signature-area",
+    comingSoon: true,
   },
 ];
 

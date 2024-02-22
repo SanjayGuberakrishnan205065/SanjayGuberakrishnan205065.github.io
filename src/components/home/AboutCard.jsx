@@ -1,6 +1,14 @@
 import { Card, CardBody, Typography, Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
-function AboutCard({ title, description, subTitle, bg, gridAreaName }) {
+function AboutCard({
+  title,
+  description,
+  subTitle,
+  href,
+  gridAreaName,
+  comingSoon,
+}) {
   return (
     <Card shadow={false} className={`${gridAreaName} rounded-3xl h-full`}>
       <CardBody className="rounded-2xl bg-gray-900 h-full">
@@ -17,9 +25,17 @@ function AboutCard({ title, description, subTitle, bg, gridAreaName }) {
           >
             {description}
           </Typography>
-          <Button className="bg-primaryLight text-primary" size="sm">
-            View details
-          </Button>
+          {comingSoon ? (
+            <Button disabled className="bg-primaryLight text-primary" size="sm">
+              Coming soon
+            </Button>
+          ) : (
+            <Link to={href}>
+              <Button className="bg-primaryLight text-primary" size="sm">
+                View details
+              </Button>
+            </Link>
+          )}
         </div>
       </CardBody>
     </Card>

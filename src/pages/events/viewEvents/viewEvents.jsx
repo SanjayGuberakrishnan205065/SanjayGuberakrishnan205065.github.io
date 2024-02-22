@@ -10,11 +10,15 @@ import {
 } from "@material-tailwind/react";
 import EventsList from "../../../components/events/EventsList";
 import Loader from "../../loader/Loader";
+import { useSearchParams } from "react-router-dom";
 
 const ViewEvents = () => {
   const fetchUrl = "/api/events/upcoming-events";
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState("Technical");
+  const [params] = useSearchParams();
+  const [currentView, setCurrentView] = useState(
+    params.get("type") || "Technical"
+  );
   const [technicalEvents, setTechnicalEvents] = useState([]);
   const [nonTechnicalEvents, setNonTechnicalEvents] = useState([]);
   const [data, setData] = useState([]);

@@ -17,6 +17,7 @@ import Schedule from "./pages/schedule/Schedule";
 import Profile from "./pages/user/profile/Profile";
 import ParticipatedEvents from "./pages/user/participatedEvents/ParticipatedEvents";
 import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistrations";
+import Contact from "./pages/contact/Contact";
 
 function App() {
   const authContext = useAuthContext();
@@ -83,6 +84,10 @@ function App() {
         {
           path: "events/:id/view-registrations",
           element: user ? <ViewRegistrations /> : <Navigate to="/login" />,
+        },
+        {
+          path: "contact",
+          element: <Contact />,
         },
       ],
     },
