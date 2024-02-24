@@ -20,7 +20,7 @@ const ForgotPassword = () => {
       })
       .then(() => {
         setWhatsappMsg(
-          `Hi! This is ${email}. I have raised a request to reset my password. Please send my password reset link.`
+          `Hi! This is ${email}. I could not reset my password on samhita.me. Please send my password reset link.`
         );
         setShowMsg(true);
         setEmail("");
@@ -61,12 +61,28 @@ const ForgotPassword = () => {
             </div>
             {showMsg && (
               <div className="my-3 max-w-2xl">
-                <Success>
-                  <div>
-                    Your password reset request was raised. Please check your
-                    inbox for further instructions
-                  </div>
-                </Success>
+                <div>
+                  <Success>
+                    <div>
+                      Your password reset request was raised. Please check your
+                      inbox for further instructions
+                    </div>
+                    <div className="my-3">
+                      <a
+                        href={`https://wa.me/+919443389893?text=${whatsappMsg}`}
+                        target="_blank"
+                      >
+                        <div className="flex items-center text-lg gap-1">
+                          <FaWhatsapp />
+                          <div>
+                            WhatsApp us if you didn't receive the email even
+                            after a few minutes
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </Success>
+                </div>
               </div>
               // <div className="my-3 max-w-2xl">
               //   <Success>
