@@ -135,7 +135,7 @@ const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
               if (org.email !== "admin@mail.com")
                 return (
                   <li key={org._id} className="flex my-2">
-                    {index + 1}. {org.userName}
+                    {index}. {org.userName}
                     {org.email === user && (
                       <span className="text-muted small"> (Yourself)</span>
                     )}
