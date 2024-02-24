@@ -36,7 +36,7 @@ const EVENT_INFO = [
     subTitle: "Signature Events",
     bg: "signature.jpg",
     gridAreaName: "signature-area",
-    comingSoon: true,
+    href: "/mega-events",
   },
 ];
 
