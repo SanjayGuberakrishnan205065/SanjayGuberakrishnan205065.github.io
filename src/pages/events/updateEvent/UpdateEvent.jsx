@@ -24,6 +24,7 @@ const UpdateEvent = () => {
   const [imageModified, setImageModified] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [updatingEvent, setUpdatingEvent] = useState(false);
 
   const [checkingConflicts, setCheckingConflicts] = useState(false);
   const [conflictsExist, setConflictsExist] = useState(false);
@@ -39,6 +40,7 @@ const UpdateEvent = () => {
       return;
     } else {
       setError("");
+      setUpdatingEvent(true);
     }
     const uploadImage = () => {
       if (selectedImage && selectedImage.size > 5000000) {
@@ -97,6 +99,7 @@ const UpdateEvent = () => {
         })
         .then(() => {
           setError("");
+          setUpdatingEvent(false);
           setSuccess("Event updated successfully");
         })
         .catch((err) => {
@@ -183,6 +186,7 @@ const UpdateEvent = () => {
         organizers={organizers}
         setOrganizers={setOrganizers}
         id={id}
+        updatingEvent={updatingEvent}
       />
     </div>
   );

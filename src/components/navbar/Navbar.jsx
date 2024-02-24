@@ -11,6 +11,7 @@ import {
   Bars3Icon,
   ClockIcon,
   PresentationChartBarIcon,
+  GiftIcon,
 } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -47,11 +48,19 @@ export function Navbar() {
       },
     },
     {
-      name: "Workshops & Hackathons",
+      name: "Workshops",
       icon: PresentationChartBarIcon,
       routeFn: () => {
         setOpen(false);
         navigate("/workshops");
+      },
+    },
+    {
+      name: "Mega Events",
+      icon: GiftIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/mega-events");
       },
     },
     {

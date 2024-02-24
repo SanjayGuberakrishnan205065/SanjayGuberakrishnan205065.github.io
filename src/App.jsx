@@ -18,6 +18,7 @@ import Profile from "./pages/user/profile/Profile";
 import ParticipatedEvents from "./pages/user/participatedEvents/ParticipatedEvents";
 import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistrations";
 import Contact from "./pages/contact/Contact";
+import MegaEvents from "./pages/events/viewMegaEvents/MegaEvents";
 
 function App() {
   const authContext = useAuthContext();
@@ -56,6 +57,10 @@ function App() {
         {
           path: "workshops",
           element: <ViewWorkshops />,
+        },
+        {
+          path: "mega-events",
+          element: <MegaEvents />,
         },
         {
           path: "events/:id",

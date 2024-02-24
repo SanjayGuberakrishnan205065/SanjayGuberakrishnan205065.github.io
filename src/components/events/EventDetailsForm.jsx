@@ -7,6 +7,7 @@ import CustomProgressBar from "../progressBar/CustomProgressBar";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import Danger from "../alerts/Danger";
 import Success from "../alerts/Success";
+import Info from "../alerts/Info";
 
 const EventDetailsForm = ({
   handleSubmit,
@@ -27,6 +28,7 @@ const EventDetailsForm = ({
   setOrganizers,
   showOrganizerForm,
   id,
+  updatingEvent,
 }) => {
   return (
     <div>
@@ -95,6 +97,9 @@ const EventDetailsForm = ({
               >
                 <option value="Technical">Technical</option>
                 <option value="Non-technical">Non-Technical</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="PaperPresentation">Paper Presentation</option>
               </select>
             </div>
             <div className="my-3">
@@ -187,6 +192,7 @@ const EventDetailsForm = ({
                 Uploading your image...
               </div>
             )}
+            {updatingEvent && <Info>Updating event...</Info>}
             {showSubmitBtn && (
               <div className="my-3 ">
                 <Button type="submit" className="bg-primaryLight">
