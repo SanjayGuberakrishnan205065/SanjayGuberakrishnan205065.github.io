@@ -132,22 +132,23 @@ const EventOrganisersForm = ({ organizers, setOrganizers, id }) => {
         <ul>
           {organizers.length > 0 &&
             organizers.map((org, index) => {
-              return (
-                <li key={org._id} className="flex my-2">
-                  {index + 1}. {org.userName}
-                  {org.email === user && (
-                    <span className="text-muted small"> (Yourself)</span>
-                  )}
-                  , {org.regNo}, {org.dept}
-                  {org.email !== user && (
-                    <MdDelete
-                      onClick={() => showRemoveModal(org._id)}
-                      className="text-red-500 mx-3"
-                      style={{ cursor: "pointer" }}
-                    />
-                  )}
-                </li>
-              );
+              if (org.email !== "admin@mail.com")
+                return (
+                  <li key={org._id} className="flex my-2">
+                    {index + 1}. {org.userName}
+                    {org.email === user && (
+                      <span className="text-muted small"> (Yourself)</span>
+                    )}
+                    , {org.regNo}, {org.dept}
+                    {org.email !== user && (
+                      <MdDelete
+                        onClick={() => showRemoveModal(org._id)}
+                        className="text-red-500 mx-3"
+                        style={{ cursor: "pointer" }}
+                      />
+                    )}
+                  </li>
+                );
             })}
           {organizers.length === 0 && (
             <div className="text-muted">
