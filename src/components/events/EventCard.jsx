@@ -11,6 +11,12 @@ import { formatDateTime } from "../../utils";
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
+  const shortenText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+    return text.substr(0, maxLength) + "...";
+  };
 
   return (
     <Card className="w-full flex-col lg:flex-row my-3 rounded-3xl bg-blue-gray-900 items-center lg:items-stretch">
@@ -38,7 +44,7 @@ const EventCard = ({ event }) => {
           {event.eventName}
         </Typography>
         <Typography color="white" className="mb-8 font-normal">
-          {event.shortDescription}
+          {shortenText(event.otherInfo, 200)}
         </Typography>
         <div className="mb-8 font-normal text-white">
           <div>
