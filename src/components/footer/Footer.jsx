@@ -24,7 +24,6 @@ function Footer() {
                   (userInfo && userInfo.organizedEvents.length != 0)) && (
                   <li key={index}>
                     <Typography
-                      as="a"
                       variant="small"
                       color="white"
                       className="font-normal !text-gray-400 hover:!text-gray-100 transition-colors cursor-pointer"

@@ -174,9 +174,9 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            {/* <Button variant="text" onClick={handleLogin}>
+            <Button variant="text" onClick={handleLogin}>
               Log in
-            </Button> */}
+            </Button>
             <span>
               <Button color="gray">Get Passes</Button>
             </span>
