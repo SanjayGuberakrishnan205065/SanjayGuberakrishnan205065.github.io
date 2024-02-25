@@ -5,6 +5,7 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
+import HotelIcon from "@mui/icons-material/Hotel";
 import {
   RectangleStackIcon,
   XMarkIcon,
@@ -69,6 +70,14 @@ export function Navbar() {
       routeFn: () => {
         setOpen(false);
         navigate("/schedule");
+      },
+    },
+    {
+      name: "Accommodation",
+      icon: HotelIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/accommodation");
       },
     },
   ];
