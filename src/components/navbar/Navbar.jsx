@@ -120,6 +120,11 @@ export function Navbar() {
     navigate("/");
   };
 
+  const handleBuyTickets = () => {
+    setOpen(false);
+    navigate("buy-tickets");
+  };
+
   return (
     <MTNavbar
       shadow={false}
@@ -156,7 +161,9 @@ export function Navbar() {
             </Button>
           )}
           <span>
-            <Button color="white">Get Passes</Button>
+            <Button color="white" onClick={handleBuyTickets}>
+              Buy Tickets
+            </Button>
           </span>
         </div>
         <IconButton
@@ -187,7 +194,9 @@ export function Navbar() {
               Log in
             </Button>
             <span>
-              <Button color="gray">Get Passes</Button>
+              <Button color="gray" onClick={handleBuyTickets}>
+                Buy Tickets
+              </Button>
             </span>
           </div>
         </div>

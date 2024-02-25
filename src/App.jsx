@@ -20,6 +20,7 @@ import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistration
 import Contact from "./pages/contact/Contact";
 import MegaEvents from "./pages/events/viewMegaEvents/MegaEvents";
 import Accommodation from "./pages/accommodation/Accommodation";
+import BuyTickets from "./pages/buy-tickets/BuyTickets";
 
 function App() {
   const authContext = useAuthContext();
@@ -98,6 +99,10 @@ function App() {
         {
           path: "accommodation",
           element: <Accommodation />,
+        },
+        {
+          path: "buy-tickets",
+          element: <BuyTickets />,
         },
       ],
     },
