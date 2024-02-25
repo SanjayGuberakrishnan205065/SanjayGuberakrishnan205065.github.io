@@ -26,12 +26,15 @@ function AboutCard({
             {description}
           </Typography>
           {comingSoon ? (
-            <Button disabled className="bg-primaryLight text-primary" size="sm">
+            <Button disabled className="bg-primaryLight text-white" size="sm">
               Coming soon
             </Button>
           ) : (
             <Link to={href}>
-              <Button className="bg-primaryLight text-primary" size="sm">
+              <Button
+                className="bg-primaryLight hover:bg-primaryDark text-white"
+                size="sm"
+              >
                 View details
               </Button>
             </Link>

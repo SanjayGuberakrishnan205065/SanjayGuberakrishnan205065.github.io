@@ -58,7 +58,7 @@ const EventCard = ({ event }) => {
         <div className="flex justify-center lg:inline-block w-full">
           <Button
             variant="text"
-            className="flex items-center gap-2 bg-primaryLight hover:bg-blue-800"
+            className="flex items-center gap-2 bg-primaryLight hover:bg-primaryDark text-white"
             onClick={() => navigate(`/events/${event._id}`)}
           >
             More Info

@@ -1,4 +1,5 @@
 import { Button, Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Offer = () => {
   return (
@@ -16,9 +17,11 @@ const Offer = () => {
         Don&apos;t miss out on this exclusive offer that will end soon.
       </Typography>
       <div className="flex w-full md:w-fit gap-3 mt-2 flex-col md:flex-row">
-        <Button className="bg-primaryLight" size="md">
-          buy ticket
-        </Button>
+        <Link to="/buy-tickets">
+          <Button className="bg-primaryLight hover:bg-primaryDark" size="md">
+            buy ticket
+          </Button>
+        </Link>
       </div>
     </div>
   );

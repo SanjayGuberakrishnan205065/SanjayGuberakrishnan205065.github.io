@@ -8,7 +8,10 @@ export default withMT({
   theme: {
     colors: {
       primary: "#06060f",
-      primaryLight: "#349bd2",
+      // primaryLight: "#349bd2",
+      primaryLight: "#754ebd",
+      primaryDark: "#5f37b2",
+      primaryLighter: "#876cba",
     },
     screens: {
       sm: "640px",
