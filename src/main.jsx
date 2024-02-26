@@ -8,6 +8,7 @@ import config from "./config";
 import { ThemeProvider } from "@material-tailwind/react";
 import { ReactNotifications } from "react-notifications-component";
 import { CartProvider } from "./contexts/CartContext";
+import { Toaster } from "react-hot-toast";
 
 axios.defaults.baseURL = config.apiUrl;
 
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <CartProvider>
           <ReactNotifications />
           <App />
+          <Toaster />
         </CartProvider>
       </AuthContextProvider>
     </ThemeProvider>

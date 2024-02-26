@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "./components/PaymentModal";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
   const { checkoutIdsInCart } = useCartContext();
@@ -32,6 +33,13 @@ const Checkout = () => {
       setTotal(total);
     });
   }, [checkoutIdsInCart]);
+
+  const handlePayment = (upiTransactionId) => {
+    if (!upiTransactionId || upiTransactionId.length !== 12) {
+      toast.error("Enter a valid 12 digit UPI transaction ID");
+    }
+    console.log(upiTransactionId, checkoutIdsInCart);
+  };
 
   const handleCheckout = () => {
     console.log(checkoutIdsInCart);
@@ -65,6 +73,8 @@ const Checkout = () => {
           close={() => {
             setOpenPaymentModal(false);
           }}
+          amount={total}
+          handlePayment={handlePayment}
         />
       </div>
     </div>

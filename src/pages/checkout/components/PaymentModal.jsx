@@ -5,8 +5,14 @@ import Loader from "../../loader/Loader";
 
 Modal.setAppElement("#root");
 
-const PaymentModal = ({ isOpen, close }) => {
+const PaymentModal = ({ isOpen, close, amount, handlePayment }) => {
   const [loading, setLoading] = useState(true);
+  const [upiTransactionId, setUpiTransactionId] = useState("");
+  const [qrLoading, setQrLoading] = useState(true);
+  const upiLink = `upi://pay?mode=02&pa=Q178991944@ybl&am=${amount}&purpose=00&mc=0000&pn=PhonePeMerchant&orgid=180001&sign=MEUCIEoxiCYhFrpF2oZDnWtkGInpkF3dAJbe4oSXSq0HGThUAiEA8RGaio5MA0/x0FQx9RvZxF1tJp2UwEQKkEsVC8mYXBY=`;
+  const qrCodeSrc = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
+    upiLink
+  )}`;
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -28,9 +34,6 @@ const PaymentModal = ({ isOpen, close }) => {
     close();
   }
 
-  if (loading) {
-  }
-
   return (
     <Modal
       isOpen={isOpen}
@@ -46,21 +49,38 @@ const PaymentModal = ({ isOpen, close }) => {
             Pay using UPI
           </Typography>
           <div>
-            Please scan the QR code and complete the payment using your UPI app
+            <div>
+              Please scan the QR code and complete the payment using your UPI
+              app
+            </div>
+            <div className="text-xs">Our payment partner: SRI DEVI STORE</div>
           </div>
           <div className="flex justify-center">
-            <img src="/images/qr.png" className="max-w-48" alt="qr" />
+            {qrLoading && (
+              <div>
+                <Loader />
+                Generating QR code...
+              </div>
+            )}
+            <img
+              src={qrCodeSrc}
+              className="max-w-48"
+              alt="qr"
+              onLoad={() => setQrLoading(false)}
+            />
           </div>
           <div className="my-3">
             Or, you can use the following link to complete the payment
             <div>
               <a
-                href=""
+                href={upiLink}
                 target="_blank"
                 className="text-blue-500 underline"
                 rel="noreferrer"
               >
-                Click here to pay ₹500
+                Click here to pay
+                <span className="font-bold"> ₹{amount} </span>
+                using an UPI app on your phone
               </a>
             </div>
           </div>
@@ -71,6 +91,8 @@ const PaymentModal = ({ isOpen, close }) => {
             <Input
               type="text"
               label="UPI Transaction ID"
+              value={upiTransactionId}
+              onChange={(e) => setUpiTransactionId(e.target.value)}
               placeholder="123456789012"
             />
             <div className="flex justify-center gap-2 items-center">
@@ -88,6 +110,7 @@ const PaymentModal = ({ isOpen, close }) => {
                 className="mt-3"
                 variant="gradient"
                 size="lg"
+                onClick={() => handlePayment(upiTransactionId)}
               >
                 Confirm Payment
               </Button>
