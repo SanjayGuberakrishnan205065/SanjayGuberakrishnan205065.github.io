@@ -64,7 +64,9 @@ const Login = () => {
               </div>
               {error && <Danger>{error}</Danger>}
               <Button
-                className="rounded-full bg-primaryLight"
+                color="deep-purple"
+                variant="gradient"
+                className="rounded-full"
                 type="submit"
                 disabled={isLoading}
               >

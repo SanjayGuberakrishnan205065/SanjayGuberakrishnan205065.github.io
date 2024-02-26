@@ -53,7 +53,9 @@ const ForgotPassword = () => {
             <div className="my-3">
               <Button
                 type="submit"
-                className="bg-primaryLight rounded-full"
+                color="deep-purple"
+                variant="gradient"
+                className="rounded-full"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Reset Password"}

@@ -42,7 +42,11 @@ const PricingCard = ({
     });
   };
   return (
-    <Card color="gray" variant="gradient" className="w-full max-w-[20rem] p-8">
+    <Card
+      color="gray"
+      variant="gradient"
+      className="w-full max-w-[20rem] p-8 pricing-card"
+    >
       <CardHeader
         floated={false}
         shadow={false}
@@ -82,11 +86,13 @@ const PricingCard = ({
       <CardFooter className="mt-12 p-0">
         <Button
           size="lg"
-          color={
-            startingFrom ? "purple" : isAddedToCart ? "deep-purple" : "white"
-          }
-          className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-          variant="gradient"
+          className={`hover:scale-[1.02] focus:scale-[1.02] active:scale-100 ${
+            startingFrom
+              ? "bg-purple-400"
+              : isAddedToCart
+              ? "active-btn"
+              : "bg-white text-gray-800"
+          }`}
           ripple={true}
           fullWidth={true}
           onClick={startingFrom ? handleCardAction : handleAddToCart}

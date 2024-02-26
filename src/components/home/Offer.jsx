@@ -18,7 +18,12 @@ const Offer = () => {
       </Typography>
       <div className="flex w-full md:w-fit gap-3 mt-2 flex-col md:flex-row">
         <Link to="/buy-tickets">
-          <Button className="bg-primaryLight hover:bg-primaryDark" size="md">
+          <Button
+            className="rounded-full"
+            size="lg"
+            variant="gradient"
+            color="deep-purple"
+          >
             buy ticket
           </Button>
         </Link>

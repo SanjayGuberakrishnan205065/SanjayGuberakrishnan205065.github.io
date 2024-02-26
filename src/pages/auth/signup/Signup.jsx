@@ -140,7 +140,12 @@ const Signup = () => {
               </Success>
             )}
             <div className="my-3  text-center">
-              <Button type="submit" className="bg-primaryLight">
+              <Button
+                type="submit"
+                variant="gradient"
+                className="rounded-full"
+                color="deep-purple"
+              >
                 Sign Up
               </Button>
             </div>

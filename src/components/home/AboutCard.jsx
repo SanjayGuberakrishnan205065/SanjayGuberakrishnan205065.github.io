@@ -32,8 +32,10 @@ function AboutCard({
           ) : (
             <Link to={href}>
               <Button
-                className="bg-primaryLight hover:bg-primaryDark text-white"
-                size="sm"
+                color="deep-purple"
+                variant="gradient"
+                className="text-white rounded-full"
+                size="lg"
               >
                 View details
               </Button>

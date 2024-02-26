@@ -111,6 +111,30 @@ a {
   grid-area: signature-area;
 }
 
+.pricing-card {
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(102, 51, 153, 1) 11.2%,
+    rgba(2, 0, 4, 1) 91.1%
+  );
+}
+
+.checkout-alert {
+  background-image: linear-gradient(
+    288deg,
+    rgba(0, 85, 255, 1) 1.5%,
+    rgba(4, 56, 115, 1) 91.6%
+  );
+}
+
+.active-btn {
+  background-image: radial-gradient(
+    circle 325px at 19.2% 64.8%,
+    rgba(254, 62, 101, 1) 9.7%,
+    rgba(166, 24, 146, 1) 91.3%
+  );
+}
+
 @media (min-width: 768px) {
   .hero-grid {
     display: grid;

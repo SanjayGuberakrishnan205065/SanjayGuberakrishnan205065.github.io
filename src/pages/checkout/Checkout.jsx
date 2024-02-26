@@ -1,14 +1,16 @@
-import { Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { useCartContext } from "../../contexts/CartContext";
 import CheckoutTable from "./components/CheckoutTable";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import PaymentModal from "./components/PaymentModal";
 
 const Checkout = () => {
   const { checkoutIdsInCart } = useCartContext();
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (checkoutIdsInCart.length === 0) {
@@ -30,6 +32,12 @@ const Checkout = () => {
       setTotal(total);
     });
   }, [checkoutIdsInCart]);
+
+  const handleCheckout = () => {
+    console.log(checkoutIdsInCart);
+    setOpenPaymentModal(true);
+  };
+
   return (
     <div className="page-view container mx-auto">
       <Typography variant="h1">Checkout</Typography>
@@ -41,6 +49,23 @@ const Checkout = () => {
         <Typography variant="h2" className="text-right my-5">
           Total: ₹{total}
         </Typography>
+      </div>
+      <div className="text-center">
+        <Button
+          variant="gradient"
+          color="deep-purple"
+          size="lg"
+          className="rounded-full"
+          onClick={handleCheckout}
+        >
+          Pay Now
+        </Button>
+        <PaymentModal
+          isOpen={openPaymentModal}
+          close={() => {
+            setOpenPaymentModal(false);
+          }}
+        />
       </div>
     </div>
   );

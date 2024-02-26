@@ -57,7 +57,12 @@ const Profile = () => {
       <Typography variant="h1">Profile</Typography>
       <div className="text-center">
         <Link to="/participated-events">
-          <Button color="blue" size="lg" ripple="light">
+          <Button
+            color="deep-purple"
+            variant="gradient"
+            size="lg"
+            ripple={true}
+          >
             Participated Events
           </Button>
         </Link>
@@ -72,7 +77,7 @@ const Profile = () => {
               })}
               label="Name"
               color="white"
-              readOnly="true"
+              readOnly
             ></Input>
             {errors.userName && (
               <span className={`${ProfileStyles.error} `}>

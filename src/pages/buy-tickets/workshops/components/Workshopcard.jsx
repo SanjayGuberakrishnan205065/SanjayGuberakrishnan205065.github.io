@@ -38,8 +38,8 @@ function WorkshopCard({ title, price, description, checkoutId }) {
     });
   };
   return (
-    <Card className="mt-6 w-96">
-      <CardBody className="bg-gradient-to-r from-[#2d2d2d] to-[#3b3b3b] rounded-lg rounded-b-none">
+    <Card className="mt-6 w-96 pricing-card">
+      <CardBody className="rounded-lg rounded-b-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -66,10 +66,11 @@ function WorkshopCard({ title, price, description, checkoutId }) {
           {price}
         </Typography>
       </CardBody>
-      <CardFooter className="pt-0 bg-gradient-to-r from-[#2d2d2d] to-[#3b3b3b] text-center rounded-b-lg">
+      <CardFooter className="pt-0 text-center rounded-b-lg">
         <Button
           variant="gradient"
           color={selected ? "deep-purple" : "white"}
+          className={`${selected ? "active-btn" : "bg-white"}`}
           onClick={handleAddToCart}
         >
           {selected ? (

@@ -190,9 +190,15 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            <Button variant="text" onClick={handleLogin}>
-              Log in
-            </Button>
+            {user ? (
+              <Button color="gray" variant="text" onClick={handleProfile}>
+                Profile
+              </Button>
+            ) : (
+              <Button color="gray" variant="text" onClick={handleLogin}>
+                Log in
+              </Button>
+            )}
             <span>
               <Button color="gray" onClick={handleBuyTickets}>
                 Buy Tickets
