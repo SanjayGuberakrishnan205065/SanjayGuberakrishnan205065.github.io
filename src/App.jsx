@@ -28,6 +28,7 @@ import Accommodation from "./pages/accommodation/Accommodation";
 import BuyTickets from "./pages/buy-tickets/BuyTickets";
 import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets";
 import Checkout from "./pages/checkout/Checkout";
+import MyTickets from "./pages/my-tickets/MyTickets";
 
 function App() {
   const authContext = useAuthContext();
@@ -110,6 +111,10 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
+        },
+        {
+          path: "my-tickets",
+          element: user ? <MyTickets /> : <Navigate to="/login" />,
         },
         {
           path: "buy-tickets",

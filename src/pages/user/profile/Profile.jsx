@@ -55,17 +55,31 @@ const Profile = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h1">Profile</Typography>
-      <div className="text-center">
-        <Link to="/participated-events">
-          <Button
-            color="deep-purple"
-            variant="gradient"
-            size="lg"
-            ripple={true}
-          >
-            Participated Events
-          </Button>
-        </Link>
+      <div className="flex flex-col md:flex-row justify-evenly my-3 gap-5 items-center">
+        <div>
+          <Link to="/my-tickets">
+            <Button
+              color="deep-purple"
+              variant="gradient"
+              size="lg"
+              ripple={true}
+            >
+              My Tickets
+            </Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/participated-events">
+            <Button
+              color="deep-purple"
+              variant="gradient"
+              size="lg"
+              ripple={true}
+            >
+              Participated Events
+            </Button>
+          </Link>
+        </div>
       </div>
       <div className="lg:max-w-96">
         <form>

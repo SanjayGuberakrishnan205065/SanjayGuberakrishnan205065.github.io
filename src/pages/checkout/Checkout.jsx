@@ -6,8 +6,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "./components/PaymentModal";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Checkout = () => {
+  const { token } = useAuthContext();
   const { checkoutIdsInCart } = useCartContext();
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -38,7 +40,25 @@ const Checkout = () => {
     if (!upiTransactionId || upiTransactionId.length !== 12) {
       toast.error("Enter a valid 12 digit UPI transaction ID");
     }
-    console.log(upiTransactionId, checkoutIdsInCart);
+    const loadingToast = toast.loading("Creating transaction...");
+    axios
+      .post(
+        "/api/transactions",
+        {
+          upiTransactionId,
+          checkoutIds: checkoutIdsInCart,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then(() => {
+        toast.dismiss(loadingToast);
+        toast.success("Transaction created successfully!");
+        navigate("/my-tickets");
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error(err.message);
+      });
   };
 
   const handleCheckout = () => {
