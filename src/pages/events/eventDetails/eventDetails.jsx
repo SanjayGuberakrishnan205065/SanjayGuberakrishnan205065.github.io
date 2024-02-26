@@ -11,13 +11,11 @@ import Markdown from "react-markdown";
 
 const EventDetails = () => {
   const [loading, setLoading] = useState(true);
-  const { user, token } = useAuthContext();
+  const { user } = useAuthContext();
   const [isOrganiser, setIsOrganiser] = useState(false);
   const { id } = useParams();
   const [data, setData] = useState({});
   const [eventDetails, setEventDetails] = useState({});
-  const [registered, setRegistered] = useState(false);
-  const [registrationLoading, setRegistrationLoading] = useState(false);
 
   useEffect(() => {
     const fetchDetail = () => {
@@ -27,13 +25,6 @@ const EventDetails = () => {
         response.data.organisers.forEach((organiser) => {
           if (organiser.email === user) {
             setIsOrganiser(true);
-            return;
-          }
-        });
-        // check if current user is registered for the event
-        response.data.participants.forEach((participant) => {
-          if (participant.email === user) {
-            setRegistered(true);
             return;
           }
         });
@@ -56,34 +47,6 @@ const EventDetails = () => {
       "More Info": data.otherInfo,
     });
   }, [data]);
-
-  const handleRegister = () => {
-    setRegistrationLoading(true);
-    axios
-      .post(
-        `/api/events/participants/${data._id}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then(() => {
-        setRegistered(true);
-        setRegistrationLoading(false);
-      });
-  };
-
-  const handleUnregister = () => {
-    setRegistrationLoading(true);
-    axios
-      .delete(`/api/events/participants/${data._id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(() => {
-        setRegistered(false);
-        setRegistrationLoading(false);
-      });
-  };
 
   if (loading) {
     return (
@@ -148,15 +111,7 @@ const EventDetails = () => {
         </div>
       </div>
       <div className="text-center">
-        {!user ? (
-          <div className="mt-5">
-            <Link to="/login">
-              <Button color="blue" ripple={true}>
-                Login to Register
-              </Button>
-            </Link>
-          </div>
-        ) : isOrganiser ? (
+        {isOrganiser && (
           <div className="mt-5 flex justify-center gap-3">
             <Link to={`/events/${id}/view-registrations`}>
               <Button color="blue" ripple={true}>
@@ -168,21 +123,6 @@ const EventDetails = () => {
                 Edit Event
               </Button>
             </Link>
-          </div>
-        ) : !registered ? (
-          <div className="mt-5">
-            <Button color="blue" ripple={true} onClick={handleRegister}>
-              {registrationLoading ? "Registering..." : "Register now!"}
-            </Button>
-          </div>
-        ) : (
-          <div className="mt-5">
-            You are registered for this event!
-            <div className="text-xs my-2">
-              <Button size="sm" color="red" onClick={handleUnregister}>
-                {registrationLoading ? "Unregistering..." : "Unregister"}
-              </Button>
-            </div>
           </div>
         )}
       </div>
