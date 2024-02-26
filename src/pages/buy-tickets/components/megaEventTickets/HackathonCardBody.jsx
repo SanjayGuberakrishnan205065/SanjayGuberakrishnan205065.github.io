@@ -19,7 +19,7 @@ function CheckIcon() {
   );
 }
 
-const HackthonCardBody = () => {
+const HackathonCardBody = () => {
   return (
     <CardBody className="p-0">
       <ul className="flex flex-col gap-4">
@@ -49,4 +49,4 @@ const HackthonCardBody = () => {
     </CardBody>
   );
 };
-export default HackthonCardBody;
+export default HackathonCardBody;

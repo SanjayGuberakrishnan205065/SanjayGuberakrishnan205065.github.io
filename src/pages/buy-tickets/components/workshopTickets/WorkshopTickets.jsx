@@ -1,8 +1,13 @@
 import { Typography } from "@material-tailwind/react";
 import PricingCard from "../PricingCard";
 import WorkshopCardBody from "./WorkshopCardBody";
+import { useNavigate } from "react-router-dom";
 
 const WorkshopTickets = () => {
+  const navigate = useNavigate();
+  const handleCardAction = () => {
+    navigate("/buy-tickets/workshops");
+  };
   return (
     <div>
       <Typography variant="h3" className="my-3">
@@ -14,6 +19,7 @@ const WorkshopTickets = () => {
           startingFrom={true}
           price={500}
           cardBody={<WorkshopCardBody />}
+          handleCardAction={handleCardAction}
         />
       </div>
     </div>

@@ -13,18 +13,21 @@ const EventTickets = () => {
       <div className="flex flex-col lg:flex-row gap-5 lg:gap-2 justify-evenly items-center">
         <PricingCard
           title="Tech Pass"
+          checkoutId="tech_pass"
           price={350}
           cardBody={<TechCardBody />}
         />
         <PricingCard
           title="General Event Pass"
           price={500}
+          checkoutId="general_event_pass"
           cardBody={<GeneralCardBody />}
           savings={17}
         />
         <PricingCard
           title="Non-Tech Pass"
           price={250}
+          checkoutId="non_tech_pass"
           cardBody={<NonTechCardBody />}
         />
       </div>

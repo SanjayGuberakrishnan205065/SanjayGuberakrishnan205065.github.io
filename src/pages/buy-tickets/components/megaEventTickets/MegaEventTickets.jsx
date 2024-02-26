@@ -1,6 +1,6 @@
 import { Typography } from "@material-tailwind/react";
 import PricingCard from "../PricingCard";
-import HackthonCardBody from "./HackthonCardBody";
+import HackathonCardBody from "./HackathonCardBody";
 import PaperPresentationCardBody from "./PaperPresetnationCardBody";
 
 const MegaEventTickets = () => {
@@ -13,11 +13,13 @@ const MegaEventTickets = () => {
         <PricingCard
           title={"Hackthon Pass"}
           price={300}
-          cardBody={<HackthonCardBody />}
+          checkoutId={"hackathon_pass"}
+          cardBody={<HackathonCardBody />}
         />
         <PricingCard
           title={"Paper Presentation Pass"}
           price={300}
+          checkoutId={"paper_presentation_pass"}
           cardBody={<PaperPresentationCardBody />}
         />
       </div>

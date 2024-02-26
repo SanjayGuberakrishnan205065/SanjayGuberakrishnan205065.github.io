@@ -7,6 +7,7 @@ import axios from "axios";
 import config from "./config";
 import { ThemeProvider } from "@material-tailwind/react";
 import { ReactNotifications } from "react-notifications-component";
+import { CartProvider } from "./contexts/CartContext";
 
 axios.defaults.baseURL = config.apiUrl;
 
@@ -14,8 +15,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
       <AuthContextProvider>
-        <ReactNotifications />
-        <App />
+        <CartProvider>
+          <ReactNotifications />
+          <App />
+        </CartProvider>
       </AuthContextProvider>
     </ThemeProvider>
   </React.StrictMode>

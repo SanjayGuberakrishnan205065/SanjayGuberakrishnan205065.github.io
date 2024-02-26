@@ -1,4 +1,9 @@
-import { Navigate, RouterProvider, createHashRouter } from "react-router-dom";
+import {
+  Navigate,
+  Outlet,
+  RouterProvider,
+  createHashRouter,
+} from "react-router-dom";
 import "react-notifications-component/dist/theme.css";
 
 import { useAuthContext } from "./hooks/useAuthContext";
@@ -21,6 +26,8 @@ import Contact from "./pages/contact/Contact";
 import MegaEvents from "./pages/events/viewMegaEvents/MegaEvents";
 import Accommodation from "./pages/accommodation/Accommodation";
 import BuyTickets from "./pages/buy-tickets/BuyTickets";
+import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets";
+import Checkout from "./pages/checkout/Checkout";
 
 function App() {
   const authContext = useAuthContext();
@@ -101,8 +108,22 @@ function App() {
           element: <Accommodation />,
         },
         {
+          path: "checkout",
+          element: <Checkout />,
+        },
+        {
           path: "buy-tickets",
-          element: <BuyTickets />,
+          element: user ? <Outlet /> : <Navigate to="/login" />,
+          children: [
+            {
+              path: "",
+              element: <BuyTickets />,
+            },
+            {
+              path: "workshops",
+              element: <BuyWorkshopTickets />,
+            },
+          ],
         },
       ],
     },
