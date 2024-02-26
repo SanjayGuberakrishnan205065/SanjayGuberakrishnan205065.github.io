@@ -27,8 +27,22 @@ const PaperPresentationCardBody = () => {
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
             <CheckIcon />
           </span>
+          <Typography className="font-normal">1 ticket per team</Typography>
+        </li>
+        <li className="flex items-center gap-4">
+          <span className="rounded-full border border-white/20 bg-white/20 p-1">
+            <CheckIcon />
+          </span>
           <Typography className="font-normal">
-            Paper presentation certificate
+            Participation certificate
+          </Typography>
+        </li>
+        <li className="flex items-center gap-4">
+          <span className="rounded-full border border-white/20 bg-white/20 p-1">
+            <CheckIcon />
+          </span>
+          <Typography className="font-normal">
+            Exciting prizes for the winners
           </Typography>
         </li>
       </ul>

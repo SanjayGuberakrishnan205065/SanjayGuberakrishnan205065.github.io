@@ -9,14 +9,14 @@ const MegaEventTickets = () => {
       <Typography variant="h3" className="my-3">
         Mega Event Passes
       </Typography>
-      <div className="flex gap-2 justify-evenly">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-2 justify-evenly items-center">
         <PricingCard
-          title={"Hackthon"}
+          title={"Hackthon Pass"}
           price={300}
           cardBody={<HackthonCardBody />}
         />
         <PricingCard
-          title={"Paper Presentation"}
+          title={"Paper Presentation Pass"}
           price={300}
           cardBody={<PaperPresentationCardBody />}
         />

@@ -6,7 +6,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-const PricingCard = ({ title, price, cardBody, savings }) => {
+const PricingCard = ({ title, price, cardBody, savings, startingFrom }) => {
   return (
     <Card color="gray" variant="gradient" className="w-full max-w-[20rem] p-8">
       <CardHeader
@@ -22,6 +22,11 @@ const PricingCard = ({ title, price, cardBody, savings }) => {
         >
           {title}
         </Typography>
+        {startingFrom && (
+          <Typography className="font-normal text-primaryLighter my-3">
+            Starting from {startingFrom}
+          </Typography>
+        )}
         <Typography
           variant="h1"
           color="white"
@@ -49,7 +54,7 @@ const PricingCard = ({ title, price, cardBody, savings }) => {
           ripple={true}
           fullWidth={true}
         >
-          Buy Now
+          {startingFrom ? "Browse Passes" : "Buy Now"}
         </Button>
       </CardFooter>
     </Card>

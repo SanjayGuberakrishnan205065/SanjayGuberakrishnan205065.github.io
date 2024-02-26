@@ -19,7 +19,7 @@ function CheckIcon() {
   );
 }
 
-const HackthonCardBody = () => {
+const WorkshopCardBody = () => {
   return (
     <CardBody className="p-0">
       <ul className="flex flex-col gap-4">
@@ -27,26 +27,26 @@ const HackthonCardBody = () => {
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
             <CheckIcon />
           </span>
-          <Typography className="font-normal">1 ticket per team</Typography>
-        </li>
-        <li className="flex items-center gap-4">
-          <span className="rounded-full border border-white/20 bg-white/20 p-1">
-            <CheckIcon />
-          </span>
           <Typography className="font-normal">
-            Participation certificate
+            Workshops by industry experts
           </Typography>
         </li>
         <li className="flex items-center gap-4">
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
             <CheckIcon />
           </span>
+          <Typography className="font-normal">Top companies</Typography>
+        </li>
+        <li className="flex items-center gap-4">
+          <span className="rounded-full border border-white/20 bg-white/20 p-1">
+            <CheckIcon />
+          </span>
           <Typography className="font-normal">
-            Exciting prizes for the winners
+            Savings with combo tickets
           </Typography>
         </li>
       </ul>
     </CardBody>
   );
 };
-export default HackthonCardBody;
+export default WorkshopCardBody;

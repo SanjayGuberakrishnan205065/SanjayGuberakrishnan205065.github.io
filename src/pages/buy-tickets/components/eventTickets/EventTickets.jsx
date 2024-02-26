@@ -10,7 +10,7 @@ const EventTickets = () => {
       <Typography variant="h3" className="my-3">
         Event Passes
       </Typography>
-      <div className="flex gap-2 justify-evenly">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-2 justify-evenly items-center">
         <PricingCard
           title="Tech Pass"
           price={350}
