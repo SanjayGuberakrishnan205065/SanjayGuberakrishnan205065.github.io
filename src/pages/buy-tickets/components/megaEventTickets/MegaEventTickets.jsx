@@ -12,13 +12,13 @@ const MegaEventTickets = () => {
       <div className="flex flex-col lg:flex-row gap-5 lg:gap-2 justify-evenly items-center">
         <PricingCard
           title={"Hackthon Pass"}
-          price={300}
+          price={500}
           checkoutId={"hackathon_pass"}
           cardBody={<HackathonCardBody />}
         />
         <PricingCard
           title={"Paper Presentation Pass"}
-          price={300}
+          price={500}
           checkoutId={"paper_presentation_pass"}
           cardBody={<PaperPresentationCardBody />}
         />

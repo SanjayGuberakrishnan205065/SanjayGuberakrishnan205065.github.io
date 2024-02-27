@@ -27,7 +27,7 @@ const TechCardBody = () => {
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
             <CheckIcon />
           </span>
-          <Typography className="font-normal">1 ticket per team</Typography>
+          <Typography className="font-normal">1 ticket per person</Typography>
         </li>
         <li className="flex items-center gap-4">
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
@@ -35,6 +35,14 @@ const TechCardBody = () => {
           </span>
           <Typography className="font-normal">
             Access to all technical events
+          </Typography>
+        </li>
+        <li className="flex items-center gap-4">
+          <span className="rounded-full border border-white/20 bg-white/20 p-1">
+            <CheckIcon />
+          </span>
+          <Typography className="font-normal">
+            &#8377; 5000 Prize Pool
           </Typography>
         </li>
       </ul>

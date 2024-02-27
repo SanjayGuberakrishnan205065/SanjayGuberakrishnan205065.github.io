@@ -16,11 +16,19 @@ const Contact = () => {
           <Typography variant="paragraph">Mobile: +91 93617789362</Typography>
         </div>
       </div>
-      <div className="my-5 text-center">
-        <Typography variant="h3">Webmaster</Typography>
-        <p>For website related queries please contact:</p>
-        <Typography variant="h6">Pragadesh BS</Typography>
-        <Typography variant="paragraph">Mobile: +91 9443389893</Typography>
+      <div className="flex justify-evenly text-center flex-col md:flex-row gap-3 my-5">
+        <div>
+          <Typography variant="h3">Website</Typography>
+          <p>For website related queries please contact:</p>
+          <Typography variant="h6">Pragadesh BS</Typography>
+          <Typography variant="paragraph">Mobile: +91 9443389893</Typography>
+        </div>
+        <div>
+          <Typography variant="h3">Payments</Typography>
+          <p>For payment related queries please contact:</p>
+          <Typography variant="h6">Pradesh GV</Typography>
+          <Typography variant="paragraph">Mobile: +91 8838644172</Typography>
+        </div>
       </div>
     </div>
   );

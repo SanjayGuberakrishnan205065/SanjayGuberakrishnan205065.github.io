@@ -42,7 +42,7 @@ const PaperPresentationCardBody = () => {
             <CheckIcon />
           </span>
           <Typography className="font-normal">
-            Exciting prizes for the winners
+            &#8377; 10,000 Prize Pool
           </Typography>
         </li>
       </ul>
