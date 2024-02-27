@@ -35,7 +35,7 @@ const EventCard = ({ event }) => {
           className="h-full w-full object-cover"
         />
       </CardHeader>
-      <CardBody className="bg-gray-800 rounded-b-3xl lg:rounded-s-none lg:rounded-e-3xl  text-gray-200">
+      <CardBody className="bg-gray-800 rounded-b-3xl lg:rounded-s-none lg:rounded-e-3xl w-full text-gray-200">
         <Typography variant="h6" className="mb-4">
           {formatDateTime(event.eventStartDate)} to{" "}
           {formatDateTime(event.eventEndDate)}
