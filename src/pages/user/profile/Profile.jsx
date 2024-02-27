@@ -55,6 +55,9 @@ const Profile = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h1">Profile</Typography>
+      <Typography variant="h3" color="white">
+        Quick Links
+      </Typography>
       <div className="flex flex-col md:flex-row justify-evenly my-3 gap-5 items-center">
         <div>
           <Link to="/my-tickets">
@@ -81,7 +84,10 @@ const Profile = () => {
           </Link>
         </div>
       </div>
-      <div className="lg:max-w-96">
+      <div className="lg:max-w-96 mt-3">
+        <Typography variant="h3" color="white">
+          Your Info
+        </Typography>
         <form>
           <div className="my-3">
             <Input
