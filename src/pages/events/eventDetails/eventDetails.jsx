@@ -42,6 +42,15 @@ const EventDetails = () => {
       Type: data.eventType,
       Venue: data.venue,
       Organizers: data.contactName,
+      "First Prize Money": data.firstPrizeMoney
+        ? "₹" + data.firstPrizeMoney
+        : null,
+      "Second Prize Money": data.secondPrizeMoney
+        ? "₹" + data.secondPrizeMoney
+        : null,
+      "Third Prize Money": data.thirdPrizeMoney
+        ? "₹" + data.thirdPrizeMoney
+        : null,
       "Organizer's Phone": data.contactPhone,
       "WhatsApp Group": data.link,
       "More Info": data.otherInfo,
@@ -73,6 +82,7 @@ const EventDetails = () => {
             <table className="w-full text-left table-auto min-w-max">
               <tbody>
                 {Object.keys(eventDetails).map((key, index) => {
+                  if (!eventDetails[key]) return null;
                   return (
                     <tr key={index}>
                       <td className="px-1 py-4">
