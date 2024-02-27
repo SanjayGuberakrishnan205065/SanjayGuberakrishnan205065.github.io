@@ -8,7 +8,7 @@ const Offer = () => {
         className="text-2xl md:text-3xl text-center font-bold "
         color="white"
       >
-        Get a referral to avail 30% OFF!
+        Get a referral to avail upto ₹100 OFF!
       </Typography>
       <Typography
         color="white"

@@ -9,23 +9,15 @@ import { useState } from "react";
 const FAQS = [
   {
     title: "1. How do I register for the SAMHITA 2024?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit placerat leo nec egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae ipsum a ligula imperdiet convallis. Nulla. ",
+    desc: "You may enroll for SAMHITA by utilizing the buy-tickets feature available on the website. Acquire tickets to gain entry to particular events or a bundle of events. Additionally, registration is mandatory for accommodation.",
   },
   {
     title: "2. What are the registration fees, and what is included?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit placerat leo nec egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae ipsum a ligula imperdiet convallis. Nulla. ",
+    desc: "Each event type has a distinct registration fee; please visit the buy-tickets page to review the prices for individual events.",
   },
   {
-    title: "3. Can I get a refund if I need to cancel my registration?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit placerat leo nec egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae ipsum a ligula imperdiet convallis. Nulla. ",
-  },
-  {
-    title: "4. Will there be on-site registration available?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit placerat leo nec egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae ipsum a ligula imperdiet convallis. Nulla. ",
-  },
-  {
-    title: "5. What is the dress code for the conference?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit placerat leo nec egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae ipsum a ligula imperdiet convallis. Nulla. ",
+    title: "3. Will there be on-site registration available?",
+    desc: "Certainly! On-site registration will be available, but we highly recommend registering online for your convenience and to avoid long queues.",
   },
 ];
 
