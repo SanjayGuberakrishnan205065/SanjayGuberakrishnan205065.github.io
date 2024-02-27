@@ -66,14 +66,6 @@ export function Navbar() {
       },
     },
     {
-      name: "Schedule",
-      icon: ClockIcon,
-      routeFn: () => {
-        setOpen(false);
-        navigate("/schedule");
-      },
-    },
-    {
       name: "Accommodation",
       icon: HotelIcon,
       routeFn: () => {
