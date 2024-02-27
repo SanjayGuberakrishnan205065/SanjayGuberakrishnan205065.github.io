@@ -4,8 +4,8 @@ import CheckoutPopup from "../buy-tickets/components/CheckoutPopup";
 
 const Accommodation = () => {
   return (
-    <div className="mx-auto container page-view">
-      <Typography variant="h1">Accommodation</Typography>
+    <div className="container mx-auto page-view">
+      <Typography variant="h2">Accommodation</Typography>
       <div className="my-3 text-xl">
         <div className="my-3">
           Accommodation is available to the participants in MIT Hostel for a fee
