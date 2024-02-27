@@ -7,7 +7,7 @@ const STATS = [
     title: "Participants",
   },
   {
-    count: "1L",
+    count: "2L",
     title: "Prize Money",
   },
   {
