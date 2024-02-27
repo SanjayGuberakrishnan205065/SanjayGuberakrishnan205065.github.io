@@ -7,6 +7,7 @@ const TABLE_HEAD = [
   "Amount",
   "Transaction Status",
   "Date",
+  "Referral Code",
   "Includes",
 ];
 
@@ -40,6 +41,7 @@ function MyTicketsTable({ myTickets }) {
                 transactionAmount,
                 transactionStatus,
                 createdAt,
+                referral,
                 purchasedTickets,
               },
               index
@@ -91,6 +93,15 @@ function MyTicketsTable({ myTickets }) {
                     className="font-normal"
                   >
                     {formatDateTimeWithTimezone(createdAt)}
+                  </Typography>
+                </td>
+                <td className="p-4">
+                  <Typography
+                    variant="small"
+                    color="white"
+                    className="font-normal"
+                  >
+                    {referral?.referralCode || "-"}
                   </Typography>
                 </td>
                 <td className="p-4">

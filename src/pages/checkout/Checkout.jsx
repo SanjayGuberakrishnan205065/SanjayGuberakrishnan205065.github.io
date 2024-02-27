@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import { useCartContext } from "../../contexts/CartContext";
 import CheckoutTable from "./components/CheckoutTable";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Checkout = () => {
   const { token } = useAuthContext();
+  const [referralCode, setReferralCode] = useState("");
   const { checkoutIdsInCart } = useCartContext();
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -47,6 +48,7 @@ const Checkout = () => {
         {
           upiTransactionId,
           checkoutIds: checkoutIdsInCart,
+          referralCode,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -62,7 +64,6 @@ const Checkout = () => {
   };
 
   const handleCheckout = () => {
-    console.log(checkoutIdsInCart);
     setOpenPaymentModal(true);
   };
 
@@ -77,6 +78,16 @@ const Checkout = () => {
         <Typography variant="h2" className="text-right my-5">
           Total: ₹{total}
         </Typography>
+      </div>
+      <div className="mt-3 mb-5 w-full lg:w-96">
+        <Input
+          type="text"
+          color="white"
+          label="Referral Code (Optional)"
+          placeholder="Enter referral code"
+          value={referralCode}
+          onChange={(e) => setReferralCode(e.target.value)}
+        />
       </div>
       <div className="text-center">
         <Button
@@ -94,7 +105,9 @@ const Checkout = () => {
             setOpenPaymentModal(false);
           }}
           amount={total}
+          setAmount={setTotal}
           handlePayment={handlePayment}
+          referralCode={referralCode}
         />
       </div>
     </div>

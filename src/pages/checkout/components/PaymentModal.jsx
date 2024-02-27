@@ -2,10 +2,21 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import Loader from "../../loader/Loader";
+import axios from "axios";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import toast from "react-hot-toast";
 
 Modal.setAppElement("#root");
 
-const PaymentModal = ({ isOpen, close, amount, handlePayment }) => {
+const PaymentModal = ({
+  isOpen,
+  close,
+  amount,
+  setAmount,
+  handlePayment,
+  referralCode,
+}) => {
+  const { token } = useAuthContext();
   const [loading, setLoading] = useState(true);
   const [upiTransactionId, setUpiTransactionId] = useState("");
   const [qrLoading, setQrLoading] = useState(true);
@@ -14,8 +25,46 @@ const PaymentModal = ({ isOpen, close, amount, handlePayment }) => {
     upiLink
   )}`;
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    const fetchReferral = () => {
+      if (!isOpen) return;
+      console.log(referralCode);
+      if (!referralCode) {
+        setLoading(false);
+        return;
+      }
+      axios
+        .get("/api/referrals/" + referralCode, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          if (response.data.referral) {
+            const referral = response.data.referral;
+            if (referral.discountPercent) {
+              const discountAmount =
+                (amount * referral.discountPercent["$numberDecimal"]) / 100;
+              toast.success(
+                "You saved ₹" + discountAmount + " using referral!"
+              );
+              setAmount(amount - discountAmount);
+            } else if (referral.discountAmount) {
+              toast.success(
+                "You saved ₹" +
+                  referral.discountAmount["$numberDecimal"] +
+                  " using referral!"
+              );
+              setAmount(amount - referral.discountAmount["$numberDecimal"]);
+            }
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    };
+    fetchReferral();
+  }, [referralCode, isOpen]);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -84,6 +133,7 @@ const PaymentModal = ({ isOpen, close, amount, handlePayment }) => {
               </a>
             </div>
           </div>
+          {referralCode && <div>Referral code used: {referralCode}</div>}
           <div>
             Once done, please enter the 12 digit UPI transaction ID below
           </div>
