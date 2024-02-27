@@ -36,7 +36,7 @@ function AccommodationCard({ title, price, description, checkoutId }) {
     });
   };
   return (
-    <Card className="mt-6 w-96 accommodation-card">
+    <Card className="mt-6 w-80 lg:w-96 accommodation-card">
       <CardBody className="rounded-lg rounded-b-none">
         <HotelIcon className="text-white" />
         <Typography variant="h5" color="white" className="mb-2">
