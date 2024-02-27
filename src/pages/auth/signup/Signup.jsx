@@ -145,8 +145,9 @@ const Signup = () => {
                 variant="gradient"
                 className="rounded-full"
                 color="deep-purple"
+                disabled={isLoading}
               >
-                Sign Up
+                {isLoading ? "Signing Up" : "Sign Up"}
               </Button>
             </div>
           </form>
