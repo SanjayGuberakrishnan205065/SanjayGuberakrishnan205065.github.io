@@ -17,6 +17,7 @@ import {
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import MyMarquee from "./MyMarquee";
 
 function NavItem({ children, routeFn }) {
   return (
@@ -207,6 +208,9 @@ export function Navbar() {
           </div>
         </div>
       </Collapse>
+      <div className={`w-100 ${isScrolling ? "bg-primary" : "bg-transparent"}`}>
+        <MyMarquee />
+      </div>
     </MTNavbar>
   );
 }
