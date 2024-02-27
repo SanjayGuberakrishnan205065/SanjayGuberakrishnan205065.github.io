@@ -38,7 +38,7 @@ const MyTickets = () => {
     <div className="mx-auto container page-view">
       <Typography variant="h1">My Tickets</Typography>
       <Alert variant="outlined" color="yellow" className="my-3">
-        It may take upto 48 hours for the transaction verification process.
+        It may take upto 24 hours for the transaction verification process.
         Please contact us if you have any queries.
       </Alert>
       {myTickets.length > 0 ? (
