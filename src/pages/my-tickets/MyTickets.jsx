@@ -1,11 +1,14 @@
-import { Typography } from "@material-tailwind/react";
+import { Alert, Typography } from "@material-tailwind/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import MyTicketsTable from "./components/MyTicketsTable";
+import toast from "react-hot-toast";
+import Loader from "../loader/Loader";
 
 const MyTickets = () => {
   const { token } = useAuthContext();
+  const [loading, setLoading] = useState(true);
   const [myTickets, setMyTickets] = useState([]);
   useEffect(() => {
     const fetchTickets = () => {
@@ -14,18 +17,30 @@ const MyTickets = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          console.log(response.data.transactions);
+          setLoading(false);
           setMyTickets(response.data.transactions);
         })
         .catch((err) => {
-          console.log(err);
+          setLoading(false);
+          toast.error("Failed to fetch tickets");
         });
     };
     fetchTickets();
   }, []);
+  if (loading) {
+    return (
+      <div className="mx-auto container page-view">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="mx-auto container page-view">
       <Typography variant="h1">My Tickets</Typography>
+      <Alert variant="outlined" color="yellow" className="my-3">
+        It may take upto 48 hours for the transaction verification process.
+        Please contact us if you have any queries.
+      </Alert>
       {myTickets.length > 0 ? (
         <MyTicketsTable myTickets={myTickets} />
       ) : (
