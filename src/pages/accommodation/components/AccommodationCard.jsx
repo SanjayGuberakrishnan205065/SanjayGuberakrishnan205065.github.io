@@ -9,8 +9,12 @@ import DoneIcon from "@mui/icons-material/Done";
 import { useEffect, useState } from "react";
 import { useCartContext, useCartDispatch } from "../../../contexts/CartContext";
 import HotelIcon from "@mui/icons-material/Hotel";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 function AccommodationCard({ title, price, description, checkoutId }) {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
   const { checkoutIdsInCart } = useCartContext();
   const cartDispatch = useCartDispatch();
   const [selected, setSelected] = useState(false);
@@ -57,15 +61,23 @@ function AccommodationCard({ title, price, description, checkoutId }) {
           variant="gradient"
           color={selected ? "deep-purple" : "white"}
           className={`${selected ? "active-btn" : "bg-white"}`}
-          onClick={handleAddToCart}
+          onClick={
+            user
+              ? handleAddToCart
+              : () => {
+                  navigate("/login");
+                }
+          }
         >
           {selected ? (
             <div className="flex items-center">
               <DoneIcon />
               <div className="ml-2">Added to cart</div>
             </div>
-          ) : (
+          ) : user ? (
             "Add to cart"
+          ) : (
+            "Login to purchase"
           )}
         </Button>
       </CardFooter>
