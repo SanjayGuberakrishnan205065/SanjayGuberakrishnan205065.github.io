@@ -40,6 +40,7 @@ const Checkout = () => {
   const handlePayment = (upiTransactionId) => {
     if (!upiTransactionId || upiTransactionId.length !== 12) {
       toast.error("Enter a valid 12 digit UPI transaction ID");
+      return;
     }
     const loadingToast = toast.loading("Creating transaction...");
     axios
