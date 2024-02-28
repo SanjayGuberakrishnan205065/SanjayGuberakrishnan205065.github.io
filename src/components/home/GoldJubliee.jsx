@@ -17,7 +17,7 @@ const GoldJubliee = () => {
           </Typography>
         </div>
         <div className="text-center">
-          <Typography variant="body1">
+          <Typography>
             Honoring the past, embracing the future—celebrating 75 years of
             MIT's triumphs.
           </Typography>

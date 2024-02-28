@@ -18,7 +18,7 @@ import Signup from "./pages/auth/signup/Signup";
 import OrganisedEvents from "./pages/user/organisedEvents/OrganisedEvents";
 import UpdateEvent from "./pages/events/updateEvent/UpdateEvent";
 import ViewWorkshops from "./pages/events/viewWorkshops/viewWorkshops";
-import Schedule from "./pages/schedule/Schedule";
+import Location from "./pages/location/Location";
 import Profile from "./pages/user/profile/Profile";
 import ParticipatedEvents from "./pages/user/participatedEvents/ParticipatedEvents";
 import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistrations";
@@ -89,8 +89,8 @@ function App() {
           element: user ? <ParticipatedEvents /> : <Navigate to="/login" />,
         },
         {
-          path: "schedule",
-          element: <Schedule />,
+          path: "location",
+          element: <Location />,
         },
         {
           path: "profile",

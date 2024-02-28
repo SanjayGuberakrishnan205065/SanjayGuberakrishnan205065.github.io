@@ -10,9 +10,9 @@ import {
   RectangleStackIcon,
   XMarkIcon,
   Bars3Icon,
-  ClockIcon,
   PresentationChartBarIcon,
   GiftIcon,
+  MapPinIcon,
 } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -71,6 +71,14 @@ export function Navbar() {
       routeFn: () => {
         setOpen(false);
         navigate("/accommodation");
+      },
+    },
+    {
+      name: "Location",
+      icon: MapPinIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/location");
       },
     },
   ];
