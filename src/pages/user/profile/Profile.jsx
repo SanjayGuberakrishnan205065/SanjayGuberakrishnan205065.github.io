@@ -58,7 +58,7 @@ const Profile = () => {
       <Typography variant="h3" color="white">
         Quick Links
       </Typography>
-      <div className="flex flex-col md:flex-row justify-evenly my-3 gap-5 items-center">
+      <div className="flex flex-col md:flex-row justify-center my-3 gap-5 items-center">
         <div>
           <Link to="/my-tickets">
             <Button
@@ -71,7 +71,7 @@ const Profile = () => {
             </Button>
           </Link>
         </div>
-        <div>
+        {/* <div>
           <Link to="/participated-events">
             <Button
               color="deep-purple"
@@ -82,7 +82,7 @@ const Profile = () => {
               Participated Events
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="lg:max-w-96 mt-3">
         <Typography variant="h3" color="white">

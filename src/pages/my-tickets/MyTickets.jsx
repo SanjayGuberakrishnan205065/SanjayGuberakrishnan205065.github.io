@@ -38,8 +38,16 @@ const MyTickets = () => {
     <div className="mx-auto container page-view">
       <Typography variant="h1">My Tickets</Typography>
       <Alert variant="outlined" color="yellow" className="my-3">
-        It may take upto 24 hours for the transaction verification process.
-        Please contact us if you have any queries.
+        <div>
+          It may take upto 24 hours for the transaction verification process.
+          For any payment related queries, please contact:
+        </div>
+        <div>
+          Pradesh GV{" "}
+          <a href="tel:+918838644172" className="underline">
+            +91 88386 44172
+          </a>{" "}
+        </div>
       </Alert>
       {myTickets.length > 0 ? (
         <MyTicketsTable myTickets={myTickets} />
