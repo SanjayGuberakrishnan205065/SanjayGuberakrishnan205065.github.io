@@ -44,7 +44,7 @@ const EventCard = ({ event }) => {
           {event.eventName}
         </Typography>
         <Typography color="white" className="mb-8 font-normal">
-          {shortenText(event.otherInfo, 200)}
+          {shortenText(event.otherInfo, 200).replace("#", "")}
         </Typography>
         <div className="mb-8 font-normal text-white">
           <div>
