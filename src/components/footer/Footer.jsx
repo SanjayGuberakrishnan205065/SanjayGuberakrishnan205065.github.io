@@ -1,15 +1,35 @@
 import { Typography, Button, IconButton } from "@material-tailwind/react";
 import { FaInstagram } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Footer() {
-  const { userInfo } = useAuthContext();
+  const { user, userInfo } = useAuthContext();
+  const location = useLocation();
   const LINKS = [
     { name: "About ITA", href: "https://it.mitindia.edu/ita", external: true },
     { name: "Contact Us", href: "/contact" },
     { name: "Organizers", href: "/organized-events" },
   ];
+  useEffect(() => {
+    function sendLog() {
+      const lastRunTime = localStorage.getItem("logLastReport");
+      const currentTime = new Date().getTime();
+      if (!lastRunTime || currentTime - lastRunTime > 5 * 60 * 1000) {
+        axios
+          .post("/api/logs/", {
+            path: location.pathname,
+            user,
+          })
+          .then(() => {
+            localStorage.setItem("logLastReport", currentTime);
+          });
+      }
+    }
+    sendLog();
+  });
   return (
     <footer className="pb-5 p-10 md:pt-10">
       <div className="container flex flex-col mx-auto">
