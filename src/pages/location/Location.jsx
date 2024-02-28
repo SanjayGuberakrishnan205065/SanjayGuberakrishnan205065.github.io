@@ -36,6 +36,9 @@ const Location = () => {
             <Typography variant="h3">Public Transport</Typography>
             <div>Nearest Railway Station (Chennai Local Trains): Chromepet</div>
             <div>Nearest Railway Station (Long Distance Trains): Tambaram</div>
+            <div>
+              Nearest Metro Station: Chennai International Airport (Blue Line)
+            </div>
             <div>Nearst Bus stop: Chromepet</div>
           </div>
         </div>
