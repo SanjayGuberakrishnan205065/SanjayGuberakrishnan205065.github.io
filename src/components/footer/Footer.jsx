@@ -12,6 +12,7 @@ function Footer() {
     { name: "About ITA", href: "https://it.mitindia.edu/ita", external: true },
     { name: "Contact Us", href: "/contact" },
     { name: "Organizers", href: "/organized-events" },
+    { name: "Event Location", href: "/location" },
   ];
   function getCurrentDateTime() {
     // Get current date and time

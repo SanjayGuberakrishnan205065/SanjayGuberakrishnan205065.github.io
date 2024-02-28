@@ -13,6 +13,7 @@ import {
   PresentationChartBarIcon,
   GiftIcon,
   MapPinIcon,
+  HomeIcon,
 } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -41,6 +42,14 @@ export function Navbar() {
   const { user } = useAuthContext();
 
   const NAV_MENU = [
+    {
+      name: "Home",
+      icon: HomeIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/");
+      },
+    },
     {
       name: "Events",
       icon: RectangleStackIcon,
