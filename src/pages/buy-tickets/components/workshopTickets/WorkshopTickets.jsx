@@ -17,7 +17,7 @@ const WorkshopTickets = () => {
         <PricingCard
           title="Workshop Passes"
           startingFrom={true}
-          price={500}
+          price={499}
           cardBody={<WorkshopCardBody />}
           handleCardAction={handleCardAction}
         />
