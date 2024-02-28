@@ -13,19 +13,40 @@ function Footer() {
     { name: "Contact Us", href: "/contact" },
     { name: "Organizers", href: "/organized-events" },
   ];
+  function getCurrentDateTime() {
+    // Get current date and time
+    const currentDate = new Date();
+
+    // Extract hours, minutes, seconds, and AM/PM
+    const hours = currentDate.getHours() % 12 || 12; // Convert 0 to 12
+    const minutes = addLeadingZero(currentDate.getMinutes());
+    const seconds = addLeadingZero(currentDate.getSeconds());
+    const ampm = currentDate.getHours() >= 12 ? "PM" : "AM";
+
+    // Extract date components
+    const day = addLeadingZero(currentDate.getDate());
+    const month = addLeadingZero(currentDate.getMonth() + 1); // Months are zero-based
+    const year = currentDate.getFullYear();
+
+    // Format into a single string
+    const dateTimeString = `${hours}:${minutes}:${seconds} ${ampm} - ${day}/${month}/${year}`;
+
+    return dateTimeString;
+  }
+
+  function addLeadingZero(number) {
+    return number < 10 ? `0${number}` : number;
+  }
+
   useEffect(() => {
     function sendLog() {
-      const lastRunTime = localStorage.getItem("logLastReport");
       const currentTime = new Date().getTime();
       if (!lastRunTime || currentTime - lastRunTime > 5 * 60 * 1000) {
-        axios
-          .post("/api/logs/", {
-            path: location.pathname,
-            user,
-          })
-          .then(() => {
-            localStorage.setItem("logLastReport", currentTime);
-          });
+        axios.post("/api/logs/", {
+          path: location.pathname,
+          user,
+          localTime: getCurrentDateTime(),
+        });
       }
     }
     sendLog();
