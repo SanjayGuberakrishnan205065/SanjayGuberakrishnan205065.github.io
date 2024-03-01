@@ -30,6 +30,8 @@ import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets
 import Checkout from "./pages/checkout/Checkout";
 import MyTickets from "./pages/my-tickets/MyTickets";
 import ParticipantsInfo from "./pages/participants-info/ParticipantsInfo";
+import Transactions from "./pages/participants-info/transactions/Transactions";
+import Users from "./pages/participants-info/users/Users";
 
 function App() {
   const authContext = useAuthContext();
@@ -139,6 +141,16 @@ function App() {
             ) : (
               <Navigate to="/" />
             ),
+          children: [
+            {
+              path: "transactions",
+              element: <Transactions />,
+            },
+            {
+              path: "users",
+              element: <Users />,
+            },
+          ],
         },
       ],
     },

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../../loader/Loader";
 import CheckoutPopup from "../components/CheckoutPopup";
+import toast from "react-hot-toast";
 
 const BuyWorkshopTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -18,8 +19,8 @@ const BuyWorkshopTickets = () => {
         setTickets(response.data);
       })
       .catch((error) => {
+        toast.error("Failed to load tickets");
         setLoading(false);
-        console.log(error);
       });
   }, []);
 

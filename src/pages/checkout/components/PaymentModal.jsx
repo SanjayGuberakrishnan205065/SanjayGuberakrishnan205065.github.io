@@ -27,7 +27,6 @@ const PaymentModal = ({
   useEffect(() => {
     const fetchReferral = () => {
       if (!isOpen) return;
-      console.log(referralCode);
       if (!referralCode) {
         setLoading(false);
         return;
@@ -58,7 +57,7 @@ const PaymentModal = ({
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          toast.error("Failed to fetch referral details");
           setLoading(false);
         });
     };
