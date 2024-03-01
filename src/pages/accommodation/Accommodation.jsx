@@ -36,13 +36,13 @@ const Accommodation = () => {
           <AccommodationCard
             title={"Accommodation 24hrs (With Food)"}
             price={400}
-            checkoutId="accomodation_24hrs"
+            checkoutId="accommodation_24hrs"
             description="Upto 24 hrs Stay. Food included"
           />
           <AccommodationCard
             title={"Accommodation 48hrs (With Food)"}
             price={800}
-            checkoutId="accomodation_48hrs"
+            checkoutId="accommodation_48hrs"
             description="Upto 48 hrs Stay. Food included"
           />
         </div>
