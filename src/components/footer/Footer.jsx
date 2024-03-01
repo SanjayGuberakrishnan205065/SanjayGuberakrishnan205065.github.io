@@ -57,11 +57,17 @@ function Footer() {
       setLinks(newLinks);
     };
     function sendLog() {
-      axios.post("/api/logs/", {
-        path: location.pathname,
-        user,
-        localTime: getCurrentDateTime(),
-      });
+      const lastRunTime = localStorage.getItem("lastRun");
+      const currentTime = new Date().getTime();
+      if (!lastRunTime || currentTime - lastRunTime > 5 * 60 * 1000) {
+        axios
+          .post("/api/logs/", {
+            path: location.pathname,
+            user,
+            localTime: getCurrentDateTime(),
+          })
+          .then(() => localStorage.setItem("lastRun", currentTime));
+      }
     }
     sendLog();
     updateLinks();
