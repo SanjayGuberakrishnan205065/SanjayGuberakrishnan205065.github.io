@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Offer = () => {
   return (
-    <div className="flex !w-full py-10 mb-5 md:mb-20 flex-col justify-center !items-center bg-gray-900 max-w-6xl mx-auto rounded-2xl p-5 ">
+    <div className="flex mx-3 md:mx-auto md:max-w-fit py-10 mb-5 md:mb-20 flex-col justify-center !items-center bg-gray-900 rounded-2xl p-5">
       <Typography
         className="text-2xl md:text-3xl text-center font-bold "
         color="white"
@@ -12,11 +12,11 @@ const Offer = () => {
       </Typography>
       <Typography
         color="white"
-        className=" md:w-7/12 text-center my-3 !text-base"
+        className="md:w-7/12 text-center my-3 !text-base"
       >
         Don&apos;t miss out on this exclusive offer that will end soon.
       </Typography>
-      <div className="flex w-full md:w-fit gap-3 mt-2 flex-col md:flex-row">
+      <div className="text-center my-1">
         <Link to="/buy-tickets">
           <Button
             className="rounded-full"

@@ -29,10 +29,11 @@ import BuyTickets from "./pages/buy-tickets/BuyTickets";
 import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets";
 import Checkout from "./pages/checkout/Checkout";
 import MyTickets from "./pages/my-tickets/MyTickets";
+import ParticipantsInfo from "./pages/participants-info/ParticipantsInfo";
 
 function App() {
   const authContext = useAuthContext();
-  const { user, loading } = authContext;
+  const { user, loading, userInfo } = authContext;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -129,6 +130,15 @@ function App() {
               element: <BuyWorkshopTickets />,
             },
           ],
+        },
+        {
+          path: "participants-info",
+          element:
+            user && userInfo.isAdmin ? (
+              <ParticipantsInfo />
+            ) : (
+              <Navigate to="/" />
+            ),
         },
       ],
     },

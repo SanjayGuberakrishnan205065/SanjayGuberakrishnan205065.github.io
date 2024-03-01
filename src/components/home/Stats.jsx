@@ -22,7 +22,7 @@ const STATS = [
 
 const OurStats = () => {
   return (
-    <section className="container mx-auto grid gap-10 px-8 py-44 lg:grid-cols-1 lg:gap-20 xl:grid-cols-2 xl:place-items-center">
+    <section className="container mx-auto grid gap-10 px-8 lg:grid-cols-1 lg:gap-20 xl:grid-cols-2 xl:place-items-center">
       <div>
         <Typography variant="h6" className="mb-6 font-medium text-primaryLight">
           Our Stats
