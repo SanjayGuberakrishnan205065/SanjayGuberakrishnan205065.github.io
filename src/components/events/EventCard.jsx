@@ -26,11 +26,7 @@ const EventCard = ({ event }) => {
         className="m-0 w-full lg:w-2/5 shrink-0 rounded-b-none lg:rounded-e-none lg:rounded-s-3xl"
       >
         <img
-          src={
-            event.image
-              ? config.apiUrl + "/api/events/image/" + event._id
-              : "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-          }
+          src={event.externalImageLink}
           alt="card-image"
           className="h-full w-full object-cover"
         />

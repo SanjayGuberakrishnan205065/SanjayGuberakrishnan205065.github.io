@@ -72,7 +72,7 @@ const EventDetails = () => {
       <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
         <div className="w-full lg:min-w-96 lg:w-8/12">
           <img
-            src={`${config.apiUrl}/api/events/image/${id}`}
+            src={data.externalImageLink}
             alt="event"
             className="w-full rounded-lg"
           />

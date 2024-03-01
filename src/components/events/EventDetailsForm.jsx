@@ -205,17 +205,6 @@ const EventDetailsForm = ({
           </form>
         </div>
       </div>
-      <div>
-        <UploadImage
-          existingImage={existingImage}
-          setExistingImage={setExistingImage}
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-          setImageModified={setImageModified}
-          suggestions={suggestions}
-          setSuggestions={setSuggestions}
-        />
-      </div>
 
       {showOrganizerForm && (
         <EventOrganisersForm
