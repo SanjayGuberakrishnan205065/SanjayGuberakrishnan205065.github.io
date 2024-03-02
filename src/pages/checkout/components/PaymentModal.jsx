@@ -12,7 +12,6 @@ const PaymentModal = ({
   isOpen,
   close,
   amount,
-  setAmount,
   handlePayment,
   referralCode,
 }) => {
@@ -20,13 +19,15 @@ const PaymentModal = ({
   const [loading, setLoading] = useState(true);
   const [upiTransactionId, setUpiTransactionId] = useState("");
   const [qrLoading, setQrLoading] = useState(true);
-  const upiLink = `upi://pay?mode=02&pa=Q178991944@ybl&am=${amount}&purpose=00&mc=0000&pn=PhonePeMerchant&orgid=180001&sign=MEUCIEoxiCYhFrpF2oZDnWtkGInpkF3dAJbe4oSXSq0HGThUAiEA8RGaio5MA0/x0FQx9RvZxF1tJp2UwEQKkEsVC8mYXBY=`;
+  const [finalAmount, setFinalAmount] = useState(amount);
+  const upiLink = `upi://pay?mode=02&pa=Q178991944@ybl&am=${finalAmount}&purpose=00&mc=0000&pn=PhonePeMerchant&orgid=180001&sign=MEUCIEoxiCYhFrpF2oZDnWtkGInpkF3dAJbe4oSXSq0HGThUAiEA8RGaio5MA0/x0FQx9RvZxF1tJp2UwEQKkEsVC8mYXBY=`;
   const qrCodeSrc = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
     upiLink
   )}`;
   useEffect(() => {
     const fetchReferral = () => {
       if (!isOpen) return;
+      setFinalAmount(amount);
       if (!referralCode) {
         setLoading(false);
         return;
@@ -44,14 +45,16 @@ const PaymentModal = ({
               toast.success(
                 "You saved ₹" + discountAmount + " using referral!"
               );
-              setAmount(amount - discountAmount);
+              setFinalAmount(amount - discountAmount);
             } else if (referral.discountAmount) {
               toast.success(
                 "You saved ₹" +
                   referral.discountAmount["$numberDecimal"] +
                   " using referral!"
               );
-              setAmount(amount - referral.discountAmount["$numberDecimal"]);
+              setFinalAmount(
+                amount - referral.discountAmount["$numberDecimal"]
+              );
             }
           }
           setLoading(false);
@@ -127,7 +130,7 @@ const PaymentModal = ({
                 rel="noreferrer"
               >
                 Click here to pay
-                <span className="font-bold"> ₹{amount} </span>
+                <span className="font-bold"> ₹{finalAmount} </span>
                 using an UPI app on your phone
               </a>
             </div>

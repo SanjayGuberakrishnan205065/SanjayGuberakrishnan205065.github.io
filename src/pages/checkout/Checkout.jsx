@@ -16,7 +16,17 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
+  const [containsAccommodationTicket, setContainsAccommodationTicket] =
+    useState(false);
   const navigate = useNavigate();
+
+  const handleClearCart = () => {
+    cartDispatch({
+      type: "SET_CHECKOUT_IDS_IN_CART",
+      payload: { checkoutIdsInCart: [] },
+    });
+  };
+
   useEffect(() => {
     if (checkoutIdsInCart.length === 0) {
       navigate("/buy-tickets");
@@ -25,9 +35,12 @@ const Checkout = () => {
     axios.get("/api/tickets").then((response) => {
       const tickets = response.data;
       const ticketsToPurchase = checkoutIdsInCart.map((checkoutId) => {
-        const ticket = tickets.find(
-          (ticket) => ticket.checkoutId === checkoutId
-        );
+        const ticket = tickets.find((ticket) => {
+          if (ticket.type === "accommodation") {
+            setContainsAccommodationTicket(true);
+          }
+          return ticket.checkoutId === checkoutId;
+        });
         return ticket;
       });
       setCartItems(ticketsToPurchase);
@@ -80,6 +93,15 @@ const Checkout = () => {
         <Typography variant="h6" className="my-3 font-normal">
           Please review your order before proceeding to payment.
         </Typography>
+        <Button
+          color="pink"
+          variant="gradient"
+          className="my-3"
+          size="sm"
+          onClick={handleClearCart}
+        >
+          Clear Cart
+        </Button>
         <CheckoutTable cartItems={cartItems} />
         <Typography variant="h2" className="text-right my-5">
           Total: ₹{total}
@@ -88,10 +110,15 @@ const Checkout = () => {
       <div className="mt-3 mb-5 w-full lg:w-96">
         <Input
           type="text"
-          color="white"
-          label="Referral Code (Optional)"
+          color={containsAccommodationTicket ? "black" : "white"}
+          label={
+            containsAccommodationTicket
+              ? "Referral code cannot be used with accommodation"
+              : "Referral code (optional)"
+          }
           placeholder="Enter referral code"
           value={referralCode}
+          disabled={containsAccommodationTicket}
           onChange={(e) => setReferralCode(e.target.value)}
         />
       </div>
