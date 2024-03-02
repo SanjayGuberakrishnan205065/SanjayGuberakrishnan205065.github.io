@@ -27,7 +27,7 @@ const Accommodation = () => {
           />
           <AccommodationCard
             title={"Accommodation 48hrs (No Food)"}
-            price={500}
+            price={450}
             checkoutId="accommodation_48hrs_no_food"
             description="Upto 48 hrs Stay. Food NOT included"
           />
@@ -41,7 +41,7 @@ const Accommodation = () => {
           />
           <AccommodationCard
             title={"Accommodation 48hrs (With Food)"}
-            price={800}
+            price={750}
             checkoutId="accommodation_48hrs"
             description="Upto 48 hrs Stay. Food included"
           />
