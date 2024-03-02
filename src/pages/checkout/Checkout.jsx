@@ -1,5 +1,5 @@
 import { Button, Input, Typography } from "@material-tailwind/react";
-import { useCartContext } from "../../contexts/CartContext";
+import { useCartContext, useCartDispatch } from "../../contexts/CartContext";
 import CheckoutTable from "./components/CheckoutTable";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,6 +12,7 @@ const Checkout = () => {
   const { token } = useAuthContext();
   const [referralCode, setReferralCode] = useState("");
   const { checkoutIdsInCart } = useCartContext();
+  const cartDispatch = useCartDispatch();
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
@@ -56,11 +57,15 @@ const Checkout = () => {
       .then(() => {
         toast.dismiss(loadingToast);
         toast.success("Transaction created successfully!");
+        cartDispatch({
+          type: "SET_CHECKOUT_IDS_IN_CART",
+          payload: { checkoutIdsInCart: [] },
+        });
         navigate("/my-tickets");
       })
       .catch((err) => {
         toast.dismiss(loadingToast);
-        toast.error(err.message);
+        toast.error(err.response.data.message);
       });
   };
 
