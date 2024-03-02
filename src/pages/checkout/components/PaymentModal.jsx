@@ -57,7 +57,7 @@ const PaymentModal = ({
           setLoading(false);
         })
         .catch((err) => {
-          toast.error("Failed to fetch referral details");
+          toast.error(err.response.data.message);
           setLoading(false);
         });
     };
