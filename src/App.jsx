@@ -142,7 +142,7 @@ function App() {
         {
           path: "participants-info",
           element:
-            user && userInfo.isAdmin ? (
+            userInfo && userInfo.isAdmin ? (
               <ParticipantsInfo />
             ) : (
               <Navigate to="/" />
