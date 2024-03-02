@@ -61,7 +61,7 @@ const Checkout = () => {
           type: "SET_CHECKOUT_IDS_IN_CART",
           payload: { checkoutIdsInCart: [] },
         });
-        navigate("/my-tickets");
+        navigate("/my-transactions");
       })
       .catch((err) => {
         toast.dismiss(loadingToast);

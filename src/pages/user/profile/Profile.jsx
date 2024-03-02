@@ -71,18 +71,18 @@ const Profile = () => {
             </Button>
           </Link>
         </div>
-        {/* <div>
-          <Link to="/participated-events">
+        <div>
+          <Link to="/my-transactions">
             <Button
               color="deep-purple"
               variant="gradient"
               size="lg"
               ripple={true}
             >
-              Participated Events
+              My Transactions
             </Button>
           </Link>
-        </div> */}
+        </div>
       </div>
       <div className="lg:max-w-96 mt-3">
         <Typography variant="h3" color="white">

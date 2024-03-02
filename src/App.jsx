@@ -28,17 +28,19 @@ import Accommodation from "./pages/accommodation/Accommodation";
 import BuyTickets from "./pages/buy-tickets/BuyTickets";
 import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets";
 import Checkout from "./pages/checkout/Checkout";
-import MyTickets from "./pages/my-tickets/MyTickets";
 import ParticipantsInfo from "./pages/participants-info/ParticipantsInfo";
 import Transactions from "./pages/participants-info/transactions/Transactions";
 import Users from "./pages/participants-info/users/Users";
+import MyTransactions from "./pages/my-transactions/MyTransactions";
+import MyTickets from "./pages/my-tickets/MyTickets";
+import Loader from "./pages/loader/Loader";
 
 function App() {
   const authContext = useAuthContext();
   const { user, loading, userInfo } = authContext;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const router = createHashRouter([
@@ -118,6 +120,10 @@ function App() {
         {
           path: "my-tickets",
           element: user ? <MyTickets /> : <Navigate to="/login" />,
+        },
+        {
+          path: "my-transactions",
+          element: user ? <MyTransactions /> : <Navigate to="/login" />,
         },
         {
           path: "buy-tickets",

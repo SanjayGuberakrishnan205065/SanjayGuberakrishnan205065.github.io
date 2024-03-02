@@ -2,32 +2,31 @@ import { Alert, Typography } from "@material-tailwind/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import MyTransactionsTable from "./components/MyTransactionsTable";
 import toast from "react-hot-toast";
 import Loader from "../loader/Loader";
-import { TicketCard } from "./components/TicketCard";
+import { Link } from "react-router-dom";
 
-const MyTickets = () => {
+const MyTransactions = () => {
   const { token } = useAuthContext();
   const [loading, setLoading] = useState(true);
-  const [verifiedTickets, setVerifiedTickets] = useState([]);
-  const [samhitaId, setSamhitaId] = useState("");
+  const [myTransactions, setMyTransactions] = useState([]);
   useEffect(() => {
-    const fetchVerifiedTickets = () => {
+    const fetchMyTransactions = () => {
       axios
-        .get("/api/tickets/verified", {
+        .get("/api/transactions", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
           setLoading(false);
-          setVerifiedTickets(response.data.verifiedTickets);
-          setSamhitaId(response.data.samhitaId);
+          setMyTransactions(response.data.transactions);
         })
         .catch((err) => {
           setLoading(false);
           toast.error("Failed to fetch tickets");
         });
     };
-    fetchVerifiedTickets();
+    fetchMyTransactions();
   }, []);
   if (loading) {
     return (
@@ -38,14 +37,11 @@ const MyTickets = () => {
   }
   return (
     <div className="mx-auto container page-view">
-      <Typography variant="h1">My Tickets</Typography>
+      <Typography variant="h1">My Transactions</Typography>
       <Alert variant="gradient" color="deep-purple" className="my-3">
         <div>
-          Only the tickets from the successfully verified transactions will
-          appear here.
-          <br />
           It may take upto 24 hours for the transaction verification process.
-          For any queries, please contact:
+          For any payment related queries, please contact:
         </div>
         <div>
           Pradesh GV{" "}
@@ -54,17 +50,14 @@ const MyTickets = () => {
           </a>{" "}
         </div>
       </Alert>
-      {verifiedTickets.length > 0 ? (
-        <div>
-          <Typography variant="h4" className="my-3">
-            Your Samhita ID: {samhitaId}
-          </Typography>
-          <div className="flex flex-wrap gap-5">
-            {verifiedTickets.map((ticket, index) => (
-              <TicketCard ticket={ticket} key={index} />
-            ))}
-          </div>
-        </div>
+      <Typography variant="lead" className="my-3">
+        To view tickets from verified transactions, click{" "}
+        <Link to="/my-tickets">
+          <span className="underline">here</span>
+        </Link>
+      </Typography>
+      {myTransactions.length > 0 ? (
+        <MyTransactionsTable myTransactions={myTransactions} />
       ) : (
         <div style={{ position: "relative", height: "50vh" }}>
           <div
@@ -77,11 +70,11 @@ const MyTickets = () => {
             }}
             className="text-3xl text-center"
           >
-            No tickets found
+            Transactions that you make will appear here
           </div>
         </div>
       )}
     </div>
   );
 };
-export default MyTickets;
+export default MyTransactions;

@@ -11,7 +11,7 @@ const TABLE_HEAD = [
   "Includes",
 ];
 
-function MyTicketsTable({ myTickets }) {
+function MyTransactionsTable({ myTransactions }) {
   return (
     <Card className="h-full w-full overflow-auto">
       <table className="w-full min-w-max table-auto text-left">
@@ -34,7 +34,7 @@ function MyTicketsTable({ myTickets }) {
           </tr>
         </thead>
         <tbody>
-          {myTickets.map(
+          {myTransactions.map(
             (
               {
                 upiTransactionId,
@@ -124,4 +124,4 @@ function MyTicketsTable({ myTickets }) {
   );
 }
 
-export default MyTicketsTable;
+export default MyTransactionsTable;
