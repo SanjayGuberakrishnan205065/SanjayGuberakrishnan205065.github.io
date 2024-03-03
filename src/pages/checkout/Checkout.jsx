@@ -36,7 +36,10 @@ const Checkout = () => {
       const tickets = response.data;
       const ticketsToPurchase = checkoutIdsInCart.map((checkoutId) => {
         const ticket = tickets.find((ticket) => {
-          if (ticket.type === "accommodation") {
+          if (
+            ticket.type === "accommodation" &&
+            ticket.checkoutId === checkoutId
+          ) {
             setContainsAccommodationTicket(true);
           }
           return ticket.checkoutId === checkoutId;
