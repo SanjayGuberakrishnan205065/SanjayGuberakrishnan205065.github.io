@@ -1,4 +1,4 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Alert, Button, Input, Typography } from "@material-tailwind/react";
 import { useCartContext, useCartDispatch } from "../../contexts/CartContext";
 import CheckoutTable from "./components/CheckoutTable";
 import { useEffect, useState } from "react";
@@ -93,6 +93,15 @@ const Checkout = () => {
     <div className="page-view container mx-auto">
       <Typography variant="h1">Checkout</Typography>
       <div>
+        <Alert variant="gradient" color="deep-purple" className="my-3">
+          <div>
+            Referral codes can be used only for transactions without
+            accommodation tickets.
+            <br />
+            If you want to purchase accommodation tickets, please make a
+            separate transaction.
+          </div>
+        </Alert>
         <Typography variant="h6" className="my-3 font-normal">
           Please review your order before proceeding to payment.
         </Typography>
