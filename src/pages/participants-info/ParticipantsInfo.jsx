@@ -5,6 +5,7 @@ const ParticipantsInfo = () => {
   const quickLinks = [
     { name: "Transactions", href: "transactions" },
     { name: "Users", href: "users" },
+    { name: "Referral Codes", href: "referral-codes" },
   ];
   return (
     <div className="mx-auto container page-view">
