@@ -38,6 +38,9 @@ const Users = () => {
           },
         })
         .then((res) => {
+          res.data.users.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
           setUsers(
             res.data.users.map((user, index) => {
               user.id = index + 1;
