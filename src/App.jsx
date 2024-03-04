@@ -36,6 +36,7 @@ import MyTickets from "./pages/my-tickets/MyTickets";
 import Loader from "./pages/loader/Loader";
 import ReferralCodes from "./pages/participants-info/referral-codes/ReferralCodes";
 import Participants from "./pages/participants-info/participants/Participants";
+import SamhitaId from "./pages/participants-info/samhita-id/SamhitaId";
 
 function App() {
   const authContext = useAuthContext();
@@ -165,6 +166,10 @@ function App() {
             {
               path: "participants",
               element: <Participants />,
+            },
+            {
+              path: "samhita-id",
+              element: <SamhitaId />,
             },
           ],
         },

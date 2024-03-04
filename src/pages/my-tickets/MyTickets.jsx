@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import Loader from "../loader/Loader";
-import { TicketCard } from "./components/TicketCard";
+import { TicketCard } from "../../components/TicketCard";
 
 const MyTickets = () => {
   const { token } = useAuthContext();
