@@ -7,10 +7,12 @@ import {
   checkoutIdEventMap,
   comboEventCheckoutIdsMap,
 } from "../../../constants";
+import Loader from "../../loader/Loader";
 
 const Participants = () => {
   const { token } = useAuthContext();
   const [eventParticipants, setEventParticipants] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchParticipants = () => {
@@ -54,11 +56,17 @@ const Participants = () => {
               });
             });
             setEventParticipants(tempParticipants);
+            setLoading(false);
           });
         });
     };
     fetchParticipants();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <Typography variant="h3">Verified Participants</Typography>

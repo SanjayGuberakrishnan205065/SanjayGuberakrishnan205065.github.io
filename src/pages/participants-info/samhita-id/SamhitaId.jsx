@@ -4,17 +4,20 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { TicketCard } from "../../../components/TicketCard";
+import Loader from "../../loader/Loader";
 
 const SamhitaId = () => {
   const [samhitaId, setSamhitaId] = useState("");
   const [participantInfo, setParticipantInfo] = useState({});
   const [verifiedTickets, setVerifiedTickets] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { token } = useAuthContext();
   const handleSearch = () => {
     if (samhitaId.length !== 4) {
       toast.error("Samhita ID should be 4 digits long");
       return;
     }
+    setLoading(true);
     axios
       .get("/api/tickets/verified/" + samhitaId, {
         headers: {
@@ -24,6 +27,7 @@ const SamhitaId = () => {
       .then((res) => {
         if (!res.data.verifiedTransactions) {
           toast.error("No participant found with this Samhita ID");
+          setLoading(false);
           return;
         }
         setParticipantInfo(res.data.verifiedTransactions.user);
@@ -34,6 +38,7 @@ const SamhitaId = () => {
           });
         });
         setVerifiedTickets(tempVerifiedTickets);
+        setLoading(false);
       });
   };
   return (
@@ -60,36 +65,48 @@ const SamhitaId = () => {
             variant="gradient"
             className="my-3"
             type="submit"
-            onClick={handleSearch}
+            disabled={loading}
           >
-            Search
+            {loading ? "Searching..." : "Search"}
           </Button>
         </form>
       </div>
-      <div className="my-3">
-        <Typography variant="h4">Participant Info</Typography>
-        <div className="flex flex-col">
-          <Typography variant="h6">Name: {participantInfo.userName}</Typography>
-          <Typography variant="h6">Email: {participantInfo.email}</Typography>
-          <Typography variant="h6">
-            Phone Number: {participantInfo.mobile}
-          </Typography>
-          <Typography variant="h6">
-            College: {participantInfo.college}
-          </Typography>
-          <Typography variant="h6">
-            Department: {participantInfo.dept}
-          </Typography>
-          <Typography variant="h6">
-            College Registration Number: {participantInfo.regNo}
-          </Typography>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="my-3">
+          {participantInfo && Object.keys(participantInfo).length > 0 && (
+            <>
+              <Typography variant="h4">Participant Info</Typography>
+              <div className="flex flex-col">
+                <Typography variant="h6">
+                  Name: {participantInfo.userName}
+                </Typography>
+                <Typography variant="h6">
+                  Email: {participantInfo.email}
+                </Typography>
+                <Typography variant="h6">
+                  Phone Number: {participantInfo.mobile}
+                </Typography>
+                <Typography variant="h6">
+                  College: {participantInfo.college}
+                </Typography>
+                <Typography variant="h6">
+                  Department: {participantInfo.dept}
+                </Typography>
+                <Typography variant="h6">
+                  College Registration Number: {participantInfo.regNo}
+                </Typography>
+              </div>
+            </>
+          )}
+          <div className="flex gap-5 flex-wrap">
+            {verifiedTickets.map((ticket, index) => (
+              <TicketCard ticket={ticket} key={index} />
+            ))}
+          </div>
         </div>
-        <div className="flex gap-5 flex-wrap">
-          {verifiedTickets.map((ticket, index) => (
-            <TicketCard ticket={ticket} key={index} />
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
