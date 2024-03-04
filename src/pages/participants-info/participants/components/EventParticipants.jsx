@@ -13,7 +13,7 @@ const EventParticipants = ({ eventName, eventParticipants }) => {
       width: 130,
     },
     { field: "email", headerName: "Email", width: 200 },
-    { field: "department", headerName: "Department", width: 90 },
+    { field: "dept", headerName: "Department", width: 90 },
     { field: "college", headerName: "College", width: 300 },
     { field: "regNo", headerName: "Reg No", width: 130 },
   ];
