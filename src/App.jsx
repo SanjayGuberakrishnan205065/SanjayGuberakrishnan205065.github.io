@@ -35,6 +35,7 @@ import MyTransactions from "./pages/my-transactions/MyTransactions";
 import MyTickets from "./pages/my-tickets/MyTickets";
 import Loader from "./pages/loader/Loader";
 import ReferralCodes from "./pages/participants-info/referral-codes/ReferralCodes";
+import Participants from "./pages/participants-info/participants/Participants";
 
 function App() {
   const authContext = useAuthContext();
@@ -160,6 +161,10 @@ function App() {
             {
               path: "referral-codes",
               element: <ReferralCodes />,
+            },
+            {
+              path: "participants",
+              element: <Participants />,
             },
           ],
         },

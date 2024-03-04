@@ -6,6 +6,7 @@ const ParticipantsInfo = () => {
     { name: "Transactions", href: "transactions" },
     { name: "Users", href: "users" },
     { name: "Referral Codes", href: "referral-codes" },
+    { name: "Participants", href: "participants" },
   ];
   return (
     <div className="mx-auto container page-view">
