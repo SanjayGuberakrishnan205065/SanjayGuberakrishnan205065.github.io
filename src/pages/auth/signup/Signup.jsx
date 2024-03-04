@@ -85,6 +85,19 @@ const Signup = () => {
               {errors.college && <Danger>{errors.college.message}</Danger>}
             </div>
             <div className="my-3">
+              <select
+                className="bg-primary p-3 w-full border border-white rounded-lg text-white"
+                required
+                {...register("gender", { required: "Gender is required" })}
+              >
+                <option value="" disabled>
+                  Select your gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div className="my-3">
               <Input
                 type="number"
                 label="Mobile Number"
