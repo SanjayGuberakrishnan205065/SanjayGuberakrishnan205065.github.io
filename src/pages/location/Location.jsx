@@ -41,6 +41,64 @@ const Location = () => {
             </div>
             <div>Nearst Bus stop: Chromepet</div>
           </div>
+          <div>
+            <Typography variant="h3">
+              Directions from Railway stations
+            </Typography>
+            <div className="my-3">
+              <Typography variant="h5">
+                From Chennai Central Railway Station (via Local Train)
+              </Typography>
+              <div>
+                <ul>
+                  <li>
+                    Take the metro subway to Chennai Park Railway Station (About
+                    3 mins walk)
+                  </li>
+                  <li>
+                    Take the local train from Park station to Chromepet ( Trains
+                    going towards Tambaram or Chengalpattu )
+                  </li>
+                  <li>
+                    Chromepet is the 13th station from Chennai Park (About 40
+                    mins)
+                  </li>
+                  <li>
+                    Chennai Park &#8211; Chennai Egmore ... Pallavaram &#8211;
+                    Chromepet
+                  </li>
+                  <li>
+                    The campus is located right next to the Chromepet Railway
+                    Station (Opposite to the GST Road side)
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="my-3">
+              <Typography variant="h5">
+                From Tambaram Railway Station (via Local Train)
+              </Typography>
+              <div>
+                <ul>
+                  <li>
+                    Take the local train from Tambaram to Chromepet (Trains
+                    going towards Beach Station)
+                  </li>
+                  <li>
+                    Chromepet is the second station from Tambaram (About 10
+                    mins)
+                  </li>
+                  <li>
+                    Tambaram &#8211; Tambaram Sanatorium &#8211; Chromepet
+                  </li>
+                  <li>
+                    The campus is located right next to the Chromepet Railway
+                    Station (Opposite to the GST Road side)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
