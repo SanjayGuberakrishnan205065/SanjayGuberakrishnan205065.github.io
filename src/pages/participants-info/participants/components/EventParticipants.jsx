@@ -4,6 +4,7 @@ import DataTable from "../../components/DataTable";
 
 const EventParticipants = ({ eventName, eventParticipants }) => {
   const columns = [
+    { field: "samhitaId", headerName: "Samhita ID", width: 130 },
     { field: "userName", headerName: "Name", width: 100 },
     {
       field: "mobile",

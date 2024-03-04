@@ -1,11 +1,11 @@
 export const checkoutIdEventMap = {
   tech_pass: "Technical Event",
   non_tech_pass: "Non Technical Event",
+  hackathon_pass: "Hackathon",
+  paper_presentation_pass: "Paper Presentation",
   adobe_workshop: "Adobe Workshop",
   guvi_workshop_course: "Guvi Workshop",
-  hackathon_pass: "Hackathon",
   microsoft_workshop: "Microsoft Workshop",
-  paper_presentation_pass: "Paper Presentation",
   tekion_workshop: "Tekion Workshop",
   walmart_workshop: "Walmart Workshop",
   well_fargo_workshop: "Well Fargo Workshop",

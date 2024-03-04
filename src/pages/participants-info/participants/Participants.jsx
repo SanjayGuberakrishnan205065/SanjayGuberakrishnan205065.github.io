@@ -42,13 +42,15 @@ const Participants = () => {
                   if (tempParticipants[checkoutId]) {
                     tempParticipants[checkoutId].push({
                       ...verifiedTransaction.user,
-                      id: verifiedTransaction.user._id,
+                      samhitaId: verifiedTransaction.samhitaId,
+                      id: verifiedTransaction.user._id + transaction._id,
                     });
                   } else {
                     tempParticipants[checkoutId] = [
                       {
                         ...verifiedTransaction.user,
-                        id: verifiedTransaction.user._id,
+                        samhitaId: verifiedTransaction.samhitaId,
+                        id: verifiedTransaction.user._id + transaction._id,
                       },
                     ];
                   }
