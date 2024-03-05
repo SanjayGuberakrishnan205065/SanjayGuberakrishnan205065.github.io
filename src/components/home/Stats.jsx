@@ -31,7 +31,7 @@ const OurStats = () => {
           className="text-5xl font-bold leading-tight lg:w-3/4"
           color="white"
         >
-          Symposium Highlights
+          Highlights
         </Typography>
         <Typography
           variant="lead"

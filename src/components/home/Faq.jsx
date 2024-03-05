@@ -38,7 +38,7 @@ function Faq() {
           >
             Welcome to the Samhita 2024 FAQ section. We&apos;re here to address
             your most common queries and provide you with the information you
-            need to make the most of your symposium experience.
+            need
           </Typography>
         </div>
 
