@@ -49,7 +49,9 @@ const GeneralCardBody = () => {
           <span className="rounded-full border border-white/20 bg-white/20 p-1">
             <CheckIcon />
           </span>
-          <Typography className="font-normal">Largest Prize Pool</Typography>
+          <Typography className="font-normal">
+            &#8377; 80,000 Combined Prize Pool
+          </Typography>
         </li>
       </ul>
     </CardBody>

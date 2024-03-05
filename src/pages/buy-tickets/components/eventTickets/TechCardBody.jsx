@@ -42,7 +42,7 @@ const TechCardBody = () => {
             <CheckIcon />
           </span>
           <Typography className="font-normal">
-            &#8377; 5000 Prize Pool
+            &#8377; 5000 Prize Pool per event
           </Typography>
         </li>
       </ul>
