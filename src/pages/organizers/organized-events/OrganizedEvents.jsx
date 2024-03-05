@@ -5,10 +5,10 @@ import { Typography } from "@material-tailwind/react";
 import EventsList from "../../../components/events/EventsList";
 import Loader from "../../loader/Loader";
 
-const OrganisedEvents = () => {
+const OrganizedEvents = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
-  const { token, userInfo } = useAuthContext();
+  const { token } = useAuthContext();
   useEffect(() => {
     axios
       .get("/api/users/events-organised", {
@@ -16,22 +16,21 @@ const OrganisedEvents = () => {
       })
       .then((res) => {
         setEvents(res.data);
-        // setEvents(res.data);
         setLoading(false);
       });
   }, [token]);
 
   if (loading) {
     return (
-      <div className="container mx-auto page-view">
+      <div className="container">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="container page-view mx-auto">
-      <Typography variant="h1" color="white">
+    <div className="container">
+      <Typography variant="h3" color="white">
         Organized Events
       </Typography>
       {events.length ? (
@@ -55,4 +54,4 @@ const OrganisedEvents = () => {
     </div>
   );
 };
-export default OrganisedEvents;
+export default OrganizedEvents;

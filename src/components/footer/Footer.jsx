@@ -46,7 +46,7 @@ function Footer() {
         { name: "Contact Us", href: "/contact" },
       ];
       if (userInfo && userInfo.organizedEvents.length != 0) {
-        newLinks.push({ name: "Organized Events", href: "/organized-events" });
+        newLinks.push({ name: "Organizers", href: "/organizers" });
       }
       if (userInfo && userInfo.isAdmin) {
         newLinks.push({

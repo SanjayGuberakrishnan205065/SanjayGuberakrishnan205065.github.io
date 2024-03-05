@@ -1,17 +1,14 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { Link, Outlet } from "react-router-dom";
 
-const AllStats = () => {
+const Organizers = () => {
   const quickLinks = [
-    { name: "Transactions", href: "transactions" },
-    { name: "Users", href: "users" },
-    { name: "Referral Codes", href: "referral-codes" },
-    { name: "Participants", href: "participants" },
-    { name: "Query by Samhita ID", href: "samhita-id" },
+    { name: "Organized Events", href: "organized-events" },
+    { name: "Participants Info", href: "participants-info" },
   ];
   return (
     <div className="mx-auto container page-view">
-      <Typography variant="h1">All Stats</Typography>
+      <Typography variant="h1">Organizers Dashboard</Typography>
       <div className="flex flex-wrap justify-center items-center">
         {quickLinks.map((link, index) => (
           <div key={index} className="m-2">
@@ -27,4 +24,4 @@ const AllStats = () => {
     </div>
   );
 };
-export default AllStats;
+export default Organizers;

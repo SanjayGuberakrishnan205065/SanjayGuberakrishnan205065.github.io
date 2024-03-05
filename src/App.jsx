@@ -15,13 +15,10 @@ import PasswordReset from "./pages/auth/passwordReset/PasswordReset";
 import ViewEvents from "./pages/events/viewEvents/viewEvents";
 import EventDetails from "./pages/events/eventDetails/eventDetails";
 import Signup from "./pages/auth/signup/Signup";
-import OrganisedEvents from "./pages/user/organisedEvents/OrganisedEvents";
 import UpdateEvent from "./pages/events/updateEvent/UpdateEvent";
 import ViewWorkshops from "./pages/events/viewWorkshops/viewWorkshops";
 import Location from "./pages/location/Location";
 import Profile from "./pages/user/profile/Profile";
-import ParticipatedEvents from "./pages/user/participatedEvents/ParticipatedEvents";
-import ViewRegistrations from "./pages/events/viewRegistrations/ViewRegistrations";
 import Contact from "./pages/contact/Contact";
 import MegaEvents from "./pages/events/viewMegaEvents/MegaEvents";
 import Accommodation from "./pages/accommodation/Accommodation";
@@ -37,6 +34,9 @@ import Loader from "./pages/loader/Loader";
 import ReferralCodes from "./pages/all-stats/referral-codes/ReferralCodes";
 import Participants from "./pages/all-stats/participants/Participants";
 import SamhitaId from "./pages/all-stats/samhita-id/SamhitaId";
+import Organizers from "./pages/organizers/Organizers";
+import OrganizedEvents from "./pages/organizers/organized-events/OrganizedEvents";
+import ParticipantsInfo from "./pages/organizers/participants-info/ParticipantsInfo";
 
 function App() {
   const authContext = useAuthContext();
@@ -89,24 +89,12 @@ function App() {
           element: user ? <UpdateEvent /> : <Navigate to="/login" />,
         },
         {
-          path: "organized-events",
-          element: user ? <OrganisedEvents /> : <Navigate to="/login" />,
-        },
-        {
-          path: "participated-events",
-          element: user ? <ParticipatedEvents /> : <Navigate to="/login" />,
-        },
-        {
           path: "location",
           element: <Location />,
         },
         {
           path: "profile",
           element: user ? <Profile /> : <Navigate to="/login" />,
-        },
-        {
-          path: "events/:id/view-registrations",
-          element: user ? <ViewRegistrations /> : <Navigate to="/login" />,
         },
         {
           path: "contact",
@@ -139,6 +127,17 @@ function App() {
             {
               path: "workshops",
               element: <BuyWorkshopTickets />,
+            },
+          ],
+        },
+        {
+          path: "organizers",
+          element: user ? <Organizers /> : <Navigate to="/login" />,
+          children: [
+            { path: "organized-events", element: <OrganizedEvents /> },
+            {
+              path: "participants-info",
+              element: <ParticipantsInfo />,
             },
           ],
         },
