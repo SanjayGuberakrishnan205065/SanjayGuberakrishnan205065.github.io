@@ -37,6 +37,7 @@ const Profile = () => {
           dept: res.data.dept,
           email: res.data.email,
           college: res.data.college,
+          gender: res.data.gender,
         });
       })
       .catch((err) => {
@@ -121,6 +122,17 @@ const Profile = () => {
               color="white"
               {...register("mobile", {
                 required: "Mobile Number is Required",
+              })}
+              readOnly
+            ></Input>
+          </div>
+          <div className="my-3">
+            <Input
+              type="text"
+              label="Gender"
+              color="white"
+              {...register("gender", {
+                required: "Gender is Required",
               })}
               readOnly
             ></Input>
