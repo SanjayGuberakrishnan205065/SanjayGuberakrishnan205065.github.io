@@ -50,8 +50,8 @@ function Footer() {
       }
       if (userInfo && userInfo.isAdmin) {
         newLinks.push({
-          name: "Participants Info",
-          href: "/participants-info",
+          name: "All Stats",
+          href: "/all-stats",
         });
       }
       setLinks(newLinks);

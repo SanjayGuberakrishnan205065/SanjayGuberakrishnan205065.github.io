@@ -1,7 +1,7 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { Link, Outlet } from "react-router-dom";
 
-const ParticipantsInfo = () => {
+const AllStats = () => {
   const quickLinks = [
     { name: "Transactions", href: "transactions" },
     { name: "Users", href: "users" },
@@ -27,4 +27,4 @@ const ParticipantsInfo = () => {
     </div>
   );
 };
-export default ParticipantsInfo;
+export default AllStats;

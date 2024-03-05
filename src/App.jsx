@@ -28,15 +28,15 @@ import Accommodation from "./pages/accommodation/Accommodation";
 import BuyTickets from "./pages/buy-tickets/BuyTickets";
 import BuyWorkshopTickets from "./pages/buy-tickets/workshops/BuyWorkshopTickets";
 import Checkout from "./pages/checkout/Checkout";
-import ParticipantsInfo from "./pages/participants-info/ParticipantsInfo";
-import Transactions from "./pages/participants-info/transactions/Transactions";
-import Users from "./pages/participants-info/users/Users";
+import AllStats from "./pages/all-stats/AllStats";
+import Transactions from "./pages/all-stats/transactions/Transactions";
+import Users from "./pages/all-stats/users/Users";
 import MyTransactions from "./pages/my-transactions/MyTransactions";
 import MyTickets from "./pages/my-tickets/MyTickets";
 import Loader from "./pages/loader/Loader";
-import ReferralCodes from "./pages/participants-info/referral-codes/ReferralCodes";
-import Participants from "./pages/participants-info/participants/Participants";
-import SamhitaId from "./pages/participants-info/samhita-id/SamhitaId";
+import ReferralCodes from "./pages/all-stats/referral-codes/ReferralCodes";
+import Participants from "./pages/all-stats/participants/Participants";
+import SamhitaId from "./pages/all-stats/samhita-id/SamhitaId";
 
 function App() {
   const authContext = useAuthContext();
@@ -143,13 +143,9 @@ function App() {
           ],
         },
         {
-          path: "participants-info",
+          path: "all-stats",
           element:
-            userInfo && userInfo.isAdmin ? (
-              <ParticipantsInfo />
-            ) : (
-              <Navigate to="/" />
-            ),
+            userInfo && userInfo.isAdmin ? <AllStats /> : <Navigate to="/" />,
           children: [
             {
               path: "transactions",
