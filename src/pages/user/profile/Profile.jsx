@@ -7,9 +7,18 @@ import Loader from "../../loader/Loader";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { useLogout } from "../../../hooks/useLogout";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import AccommodationTimeForm from "./components/AccomodationTimeForm";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
+  const [purchasedAccommodationTickets, setPurchasedAccommodationTickets] =
+    useState(false);
+  const [accommodationHours, setAccommodationHours] = useState(0);
+  const [userAccommodationInfo, setUserAccommodationInfo] = useState({
+    checkIn: "",
+    checkOut: "",
+  });
   const { token } = useAuthContext();
   const { logout } = useLogout();
 
@@ -24,25 +33,51 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("/api/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setLoading(false);
-        reset({
-          userName: res.data.userName,
-          regNo: res.data.regNo,
-          mobile: res.data.mobile,
-          dept: res.data.dept,
-          email: res.data.email,
-          college: res.data.college,
-          gender: res.data.gender,
+    const fetchUserAccommodationInfo = () => {
+      axios
+        .get("/api/accommodation-timings", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setPurchasedAccommodationTickets(
+            res.data.purchasedAccommodationTickets
+          );
+          setAccommodationHours(res.data.hours);
+          if (res.data.accommodationTimings) {
+            setUserAccommodationInfo(res.data.accommodationTimings);
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
         });
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
+    };
+
+    const fetchUserInfo = () => {
+      axios
+        .get("/api/users", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setLoading(false);
+          reset({
+            userName: res.data.userName,
+            regNo: res.data.regNo,
+            mobile: res.data.mobile,
+            dept: res.data.dept,
+            email: res.data.email,
+            college: res.data.college,
+            gender: res.data.gender,
+          });
+          fetchUserAccommodationInfo();
+        })
+        .catch(() => {
+          toast.error("Something went wrong");
+          setLoading(false);
+        });
+    };
+
+    fetchUserInfo();
   }, [token, reset]);
 
   if (loading) {
@@ -56,115 +91,130 @@ const Profile = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h1">Profile</Typography>
-      <Typography variant="h3" color="white">
-        Quick Links
-      </Typography>
-      <div className="flex flex-col md:flex-row justify-center my-3 gap-5 items-center">
-        <div>
-          <Link to="/my-tickets">
-            <Button
-              color="deep-purple"
-              variant="gradient"
-              size="lg"
-              ripple={true}
-            >
-              My Tickets
-            </Button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/my-transactions">
-            <Button
-              color="deep-purple"
-              variant="gradient"
-              size="lg"
-              ripple={true}
-            >
-              My Transactions
-            </Button>
-          </Link>
+      <div>
+        <Typography variant="h3" color="white">
+          Quick Links
+        </Typography>
+        <div className="flex flex-col md:flex-row justify-center my-3 gap-5 items-center">
+          <div>
+            <Link to="/my-tickets">
+              <Button
+                color="deep-purple"
+                variant="gradient"
+                size="lg"
+                ripple={true}
+              >
+                My Tickets
+              </Button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/my-transactions">
+              <Button
+                color="deep-purple"
+                variant="gradient"
+                size="lg"
+                ripple={true}
+              >
+                My Transactions
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="lg:max-w-96 mt-3">
-        <Typography variant="h3" color="white">
-          Your Info
-        </Typography>
-        <form>
-          <div className="my-3">
-            <Input
-              type="text"
-              {...register("userName", {
-                required: "Name is Required",
-              })}
-              label="Name"
-              color="white"
-              readOnly
-            ></Input>
-            {errors.userName && (
-              <span className={`${ProfileStyles.error} `}>
-                {errors.userName.message}
-              </span>
-            )}
+      <div className="flex flex-wrap justify-between">
+        {purchasedAccommodationTickets && (
+          <div>
+            <Typography variant="h3" color="white">
+              Accommodation Timings
+            </Typography>
+            <AccommodationTimeForm
+              userAccommodationInfo={userAccommodationInfo}
+              hoursPermitted={accommodationHours}
+            />
           </div>
-          <div className="my-3">
-            <Input
-              type="text"
-              label="Register Number"
-              color="white"
-              {...register("regNo")}
-              readOnly
-            ></Input>
-          </div>
-          <div className="my-3">
-            <Input
-              type="number"
-              label="Mobile Number"
-              color="white"
-              {...register("mobile", {
-                required: "Mobile Number is Required",
-              })}
-              readOnly
-            ></Input>
-          </div>
-          <div className="my-3">
-            <Input
-              type="text"
-              label="Gender"
-              color="white"
-              {...register("gender", {
-                required: "Gender is Required",
-              })}
-              readOnly
-            ></Input>
-          </div>
-          <div className="my-3">
-            <Input
-              type="text"
-              label="Department"
-              color="white"
-              {...register("dept")}
-              readOnly
-            ></Input>
-          </div>
-          <div className="my-3">
-            <Input
-              type="text"
-              label="College"
-              color="white"
-              {...register("college")}
-              readOnly
-            ></Input>
-          </div>
-          <div className="my-3">
-            <Input
-              type="text"
-              label="Email"
-              color="white"
-              {...register("email", { required: "Email is required" })}
-              readOnly
-            ></Input>
-          </div>
-        </form>
+        )}
+        <div className="flex-grow lg:max-w-96 mt-3">
+          <Typography variant="h3" color="white">
+            Your Info
+          </Typography>
+          <form>
+            <div className="my-3">
+              <Input
+                type="text"
+                {...register("userName", {
+                  required: "Name is Required",
+                })}
+                label="Name"
+                color="white"
+                readOnly
+              ></Input>
+              {errors.userName && (
+                <span className={`${ProfileStyles.error} `}>
+                  {errors.userName.message}
+                </span>
+              )}
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="Register Number"
+                color="white"
+                {...register("regNo")}
+                readOnly
+              ></Input>
+            </div>
+            <div className="my-3">
+              <Input
+                type="number"
+                label="Mobile Number"
+                color="white"
+                {...register("mobile", {
+                  required: "Mobile Number is Required",
+                })}
+                readOnly
+              ></Input>
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="Gender"
+                color="white"
+                {...register("gender", {
+                  required: "Gender is Required",
+                })}
+                readOnly
+              ></Input>
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="Department"
+                color="white"
+                {...register("dept")}
+                readOnly
+              ></Input>
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="College"
+                color="white"
+                {...register("college")}
+                readOnly
+              ></Input>
+            </div>
+            <div className="my-3">
+              <Input
+                type="text"
+                label="Email"
+                color="white"
+                {...register("email", { required: "Email is required" })}
+                readOnly
+              ></Input>
+            </div>
+          </form>
+        </div>
       </div>
       <div className="text-center">
         <button
