@@ -120,7 +120,7 @@ const PaymentModal = ({
               onLoad={() => setQrLoading(false)}
             />
           </div>
-          <div className="my-3">
+          {/* <div className="my-3">
             Or, you can use the following link to complete the payment
             <div>
               <a
@@ -134,7 +134,7 @@ const PaymentModal = ({
                 using an UPI app on your phone
               </a>
             </div>
-          </div>
+          </div> */}
           {referralCode && <div>Referral code used: {referralCode}</div>}
           <div>
             Once done, please enter the 12 digit UPI transaction ID below
