@@ -1,4 +1,4 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Alert, Button, Input, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import Loader from "../../loader/Loader";
@@ -139,6 +139,13 @@ const PaymentModal = ({
           <div>
             Once done, please enter the 12 digit UPI transaction ID below
           </div>
+          <Alert color="red" size="sm" className="mx-auto max-w-fit">
+            <div className="text-center">
+              Make sure this UPI transaction ID is correct and is for the exact
+              amount of ₹{finalAmount}.<br /> Payments made for any amount other
+              than ₹{finalAmount} will not be considered
+            </div>
+          </Alert>
           <div className="mt-3 max-w-96 mx-auto">
             <Input
               type="text"
@@ -164,7 +171,7 @@ const PaymentModal = ({
                 size="lg"
                 onClick={() => handlePayment(upiTransactionId)}
               >
-                Confirm Payment
+                Confirm Payment of ₹{finalAmount}
               </Button>
             </div>
           </div>
