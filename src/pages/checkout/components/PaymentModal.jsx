@@ -135,17 +135,26 @@ const PaymentModal = ({
               </a>
             </div>
           </div> */}
-          {referralCode && <div>Referral code used: {referralCode}</div>}
-          <div>
-            Once done, please enter the 12 digit UPI transaction ID below
-          </div>
-          <Alert color="red" size="sm" className="mx-auto max-w-fit">
-            <div className="text-center">
-              Make sure this UPI transaction ID is correct and is for the exact
-              amount of ₹{finalAmount}.<br /> Payments made for any amount other
-              than ₹{finalAmount} will not be considered
+          {referralCode ? (
+            <div>Referral code used: {referralCode}</div>
+          ) : (
+            <div className="font-extrabold text-red-800 text-2xl">
+              NO REFERRAL CODE USED
             </div>
-          </Alert>
+          )}
+          <div className="text-2xl font-bold">
+            After paying, please enter the 12 digit UPI transaction ID below
+            <br />
+            Only then your ticket will be confirmed
+          </div>
+          <div className="text-center text-red-900 font-bold">
+            Make sure the entered UPI transaction ID is correct and is for the
+            exact amount of ₹{finalAmount}.<br />
+            <span className="uppercase">
+              Payments made for any amount other than ₹{finalAmount} will not be
+              considered
+            </span>
+          </div>
           <div className="mt-3 max-w-96 mx-auto">
             <Input
               type="text"
@@ -171,7 +180,10 @@ const PaymentModal = ({
                 size="lg"
                 onClick={() => handlePayment(upiTransactionId)}
               >
-                Confirm Payment of ₹{finalAmount}
+                <div>
+                  Confirm Payment of ₹{finalAmount} <br />
+                  {!referralCode && "with NO referral code"}
+                </div>
               </Button>
             </div>
           </div>
