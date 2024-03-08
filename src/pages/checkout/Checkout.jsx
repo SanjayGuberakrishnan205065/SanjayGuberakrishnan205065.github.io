@@ -153,6 +153,7 @@ const Checkout = () => {
           setAmount={setTotal}
           handlePayment={handlePayment}
           referralCode={referralCode}
+          cartItems={cartItems}
         />
       </div>
     </div>

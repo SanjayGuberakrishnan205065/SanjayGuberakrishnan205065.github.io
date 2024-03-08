@@ -14,9 +14,11 @@ const PaymentModal = ({
   amount,
   handlePayment,
   referralCode,
+  cartItems,
 }) => {
   const { token } = useAuthContext();
   const [loading, setLoading] = useState(true);
+  const [referralApplied, setReferralApplied] = useState(false);
   const [upiTransactionId, setUpiTransactionId] = useState("");
   const [qrLoading, setQrLoading] = useState(true);
   const [finalAmount, setFinalAmount] = useState(amount);
@@ -39,6 +41,22 @@ const PaymentModal = ({
         .then((response) => {
           if (response.data.referral) {
             const referral = response.data.referral;
+            if (
+              referral.applicableTicketTypes &&
+              referral.applicableTicketTypes.length > 0
+            ) {
+              const applicableTicketTypes = referral.applicableTicketTypes;
+              const isApplicable = cartItems.every((item) =>
+                applicableTicketTypes.includes(item.type)
+              );
+              if (!isApplicable) {
+                toast.error(
+                  "Referral code not applicable for the selected tickets"
+                );
+                setLoading(false);
+                return;
+              }
+            }
             if (referral.discountPercent) {
               const discountAmount =
                 (amount * referral.discountPercent["$numberDecimal"]) / 100;
@@ -55,6 +73,7 @@ const PaymentModal = ({
               setFinalAmount(
                 amount - referral.discountAmount["$numberDecimal"]
               );
+              setReferralApplied(true);
             }
           }
           setLoading(false);
@@ -135,7 +154,7 @@ const PaymentModal = ({
               </a>
             </div>
           </div> */}
-          {referralCode ? (
+          {referralApplied && referralCode ? (
             <div>Referral code used: {referralCode}</div>
           ) : (
             <div className="font-extrabold text-red-800 text-2xl">
@@ -182,7 +201,7 @@ const PaymentModal = ({
               >
                 <div>
                   Confirm Payment of ₹{finalAmount} <br />
-                  {!referralCode && "with NO referral code"}
+                  {!referralApplied && "with NO referral code"}
                 </div>
               </Button>
             </div>
