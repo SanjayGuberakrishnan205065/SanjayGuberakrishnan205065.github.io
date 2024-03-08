@@ -64,6 +64,7 @@ const PaymentModal = ({
                 "You saved ₹" + discountAmount + " using referral!"
               );
               setFinalAmount(amount - discountAmount);
+              setReferralApplied(true);
             } else if (referral.discountAmount) {
               toast.success(
                 "You saved ₹" +
