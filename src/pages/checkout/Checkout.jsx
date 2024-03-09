@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PaymentModal from "./components/PaymentModal";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import Loader from "../loader/Loader";
 
 const Checkout = () => {
   const { token } = useAuthContext();
@@ -16,6 +17,8 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
+  const [ticketsValidated, setTicketsValidated] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [containsAccommodationTicket, setContainsAccommodationTicket] =
     useState(false);
   const navigate = useNavigate();
@@ -28,30 +31,51 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    const fetchTicketInfo = () => {
+      axios.get("/api/tickets").then((response) => {
+        const tickets = response.data;
+        const ticketsToPurchase = checkoutIdsInCart.map((checkoutId) => {
+          const ticket = tickets.find((ticket) => {
+            if (
+              ticket.type === "accommodation" &&
+              ticket.checkoutId === checkoutId
+            ) {
+              setContainsAccommodationTicket(true);
+            }
+            return ticket.checkoutId === checkoutId;
+          });
+          return ticket;
+        });
+        setCartItems(ticketsToPurchase);
+        const total = ticketsToPurchase.reduce((acc, cartItem) => {
+          return acc + parseFloat(cartItem.ticketPrice["$numberDecimal"]);
+        }, 0);
+        setTotal(total);
+        setLoading(false);
+        setTicketsValidated(true);
+      });
+    };
+
+    const validateTickets = () => {
+      axios
+        .post(
+          "/api/tickets/verify-checkout-ids",
+          { checkoutIds: checkoutIdsInCart },
+          { headers: { Authorization: `Bearer ${token}` } }
+        )
+        .then(fetchTicketInfo)
+        .catch((err) => {
+          toast.error(err.response.data.message);
+          handleClearCart();
+          setLoading(false);
+        });
+    };
+
     if (checkoutIdsInCart.length === 0) {
       navigate("/buy-tickets");
     }
 
-    axios.get("/api/tickets").then((response) => {
-      const tickets = response.data;
-      const ticketsToPurchase = checkoutIdsInCart.map((checkoutId) => {
-        const ticket = tickets.find((ticket) => {
-          if (
-            ticket.type === "accommodation" &&
-            ticket.checkoutId === checkoutId
-          ) {
-            setContainsAccommodationTicket(true);
-          }
-          return ticket.checkoutId === checkoutId;
-        });
-        return ticket;
-      });
-      setCartItems(ticketsToPurchase);
-      const total = ticketsToPurchase.reduce((acc, cartItem) => {
-        return acc + parseFloat(cartItem.ticketPrice["$numberDecimal"]);
-      }, 0);
-      setTotal(total);
-    });
+    validateTickets();
   }, [checkoutIdsInCart]);
 
   const handlePayment = (upiTransactionId) => {
@@ -88,6 +112,14 @@ const Checkout = () => {
   const handleCheckout = () => {
     setOpenPaymentModal(true);
   };
+
+  if (loading) {
+    return (
+      <div className="page-view">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="page-view container mx-auto">
@@ -141,6 +173,7 @@ const Checkout = () => {
           size="lg"
           className="rounded-full"
           onClick={handleCheckout}
+          disabled={!ticketsValidated}
         >
           Pay Now
         </Button>
