@@ -14,6 +14,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [purchasedAccommodationTickets, setPurchasedAccommodationTickets] =
     useState(false);
+  const [gender, setGender] = useState("");
   const [accommodationHours, setAccommodationHours] = useState(0);
   const [userAccommodationInfo, setUserAccommodationInfo] = useState({
     checkIn: "",
@@ -60,6 +61,7 @@ const Profile = () => {
         })
         .then((res) => {
           setLoading(false);
+          setGender(res.data.gender);
           reset({
             userName: res.data.userName,
             regNo: res.data.regNo,
@@ -79,6 +81,26 @@ const Profile = () => {
 
     fetchUserInfo();
   }, [token, reset]);
+
+  const handleSave = () => {
+    if (gender === "" || gender === "Not Specified") {
+      return toast.error("Please select your gender");
+    }
+    const loadingToast = toast.loading("Saving...");
+    axios
+      .post(
+        "/api/users/gender",
+        {
+          gender,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(() => toast.success("Saved"))
+      .catch(() => toast.error("Something went wrong"))
+      .finally(() => toast.dismiss(loadingToast));
+  };
 
   if (loading) {
     return (
@@ -176,15 +198,15 @@ const Profile = () => {
               ></Input>
             </div>
             <div className="my-3">
-              <Input
-                type="text"
-                label="Gender"
-                color="white"
-                {...register("gender", {
-                  required: "Gender is Required",
-                })}
-                readOnly
-              ></Input>
+              <select
+                className="bg-primary p-3 w-full border border-white rounded-lg text-white"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option>Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
             <div className="my-3">
               <Input
@@ -213,6 +235,9 @@ const Profile = () => {
                 readOnly
               ></Input>
             </div>
+            <Button color="deep-purple" onClick={handleSave}>
+              Save
+            </Button>
           </form>
         </div>
       </div>
