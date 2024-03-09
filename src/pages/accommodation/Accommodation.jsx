@@ -9,7 +9,10 @@ const Accommodation = () => {
       <Alert color="red">
         Accommodation for female participants is FULL.
         <br />
-        From now on, it is available only for male participants.
+        We might open the accommodation tickets again for female participants on
+        Monday (11 Mar 2024) depending on the availability.
+        <br />
+        For now, it is available only for male participants.
       </Alert>
       <div className="my-3 text-xl">
         <div className="my-3">
