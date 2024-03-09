@@ -1,4 +1,4 @@
-import { Typography } from "@material-tailwind/react";
+import { Alert, Typography } from "@material-tailwind/react";
 import AccommodationCard from "./components/AccommodationCard";
 import CheckoutPopup from "../buy-tickets/components/CheckoutPopup";
 
@@ -6,6 +6,11 @@ const Accommodation = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h2">Accommodation</Typography>
+      <Alert color="red">
+        Accommodation for female participants is FULL.
+        <br />
+        From now on, it is available only for male participants.
+      </Alert>
       <div className="my-3 text-xl">
         <div className="my-3">
           Accommodation is available to the participants in MIT Hostel from a
