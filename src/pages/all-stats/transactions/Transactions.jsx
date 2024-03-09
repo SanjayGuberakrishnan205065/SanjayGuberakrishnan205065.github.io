@@ -29,7 +29,7 @@ const Transactions = () => {
     // { field: "email", headerName: "Email", width: 200 },
     // { field: "department", headerName: "Department", width: 90 },
     { field: "college", headerName: "College", width: 300 },
-    // { field: "regNo", headerName: "Reg No", width: 130 },
+    { field: "gender", headerName: "Gender", width: 130 },
     { field: "createdAt", headerName: "Date", width: 170 },
     { field: "purchasedTickets", headerName: "Purchased Tickets", width: 200 },
   ];
@@ -58,7 +58,7 @@ const Transactions = () => {
               // transaction.email = transaction.userId.email;
               // transaction.department = transaction.userId.dept;
               transaction.college = transaction.userId.college;
-              // transaction.regNo = transaction.userId.regNo;
+              transaction.gender = transaction.userId.gender;
               transaction.purchasedTickets = transaction.purchasedTickets
                 .map((ticket) => ticket.ticketName)
                 .join(", ");
