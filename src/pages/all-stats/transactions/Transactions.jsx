@@ -106,6 +106,8 @@ const Transactions = () => {
           <option value="Success">Success</option>
           <option value="Failed">Failed</option>
           <option value="Pending Verification">Pending Verification</option>
+          <option value="Refunded">Refunded</option>
+          <option value="Partially Refunded">Partially Refunded</option>
         </select>
       </div>
       <ExportToExcel data={filteredTransactions} fileName="Transactions" />
