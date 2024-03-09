@@ -37,20 +37,6 @@ const Accommodation = () => {
             description="Upto 48 hrs Stay. Food NOT included"
           />
         </div>
-        <div className="flex flex-col md:flex-row gap-5 justify-evenly">
-          <AccommodationCard
-            title={"Accommodation 24hrs (With Food)"}
-            price={400}
-            checkoutId="accommodation_24hrs"
-            description="Upto 24 hrs Stay. Food included"
-          />
-          <AccommodationCard
-            title={"Accommodation 48hrs (With Food)"}
-            price={750}
-            checkoutId="accommodation_48hrs"
-            description="Upto 48 hrs Stay. Food included"
-          />
-        </div>
       </div>
       <div className="my-5 text-center">
         <p>For accommodation related queries, please contact:</p>
