@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Loader from "../../loader/Loader";
 import axios from "axios";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import DataTable from "../components/DataTable";
 import { formatDateTimeWithTimezone } from "../../../utils";
-import { Chip, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import ExportToExcel from "../../../components/ExportToExcel";
-import { HomeIcon } from "@heroicons/react/24/solid";
+import ReferralCodesTable from "./components/ReferralCodesTable";
+import toast from "react-hot-toast";
 
 const ReferralCodes = () => {
   const { token } = useAuthContext();
@@ -23,6 +23,40 @@ const ReferralCodes = () => {
     { field: "createdAt", headerName: "Created At", width: 200 },
   ];
 
+  const handleActiveStatusToggle = (referralCode) => {
+    const loadingToast = toast.loading("Updating status...");
+    const referral = referrals.find(
+      (referral) => referral.referralCode === referralCode
+    );
+    const status = referral.active === "Active" ? "Inactive" : "Active";
+    axios
+      .patch(
+        `/api/referrals/set-active-status`,
+        { active: status === "Active", referralCode },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        setReferrrals(
+          referrals.map((referral) => {
+            if (referral.referralCode === referralCode) {
+              referral.active = status;
+            }
+            return referral;
+          })
+        );
+        toast.dismiss(loadingToast);
+        toast.success("Status updated successfully");
+      })
+      .catch(() => {
+        toast.dismiss(loadingToast);
+        toast.error("Failed to update status");
+      });
+  };
+
   useEffect(() => {
     const fetchReferralCodes = () => {
       axios
@@ -36,8 +70,7 @@ const ReferralCodes = () => {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           );
           setReferrrals(
-            res.data.referrals.map((referral, index) => {
-              referral.id = index + 1;
+            res.data.referrals.map((referral) => {
               referral.active = referral.active ? "Active" : "Inactive";
               referral.discount = referral.discountAmount
                 ? "₹" + referral.discountAmount["$numberDecimal"]
@@ -45,6 +78,7 @@ const ReferralCodes = () => {
               referral.createdAt = formatDateTimeWithTimezone(
                 referral.createdAt
               );
+              referral.applicableCollege = referral.applicableCollege || "All";
               return referral;
             })
           );
@@ -89,7 +123,11 @@ const ReferralCodes = () => {
       </div>
       <ExportToExcel data={filteredReferrals} fileName="Referral Codes" />
       <div className="my-3">
-        <DataTable rows={filteredReferrals} columns={columns} />
+        <ReferralCodesTable
+          rows={filteredReferrals}
+          columns={columns}
+          handleActiveStatusToggle={handleActiveStatusToggle}
+        />
       </div>
     </div>
   );
