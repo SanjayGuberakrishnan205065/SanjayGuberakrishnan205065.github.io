@@ -20,6 +20,7 @@ const ReferralCodes = () => {
     { field: "active", headerName: "Status", width: 90 },
     { field: "discount", headerName: "Discount", width: 80 },
     { field: "applicableCollege", headerName: "College", width: 300 },
+    { field: "usageCount", headerName: "Usage", width: 90 },
     { field: "createdAt", headerName: "Created At", width: 200 },
   ];
 
