@@ -12,7 +12,9 @@ const Accommodation = () => {
         We might open the accommodation tickets again for female participants on
         Monday (11 Mar 2024) depending on the availability.
         <br />
-        For now, it is available only for male participants.
+        <br />
+        Accommodation ticket sale for male participants will be closed on
+        Wednesday (13 Mar 2024)
       </Alert>
       <div className="my-3 text-xl">
         <div className="my-3">
