@@ -19,10 +19,6 @@ const Accommodation = () => {
           Accommodation is available to the participants in MIT Hostel from a
           starting price of ₹250 for 24 hours.
         </div>
-        <div className="my-3">
-          Food charge includes breakfast, lunch and dinner.
-        </div>
-        <div className="my-3">Accommodation available within MIT Premises.</div>
       </div>
       <div className="my-3">
         <Typography variant="h3">Accommodation Tickets</Typography>
