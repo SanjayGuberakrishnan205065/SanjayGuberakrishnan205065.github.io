@@ -57,6 +57,22 @@ const PaymentModal = ({
                 return;
               }
             }
+            if (
+              referral.applicableCheckoutIds &&
+              referral.applicableCheckoutIds.length > 0
+            ) {
+              const applicableCheckoutIds = referral.applicableCheckoutIds;
+              const isApplicable = cartItems.every((item) =>
+                applicableCheckoutIds.includes(item.checkoutId)
+              );
+              if (!isApplicable) {
+                toast.error(
+                  "Referral code not applicable for the selected tickets"
+                );
+                setLoading(false);
+                return;
+              }
+            }
             if (referral.discountPercent) {
               const discountAmount =
                 (amount * referral.discountPercent["$numberDecimal"]) / 100;
