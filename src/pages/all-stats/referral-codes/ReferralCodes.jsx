@@ -16,12 +16,13 @@ const ReferralCodes = () => {
   const [category, setCategory] = useState("all");
 
   const columns = [
-    { field: "referralCode", headerName: "Code", width: 120 },
-    { field: "active", headerName: "Status", width: 90 },
-    { field: "discount", headerName: "Discount", width: 80 },
-    { field: "applicableCollege", headerName: "College", width: 300 },
-    { field: "usageCount", headerName: "Usage", width: 90 },
-    { field: "createdAt", headerName: "Created At", width: 200 },
+    { field: "referralCode", headerName: "Code" },
+    { field: "active", headerName: "Status" },
+    { field: "discount", headerName: "Discount" },
+    { field: "applicableCollege", headerName: "College" },
+    { field: "applicableDept", headerName: "Department" },
+    { field: "usageCount", headerName: "Usage" },
+    { field: "createdAt", headerName: "Created At" },
   ];
 
   const handleActiveStatusToggle = (referralCode) => {
@@ -80,6 +81,7 @@ const ReferralCodes = () => {
                 referral.createdAt
               );
               referral.applicableCollege = referral.applicableCollege || "All";
+              referral.applicableDept = referral.applicableDept || "All";
               return referral;
             })
           );
