@@ -21,6 +21,8 @@ const ReferralCodes = () => {
     { field: "discount", headerName: "Discount" },
     { field: "applicableCollege", headerName: "College" },
     { field: "applicableDept", headerName: "Department" },
+    { field: "applicableTicketTypes", headerName: "Ticket Types" },
+    { field: "applicableCheckoutIds", headerName: "Tickets" },
     { field: "usageCount", headerName: "Usage" },
     { field: "createdAt", headerName: "Created At" },
   ];
@@ -82,6 +84,14 @@ const ReferralCodes = () => {
               );
               referral.applicableCollege = referral.applicableCollege || "All";
               referral.applicableDept = referral.applicableDept || "All";
+              referral.applicableTicketTypes = referral.applicableTicketTypes
+                .length
+                ? referral.applicableTicketTypes.join(", ")
+                : "All";
+              referral.applicableCheckoutIds = referral.applicableCheckoutIds
+                .length
+                ? referral.applicableCheckoutIds.join(",")
+                : "All";
               return referral;
             })
           );
