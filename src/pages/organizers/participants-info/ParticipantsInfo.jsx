@@ -23,9 +23,11 @@ const ParticipantsInfo = () => {
             res.data.checkoutOutIdParticipantsMap;
           Object.keys(checkoutIdParticipantsMap).forEach((checkoutId) => {
             // add id field to every participant
-            checkoutIdParticipantsMap[checkoutId].forEach((participant) => {
-              participant.id = participant._id;
-            });
+            checkoutIdParticipantsMap[checkoutId].forEach(
+              (participant, index) => {
+                participant.id = participant._id + index;
+              }
+            );
           });
           setEventParticipants(checkoutIdParticipantsMap);
           setLoading(false);
