@@ -9,9 +9,6 @@ const Accommodation = () => {
       <Alert color="red">
         Accommodation for female participants is FULL.
         <br />
-        We might open the accommodation tickets again for female participants on
-        Monday (11 Mar 2024) depending on the availability.
-        <br />
         <br />
         Accommodation ticket sale for male participants will be closed on
         Wednesday (13 Mar 2024)
