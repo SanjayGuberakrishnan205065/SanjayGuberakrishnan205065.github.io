@@ -48,10 +48,10 @@ const AccommodationTimings = () => {
               accommodationTiming.college = accommodationTiming.user.college;
               accommodationTiming.gender = accommodationTiming.user.gender;
               accommodationTiming.checkIn = formatDateTimeWithTimezone(
-                accommodationTiming.checkIn
+                accommodationTiming.checkIn.slice(0, 16)
               );
               accommodationTiming.checkOut = formatDateTimeWithTimezone(
-                accommodationTiming.checkOut
+                accommodationTiming.checkOut.slice(0, 16)
               );
               return accommodationTiming;
             })
