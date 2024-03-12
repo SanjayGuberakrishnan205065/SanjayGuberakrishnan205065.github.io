@@ -15,8 +15,8 @@ const Accommodation = () => {
       </Alert>
       <div className="my-3 text-xl">
         <div className="my-3">
-          Accommodation is available to the participants in MIT Hostel from a
-          starting price of ₹250 for 24 hours.
+          Accommodation is available to the participants from a starting price
+          of ₹250 for 24 hours.
         </div>
       </div>
       <div className="my-3">
@@ -30,8 +30,8 @@ const Accommodation = () => {
           />
           <AccommodationCard
             title={"Accommodation 48hrs (No Food)"}
-            price={450}
-            checkoutId="accommodation_48hrs_no_food"
+            price={500}
+            checkoutId="accommodation_48hrs_no_food_new"
             description="Upto 48 hrs Stay. Food NOT included"
           />
         </div>
