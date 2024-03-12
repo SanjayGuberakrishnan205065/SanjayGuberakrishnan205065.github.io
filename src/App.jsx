@@ -37,6 +37,8 @@ import SamhitaId from "./pages/all-stats/samhita-id/SamhitaId";
 import Organizers from "./pages/organizers/Organizers";
 import OrganizedEvents from "./pages/organizers/organized-events/OrganizedEvents";
 import ParticipantsInfo from "./pages/organizers/participants-info/ParticipantsInfo";
+import ErrorPage from "./pages/ErrorPage";
+import AccommodationTimings from "./pages/all-stats/accommodation-timings/AccommodationTimings";
 
 function App() {
   const authContext = useAuthContext();
@@ -50,6 +52,7 @@ function App() {
     {
       path: "/",
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children: [
         { path: "/", element: <Home /> },
         {
@@ -165,6 +168,10 @@ function App() {
             {
               path: "samhita-id",
               element: <SamhitaId />,
+            },
+            {
+              path: "accommodation-timings",
+              element: <AccommodationTimings />,
             },
           ],
         },

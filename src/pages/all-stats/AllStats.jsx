@@ -8,6 +8,7 @@ const AllStats = () => {
     { name: "Referral Codes", href: "referral-codes" },
     { name: "Participants", href: "participants" },
     { name: "Query by Samhita ID", href: "samhita-id" },
+    { name: "Accommodation Timings", href: "accommodation-timings" },
   ];
   return (
     <div className="mx-auto container page-view">
