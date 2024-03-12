@@ -135,50 +135,7 @@ const PaymentModal = ({
           <Typography variant="h4" color="black">
             Pay using UPI
           </Typography>
-          <div>
-            <div>
-              Please scan the QR code and complete the payment using your UPI
-              app
-            </div>
-            <div className="text-xs">Our payment partner: SRI DEVI STORE</div>
-          </div>
-          <div className="flex justify-center">
-            {qrLoading && (
-              <div>
-                <Loader />
-                Generating QR code...
-              </div>
-            )}
-            <img
-              src={qrCodeSrc}
-              className="max-w-48"
-              alt="qr"
-              onLoad={() => setQrLoading(false)}
-            />
-          </div>
-          {/* <div className="my-3">
-            Or, you can use the following link to complete the payment
-            <div>
-              <a
-                href={upiLink}
-                target="_blank"
-                className="text-blue-500 underline"
-                rel="noreferrer"
-              >
-                Click here to pay
-                <span className="font-bold"> ₹{finalAmount} </span>
-                using an UPI app on your phone
-              </a>
-            </div>
-          </div> */}
-          {referralApplied && referralCode ? (
-            <div>Referral code used: {referralCode}</div>
-          ) : (
-            <div className="font-extrabold text-red-800 text-2xl">
-              NO REFERRAL CODE USED
-            </div>
-          )}
-          <div className="text-2xl font-bold">
+          <div className="text-2xl font-bold mt-5">
             After paying, please enter the 12 digit UPI transaction ID below
             <br />
             Only then your ticket will be confirmed
@@ -223,6 +180,49 @@ const PaymentModal = ({
               </Button>
             </div>
           </div>
+          <div className="mt-10">
+            <div>
+              Please scan the QR code and complete the payment using your UPI
+              app
+            </div>
+            <div className="text-xs">Our payment partner: SRI DEVI STORE</div>
+          </div>
+          <div className="flex justify-center">
+            {qrLoading && (
+              <div>
+                <Loader />
+                Generating QR code...
+              </div>
+            )}
+            <img
+              src={qrCodeSrc}
+              className="max-w-48"
+              alt="qr"
+              onLoad={() => setQrLoading(false)}
+            />
+          </div>
+          {/* <div className="my-3">
+            Or, you can use the following link to complete the payment
+            <div>
+              <a
+                href={upiLink}
+                target="_blank"
+                className="text-blue-500 underline"
+                rel="noreferrer"
+              >
+                Click here to pay
+                <span className="font-bold"> ₹{finalAmount} </span>
+                using an UPI app on your phone
+              </a>
+            </div>
+          </div> */}
+          {referralApplied && referralCode ? (
+            <div className="mt-10">Referral code used: {referralCode}</div>
+          ) : (
+            <div className="font-extrabold text-red-800 text-2xl mt-10">
+              NO REFERRAL CODE USED
+            </div>
+          )}
         </div>
       )}
     </Modal>
