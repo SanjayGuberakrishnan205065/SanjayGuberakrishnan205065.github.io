@@ -22,7 +22,7 @@ const PaymentModal = ({
   const [upiTransactionId, setUpiTransactionId] = useState("");
   const [qrLoading, setQrLoading] = useState(true);
   const [finalAmount, setFinalAmount] = useState(amount);
-  const upiLink = `upi://pay?mode=02&pa=Q178991944@ybl&am=${finalAmount}&purpose=00&mc=0000&pn=PhonePeMerchant&orgid=180001&sign=MEUCIEoxiCYhFrpF2oZDnWtkGInpkF3dAJbe4oSXSq0HGThUAiEA8RGaio5MA0/x0FQx9RvZxF1tJp2UwEQKkEsVC8mYXBY=`;
+  const upiLink = `upi://pay?mode=02&pa=Q178991944@ybl&am=${finalAmount}&purpose=00&mc=0000&pn=PhonePeMerchant&orgid=180001`;
   const qrCodeSrc = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
     upiLink
   )}`;
