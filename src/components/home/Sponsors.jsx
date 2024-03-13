@@ -1,8 +1,9 @@
 const Sponsors = () => {
   const sponsors = [
     "guvi.png",
-    "kalimark.webp",
-    "finolex.png",
+    "qoruz.png",
+    "poorvika.jpg",
+    "spirent.svg",
     "shortflix.webp",
   ];
   return (
