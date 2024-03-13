@@ -100,7 +100,7 @@ const PricingCard = ({
           onClick={startingFrom ? handleCardAction : handleAddToCart}
         >
           {!available ? (
-            "Not available anymore"
+            "No longer available"
           ) : startingFrom ? (
             "Browse Passes"
           ) : isAddedToCart ? (
