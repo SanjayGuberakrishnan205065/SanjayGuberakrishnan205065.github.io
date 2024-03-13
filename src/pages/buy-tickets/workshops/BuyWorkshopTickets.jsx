@@ -37,12 +37,12 @@ const BuyWorkshopTickets = () => {
       <Typography variant="h1">Workshop Tickets</Typography>
       <IndividualTickets
         individualTickets={tickets.filter(
-          (ticket) => ticket.type === "workshop"
+          (ticket) => ticket.type === "workshop" && ticket.active === true
         )}
       />
       <ComboTickets
         comboTickets={tickets.filter(
-          (ticket) => ticket.type === "workshop-combo"
+          (ticket) => ticket.type === "workshop-combo" && ticket.active === true
         )}
       />
       <CheckoutPopup />
