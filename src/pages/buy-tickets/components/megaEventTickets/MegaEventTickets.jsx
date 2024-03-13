@@ -19,7 +19,6 @@ const MegaEventTickets = () => {
         <PricingCard
           title={"Paper Presentation Pass"}
           price={499}
-          available={false}
           checkoutId={"paper_presentation_pass"}
           cardBody={<PaperPresentationCardBody />}
         />
