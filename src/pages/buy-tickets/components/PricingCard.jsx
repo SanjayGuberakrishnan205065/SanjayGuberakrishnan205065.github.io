@@ -13,6 +13,7 @@ const PricingCard = ({
   title,
   price,
   cardBody,
+  available = true,
   savings,
   startingFrom,
   handleCardAction,
@@ -95,9 +96,12 @@ const PricingCard = ({
           }`}
           ripple={true}
           fullWidth={true}
+          disabled={!available}
           onClick={startingFrom ? handleCardAction : handleAddToCart}
         >
-          {startingFrom ? (
+          {!available ? (
+            "Not available anymore"
+          ) : startingFrom ? (
             "Browse Passes"
           ) : isAddedToCart ? (
             <div className="flex items-center">
