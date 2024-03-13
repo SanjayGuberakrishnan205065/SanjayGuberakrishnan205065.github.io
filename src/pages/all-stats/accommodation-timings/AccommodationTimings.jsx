@@ -5,9 +5,12 @@ import { Typography } from "@material-tailwind/react";
 import ExportToExcel from "../../../components/ExportToExcel";
 import DataTable from "../components/DataTable";
 import { formatDateTimeWithTimezone } from "../../../utils";
+import toast from "react-hot-toast";
+import Loader from "../../loader/Loader";
 
 const AccommodationTimings = () => {
   const { token } = useAuthContext();
+  const [loading, setLoading] = useState(true);
   const [accommodationTimings, setAccommodationTimings] = useState([]);
   const columns = [
     { field: "checkIn", headerName: "Check in", width: 170 },
@@ -15,6 +18,7 @@ const AccommodationTimings = () => {
     { field: "name", headerName: "Name", width: 100 },
     { field: "gender", headerName: "Gender", width: 130 },
     { field: "tickets", headerName: "Purchased Tickets", width: 150 },
+    { field: "count", headerName: "Tickets Count", width: 100 },
     {
       field: "mobile",
       headerName: "Mobile",
@@ -42,6 +46,8 @@ const AccommodationTimings = () => {
               accommodationTiming.name = accommodationTiming.user.userName;
               accommodationTiming.tickets =
                 accommodationTiming.verifiedAccommodationTickets.join(", ");
+              accommodationTiming.count =
+                accommodationTiming.verifiedAccommodationTickets.length;
               accommodationTiming.mobile = accommodationTiming.user.mobile;
               accommodationTiming.email = accommodationTiming.user.email;
               accommodationTiming.department = accommodationTiming.user.dept;
@@ -57,14 +63,22 @@ const AccommodationTimings = () => {
             })
           );
           setAccommodationTimings(res.data.accommodationTimings);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          toast.error("Failed to fetch accommodation timings");
+          setLoading(false);
         });
     };
 
     fetchAccommodationTimings();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <Typography variant="h3">Accommodation Timings</Typography>
