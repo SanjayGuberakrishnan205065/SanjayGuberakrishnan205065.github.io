@@ -104,10 +104,6 @@ function App() {
           element: <Contact />,
         },
         {
-          path: "accommodation",
-          element: <Accommodation />,
-        },
-        {
           path: "checkout",
           element: <Checkout />,
         },
