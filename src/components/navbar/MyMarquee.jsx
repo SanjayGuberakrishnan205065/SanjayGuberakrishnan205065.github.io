@@ -5,7 +5,7 @@ const MyMarquee = () => (
     <div className="flex text-xl my-3">
       <div className="mx-10">25+ Intern offers</div>
       <div className="bg-red-300 px-3">
-        Online tickets sale will be CLOSED on <b>15th March by 2PM</b>
+        Online tickets sale will be CLOSED on <b>15th March by 11 PM</b>
       </div>
       <div className="mx-10">2L+ Prize Money</div>
       <div className="flex gap-2 mx-10">

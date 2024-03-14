@@ -4,6 +4,8 @@ const Sponsors = () => {
     "qoruz.png",
     "poorvika.jpg",
     "spirent.svg",
+    "happyLyf.jpg",
+    "indiaTherapist.jpeg",
     "shortflix.webp",
   ];
   return (
