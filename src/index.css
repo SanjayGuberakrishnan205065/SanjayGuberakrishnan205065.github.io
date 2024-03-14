@@ -79,6 +79,10 @@ a {
   @apply italic;
 }
 
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
 .about-samhita-grid {
   display: grid;
   grid-template-columns: 1fr;
