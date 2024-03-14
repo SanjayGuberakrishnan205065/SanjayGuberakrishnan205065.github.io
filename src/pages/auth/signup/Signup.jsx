@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { useSignup } from "../../../hooks/useSignup";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import Danger from "../../../components/alerts/Danger";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Success from "../../../components/alerts/Success";
 
 const Signup = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const { signup, isLoading, error: signUpError } = useSignup();
   const [error, setError] = useState("");
   const {
@@ -24,7 +26,8 @@ const Signup = () => {
       setError("Passwords do not match");
       return;
     }
-    data = { ...data };
+    const recaptchaToken = await executeRecaptcha("signup");
+    data = { ...data, captchaValue: recaptchaToken };
     await signup(data);
   };
 
