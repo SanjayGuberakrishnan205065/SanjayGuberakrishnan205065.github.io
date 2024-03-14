@@ -6,36 +6,9 @@ const Accommodation = () => {
   return (
     <div className="container mx-auto page-view">
       <Typography variant="h2">Accommodation</Typography>
-      <Alert color="red">
-        Accommodation for female participants is FULL.
-        <br />
-        <br />
-        Accommodation ticket sale for male participants will be closed on
-        Wednesday (13 Mar 2024)
+      <Alert color="red" className="my-5">
+        Accommodation tickets are no longer available
       </Alert>
-      <div className="my-3 text-xl">
-        <div className="my-3">
-          Accommodation is available to the participants from a starting price
-          of ₹250 for 24 hours.
-        </div>
-      </div>
-      <div className="my-3">
-        <Typography variant="h3">Accommodation Tickets</Typography>
-        <div className="flex flex-col md:flex-row gap-5 justify-evenly">
-          <AccommodationCard
-            title={"Accommodation 24hrs (No Food)"}
-            price={250}
-            checkoutId="accommodation_24hrs_no_food"
-            description="Upto 24 hrs Stay. Food NOT included"
-          />
-          <AccommodationCard
-            title={"Accommodation 48hrs (No Food)"}
-            price={500}
-            checkoutId="accommodation_48hrs_no_food_new"
-            description="Upto 48 hrs Stay. Food NOT included"
-          />
-        </div>
-      </div>
       <div className="my-5 text-center">
         <p>For accommodation related queries, please contact:</p>
         <Typography variant="h6">Surendra</Typography>

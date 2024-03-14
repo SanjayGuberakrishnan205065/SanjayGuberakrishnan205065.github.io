@@ -75,6 +75,14 @@ export function Navbar() {
       },
     },
     {
+      name: "Accommodation",
+      icon: HotelIcon,
+      routeFn: () => {
+        setOpen(false);
+        navigate("/accommodation");
+      },
+    },
+    {
       name: "Location",
       icon: MapPinIcon,
       routeFn: () => {
