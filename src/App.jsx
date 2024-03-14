@@ -39,6 +39,7 @@ import OrganizedEvents from "./pages/organizers/organized-events/OrganizedEvents
 import ParticipantsInfo from "./pages/organizers/participants-info/ParticipantsInfo";
 import ErrorPage from "./pages/ErrorPage";
 import AccommodationTimings from "./pages/all-stats/accommodation-timings/AccommodationTimings";
+import VerifyParticipant from "./pages/organizers/verify-participant/VerifyParticipant";
 
 function App() {
   const authContext = useAuthContext();
@@ -137,6 +138,10 @@ function App() {
             {
               path: "participants-info",
               element: <ParticipantsInfo />,
+            },
+            {
+              path: "verify-participant",
+              element: <VerifyParticipant />,
             },
           ],
         },

@@ -5,6 +5,7 @@ const Organizers = () => {
   const quickLinks = [
     { name: "Organized Events", href: "organized-events" },
     { name: "Participants Info", href: "participants-info" },
+    { name: "Verify Participant", href: "verify-participant" },
   ];
   return (
     <div className="mx-auto container page-view">
