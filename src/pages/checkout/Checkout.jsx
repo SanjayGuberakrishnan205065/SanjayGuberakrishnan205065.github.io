@@ -109,7 +109,7 @@ const Checkout = () => {
       })
       .catch((err) => {
         toast.dismiss(loadingToast);
-        toast.error(err.response.data.message);
+        toast.error(err.response.data.message || err.response.data.error);
       });
   };
 
