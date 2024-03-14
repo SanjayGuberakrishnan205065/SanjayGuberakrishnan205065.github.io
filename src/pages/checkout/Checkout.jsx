@@ -8,8 +8,10 @@ import PaymentModal from "./components/PaymentModal";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Loader from "../loader/Loader";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const Checkout = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const { token } = useAuthContext();
   const [referralCode, setReferralCode] = useState("");
   const { checkoutIdsInCart } = useCartContext();
@@ -78,12 +80,13 @@ const Checkout = () => {
     validateTickets();
   }, [checkoutIdsInCart]);
 
-  const handlePayment = (upiTransactionId) => {
+  const handlePayment = async (upiTransactionId) => {
     if (!upiTransactionId || upiTransactionId.length !== 12) {
       toast.error("Enter a valid 12 digit UPI transaction ID");
       return;
     }
     const loadingToast = toast.loading("Creating transaction...");
+    const recaptchaToken = await executeRecaptcha("create_txn");
     axios
       .post(
         "/api/transactions",
@@ -91,6 +94,7 @@ const Checkout = () => {
           upiTransactionId,
           checkoutIds: checkoutIdsInCart,
           referralCode,
+          captchaValue: recaptchaToken,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       )
