@@ -9,6 +9,11 @@ const AllStats = () => {
     { name: "Participants", href: "participants" },
     { name: "Query by Samhita ID", href: "samhita-id" },
     { name: "Accommodation Timings", href: "accommodation-timings" },
+    { name: "Add transaction", href: "add-transaction" },
+    {
+      name: "Add referral to transaction",
+      href: "add-referral-to-transaction",
+    },
   ];
   return (
     <div className="mx-auto container page-view">

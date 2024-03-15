@@ -40,6 +40,8 @@ import ParticipantsInfo from "./pages/organizers/participants-info/ParticipantsI
 import ErrorPage from "./pages/ErrorPage";
 import AccommodationTimings from "./pages/all-stats/accommodation-timings/AccommodationTimings";
 import VerifyParticipant from "./pages/organizers/verify-participant/VerifyParticipant";
+import AddTransaction from "./pages/all-stats/add-transaction/AddTransaction";
+import AddReferralToTransaction from "./pages/all-stats/add-referral-to-transaction/AddReferralToTransaction";
 
 function App() {
   const authContext = useAuthContext();
@@ -177,6 +179,14 @@ function App() {
             {
               path: "accommodation-timings",
               element: <AccommodationTimings />,
+            },
+            {
+              path: "add-transaction",
+              element: <AddTransaction />,
+            },
+            {
+              path: "add-referral-to-transaction",
+              element: <AddReferralToTransaction />,
             },
           ],
         },
