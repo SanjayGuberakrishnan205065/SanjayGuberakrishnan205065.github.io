@@ -1,10 +1,10 @@
 const Sponsors = () => {
   const sponsors = [
-    "guvi.png",
     "qoruz.png",
     "poorvika.jpg",
     "spirent.svg",
     "happyLyf.jpg",
+    "markersCafe.png",
     "indiaTherapist.jpeg",
     "shortflix.webp",
   ];
