@@ -20,6 +20,7 @@ const WorkshopTickets = () => {
           price={649}
           cardBody={<WorkshopCardBody />}
           handleCardAction={handleCardAction}
+          available={false}
         />
       </div>
     </div>

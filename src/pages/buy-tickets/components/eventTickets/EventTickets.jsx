@@ -15,6 +15,7 @@ const EventTickets = () => {
           title="Tech Pass"
           checkoutId="tech_pass"
           price={199}
+          available={false}
           cardBody={<TechCardBody />}
         />
         <PricingCard
@@ -23,12 +24,14 @@ const EventTickets = () => {
           checkoutId="general_event_pass"
           cardBody={<GeneralCardBody />}
           savings={17}
+          available={false}
         />
         <PricingCard
           title="Non-Tech Pass"
           price={149}
           checkoutId="non_tech_pass"
           cardBody={<NonTechCardBody />}
+          available={false}
         />
       </div>
     </div>
