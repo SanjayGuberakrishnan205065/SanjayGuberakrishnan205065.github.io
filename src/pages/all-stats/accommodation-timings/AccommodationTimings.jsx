@@ -45,15 +45,11 @@ const AccommodationTimings = () => {
           const tempAccommodationCategoryParticipantsMap = {};
 
           accommodationCategories.forEach((category) => {
-            const currentCategory =
-              category === "accommodation_48hrs_no_food_new"
-                ? "accommodation_48hrs_no_food"
-                : category;
-            if (!tempAccommodationCategoryParticipantsMap[currentCategory]) {
-              tempAccommodationCategoryParticipantsMap[currentCategory] = [];
+            if (!tempAccommodationCategoryParticipantsMap[category]) {
+              tempAccommodationCategoryParticipantsMap[category] = [];
             }
-            tempAccommodationCategoryParticipantsMap[currentCategory] = data[
-              currentCategory
+            tempAccommodationCategoryParticipantsMap[category] = data[
+              category
             ].map((participant, index) => {
               participant.id = participant._id + index;
               participant.name = participant.userName;
