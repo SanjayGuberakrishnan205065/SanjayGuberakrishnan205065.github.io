@@ -15,7 +15,6 @@ const Home = () => {
       <AboutEvent />
       <OurStats />
       <Faq />
-      <Offer />
     </>
   );
 };

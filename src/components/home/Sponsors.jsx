@@ -4,9 +4,9 @@ const Sponsors = () => {
     "poorvika.jpg",
     "spirent.svg",
     "happyLyf.jpg",
-    "markersCafe.png",
     "indiaTherapist.jpeg",
     "shortflix.webp",
+    "markersCafe.png",
   ];
   return (
     <section className="py-8 px-8 lg:py-20 bg-white">
