@@ -26,7 +26,7 @@ const Transactions = () => {
     //   type: "number",
     //   width: 130,
     // },
-    // { field: "email", headerName: "Email", width: 200 },
+    { field: "email", headerName: "Email", width: 200 },
     // { field: "department", headerName: "Department", width: 90 },
     { field: "college", headerName: "College", width: 300 },
     { field: "gender", headerName: "Gender", width: 130 },
@@ -55,7 +55,7 @@ const Transactions = () => {
                 transaction.referral?.referralCode || "N/A";
               transaction.name = transaction.userId.userName;
               // transaction.mobile = transaction.userId.mobile;
-              // transaction.email = transaction.userId.email;
+              transaction.email = transaction.userId.email;
               // transaction.department = transaction.userId.dept;
               transaction.college = transaction.userId.college;
               transaction.gender = transaction.userId.gender;

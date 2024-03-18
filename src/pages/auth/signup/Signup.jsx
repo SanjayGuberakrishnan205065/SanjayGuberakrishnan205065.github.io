@@ -21,14 +21,14 @@ const Signup = () => {
   }, [signUpError]);
 
   const addUser = async (data) => {
-    setError("");
-    if (data.password !== data.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    const recaptchaToken = await executeRecaptcha("signup");
-    data = { ...data, captchaValue: recaptchaToken };
-    await signup(data);
+    // setError("");
+    // if (data.password !== data.confirmPassword) {
+    //   setError("Passwords do not match");
+    //   return;
+    // }
+    // const recaptchaToken = await executeRecaptcha("signup");
+    // data = { ...data, captchaValue: recaptchaToken };
+    // await signup(data);
   };
 
   return (

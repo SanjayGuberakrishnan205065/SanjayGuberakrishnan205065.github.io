@@ -73,9 +73,9 @@ const Login = () => {
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </form>
-            <div className="my-3 text-sm">
+            {/* <div className="my-3 text-sm">
               Don't have an account? <Link to="/signup">Register here</Link>
-            </div>
+            </div> */}
             <div className="my-3 text-xs">
               <Link to="/forgot-password">Forgot your password?</Link>
             </div>
